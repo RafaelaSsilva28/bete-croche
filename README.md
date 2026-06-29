@@ -46,7 +46,7 @@ api/
 1. Clone o repositório
 
 bash
-git clone https://github.com/seu-usuario/atelie-elizabete-api.git
+git clone https://github.com/RafaelaSsilva28/bete-croche.git
 
 
 2. Instale as dependências
