@@ -1,0 +1,11 @@
+# Dependências (Sempre ignorar)
+node_modules/
+
+# Logs do NPM
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos de variáveis de ambiente (contêm senhas e chaves de API)
+.env
+.env.local
