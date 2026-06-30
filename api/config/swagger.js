@@ -1,8 +1,8 @@
 import usuarios from "../docs/usuarios.js";
 import login from "../docs/login.js";
 import categorias from "../docs/categorias.js";
-// import produtos from "../docs/produtos.js";
-// import imagens from "../docs/imagens.js";
+import produtos from "../docs/produtos.js";
+import imagens from "../docs/imagens.js";
 
 const documentacao = {
     openapi: "3.0.3",
@@ -63,8 +63,8 @@ const documentacao = {
         ...login,
         ...usuarios,
         ...categorias,
-        // ...produtos,
-        // ...imagens
+        ...produtos,
+        ...imagens
     }
 };
 

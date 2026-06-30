@@ -11,9 +11,7 @@ const router = Router();
 // POST - cadastrar imagens do produto
 
 router.post(
-    "/produtos/:produto_id/imagens",
-    autenticarToken,
-    upload.array("imagens", 10), // permite até 10 imagens
+    "/produtos/:produto_id/imagens", upload.array("imagens", 10), // permite até 10 imagens
     async (req, res) => {
 
         const { produto_id } = req.params;
@@ -101,8 +99,7 @@ router.post(
 // GET - listar imagens de um produto
 
 router.get(
-    "/produtos/:produto_id/imagens",
-    autenticarToken, async (req, res) => {
+    "/produtos/:produto_id/imagens", async (req, res) => {
 
         const { produto_id } = req.params;
 
@@ -126,8 +123,7 @@ router.get(
                 `SELECT
                     id_imagem,
                     caminho_imagem,
-                    principal,
-                    data_upload
+                    principal
                  FROM imagens_produto
                  WHERE produto_id = $1
                  ORDER BY principal DESC, id_imagem ASC`,

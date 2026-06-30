@@ -42,7 +42,7 @@ router.post('/categorias', autenticarToken, async (req, res) => {
 //--------------------------------------------------------------------------------------------------------
 // GET - listar categorias
 
-router.get('/categorias', autenticarToken, async (req, res) => {
+router.get('/categorias', async (req, res) => {
 
     try {
 
@@ -71,7 +71,7 @@ router.get('/categorias', autenticarToken, async (req, res) => {
 //--------------------------------------------------------------------------------------------------------
 // GET - buscar categoria por ID
 
-router.get('/categorias/:id_categoria', autenticarToken, async (req, res) => {
+router.get('/categorias/:id_categoria', async (req, res) => {
 
     const { id_categoria } = req.params;
 

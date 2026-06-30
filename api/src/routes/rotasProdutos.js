@@ -125,7 +125,7 @@ router.post('/produtos', autenticarToken, async (req, res) => {
 //--------------------------------------------------------------------------------------------------------
 // GET - listar produtos
 
-router.get('/produtos',  autenticarToken, async (req, res) => {
+router.get('/produtos', async (req, res) => {
 
     try {
 
@@ -182,7 +182,7 @@ router.get('/produtos',  autenticarToken, async (req, res) => {
 //--------------------------------------------------------------------------------------------------------
 // GET - buscar produto por ID
 
-router.get('/produtos/:id_produto', autenticarToken, async (req, res) => {
+router.get('/produtos/:id_produto', async (req, res) => {
 
     const { id_produto } = req.params;
 
