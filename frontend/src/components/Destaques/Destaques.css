@@ -1,0 +1,29 @@
+.destaques{
+
+    padding:80px;
+
+}
+
+.destaques h2{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+    font-size:38px;
+
+    color:#444;
+
+}
+
+.listaProdutos{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:30px;
+
+    flex-wrap:wrap;
+
+}

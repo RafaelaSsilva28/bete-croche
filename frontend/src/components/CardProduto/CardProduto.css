@@ -1,0 +1,99 @@
+.cardProduto{
+
+    width:280px;
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+    overflow:hidden;
+
+}
+
+.cardProduto:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.cardProduto img{
+
+    width:100%;
+
+    height:280px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+    transition:.4s;
+
+}
+
+.cardProduto:hover img{
+
+    transform:scale(1.05);
+
+}
+
+.cardProduto h3{
+
+    margin:15px 0;
+
+    color:#444;
+
+}
+
+.cardProduto p{
+
+    color:#777;
+
+    min-height:60px;
+
+}
+
+.cardProduto span{
+
+    display:block;
+
+    margin:20px 0;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    color:#D98CA3;
+
+}
+
+.cardProduto button{
+
+    width:100%;
+
+    border:none;
+
+    background:#D98CA3;
+
+    color:white;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.cardProduto button:hover{
+
+    background:#c96f90;
+
+}
