@@ -1,0 +1,85 @@
+.depoimentos{
+
+    padding:100px 40px;
+
+    text-align:center;
+
+    background:white;
+
+}
+
+.subtitulo{
+
+    color:#D98CA3;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+.depoimentos h2{
+
+    font-size:42px;
+
+    color:#444;
+
+    margin:15px 0 60px;
+
+}
+
+.cardsDepoimentos{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+    gap:30px;
+
+}
+
+.cardDepoimento{
+
+    background:#FFF7FA;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    transition:.3s;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.cardDepoimento:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.estrelas{
+
+    font-size:24px;
+
+    margin-bottom:20px;
+
+}
+
+.cardDepoimento p{
+
+    color:#666;
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+
+    font-style:italic;
+
+}
+
+.cardDepoimento h4{
+
+    color:#D98CA3;
+
+}

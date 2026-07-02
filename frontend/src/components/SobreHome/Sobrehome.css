@@ -1,0 +1,99 @@
+.sobreHome{
+
+    max-width:1200px;
+
+    margin:100px auto;
+
+    padding:0 40px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:80px;
+
+}
+
+.sobreImagem{
+
+    flex:1;
+
+}
+
+.sobreImagem img{
+
+    width:100%;
+
+    border-radius:25px;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+
+}
+
+.sobreTexto{
+
+    flex:1;
+
+}
+
+.sobreTexto span{
+
+    color:#D98CA3;
+
+    font-weight:bold;
+
+    font-size:18px;
+
+}
+
+.sobreTexto h2{
+
+    font-size:48px;
+
+    color:#444;
+
+    margin:15px 0 25px;
+
+}
+
+.sobreTexto p{
+
+    font-size:18px;
+
+    color:#666;
+
+    line-height:1.8;
+
+    margin-bottom:20px;
+
+}
+
+.sobreTexto button{
+
+    margin-top:20px;
+
+    padding:16px 35px;
+
+    border:none;
+
+    border-radius:40px;
+
+    background:#D98CA3;
+
+    color:white;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.sobreTexto button:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 12px 25px rgba(217,140,163,.35);
+
+}

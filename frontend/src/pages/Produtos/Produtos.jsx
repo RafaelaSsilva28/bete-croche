@@ -1,5 +1,171 @@
+import { useEffect, useState } from "react";
+import api from "../../services/api";
+
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
+import CardProduto from "../../components/CardProduto/CardProduto";
+import ModalProduto from "../../components/ModalProduto/ModalProduto";
+
+import "./Produtos.css";
+
 function Produtos() {
-    return <h1>Página de Produtos</h1>;
+
+    const [produtos, setProdutos] = useState([]);
+    const [categorias, setCategorias] = useState([]);
+
+    const [produtoSelecionado, setProdutoSelecionado] = useState(null);
+    const [modalAberto, setModalAberto] = useState(false);
+
+    const [pesquisa, setPesquisa] = useState("");
+    const [categoriaSelecionada, setCategoriaSelecionada] = useState("Todos");
+
+    useEffect(() => {
+
+        async function carregarDados() {
+
+            try {
+
+                const respostaProdutos = await api.get("/produtos");
+                setProdutos(respostaProdutos.data);
+
+                const respostaCategorias = await api.get("/categorias");
+                setCategorias(respostaCategorias.data);
+
+            } catch (erro) {
+
+                console.log(erro);
+
+            }
+
+        }
+
+        carregarDados();
+
+    }, []);
+
+    function abrirProduto(produto) {
+
+        setProdutoSelecionado(produto);
+        setModalAberto(true);
+
+    }
+
+    function fecharProduto() {
+
+        setModalAberto(false);
+        setProdutoSelecionado(null);
+
+    }
+
+    const produtosFiltrados = produtos.filter(produto => {
+
+        const pesquisaOk = produto.nome
+            .toLowerCase()
+            .includes(pesquisa.toLowerCase());
+
+        const categoriaOk =
+            categoriaSelecionada === "Todos" ||
+            produto.categoria.nome === categoriaSelecionada;
+
+        return pesquisaOk && categoriaOk;
+
+    });
+
+    return (
+
+        <>
+
+            <Navbar />
+
+            <section className="bannerProdutos">
+
+                <h1>Nossos Produtos</h1>
+
+                <p>
+
+                    Descubra peças artesanais feitas com carinho,
+                    qualidade e exclusividade.
+
+                </p>
+
+            </section>
+
+            <section className="pesquisaProdutos">
+
+                <input
+                    type="text"
+                    placeholder="🔍 Pesquisar produtos..."
+                    value={pesquisa}
+                    onChange={(e) => setPesquisa(e.target.value)}
+                />
+
+            </section>
+
+            <section className="categorias">
+
+                <button
+                    className={
+                        categoriaSelecionada === "Todos"
+                            ? "ativo"
+                            : ""
+                    }
+                    onClick={() => setCategoriaSelecionada("Todos")}
+                >
+                    Todos
+                </button>
+
+                {categorias.map((categoria) => (
+
+                    <button
+                        key={categoria.id_categoria}
+                        className={
+                            categoriaSelecionada === categoria.nome
+                                ? "ativo"
+                                : ""
+                        }
+                        onClick={() => setCategoriaSelecionada(categoria.nome)}
+                    >
+
+                        {categoria.nome}
+
+                    </button>
+
+                ))}
+
+            </section>
+
+            <p className="contadorProdutos">
+
+                {produtosFiltrados.length} produto(s) encontrado(s)
+
+            </p>
+
+            <section className="listaProdutosPagina">
+
+                {produtosFiltrados.map((produto) => (
+
+                    <CardProduto
+                        key={produto.id_produto}
+                        produto={produto}
+                        abrirProduto={abrirProduto}
+                    />
+
+                ))}
+
+            </section>
+
+            <ModalProduto
+                aberto={modalAberto}
+                produto={produtoSelecionado}
+                fechar={fecharProduto}
+            />
+
+            <Footer />
+
+        </>
+
+    );
+
 }
 
 export default Produtos;

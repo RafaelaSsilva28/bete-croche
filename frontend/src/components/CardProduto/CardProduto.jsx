@@ -1,9 +1,6 @@
 import "./CardProduto.css";
-import { useNavigate } from "react-router-dom";
 
-function CardProduto({ produto }) {
-
-    const navigate = useNavigate();
+function CardProduto({ produto, abrirProduto }) {
 
     return (
 
@@ -26,7 +23,7 @@ function CardProduto({ produto }) {
                 R$ {Number(produto.preco).toFixed(2)}
             </span>
 
-            <button onClick={() => navigate(`/produtos/${produto.id_produto}`)}>
+            <button onClick={() => abrirProduto(produto)}>
                 Ver Produto
             </button>
 
