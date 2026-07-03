@@ -1,6 +1,7 @@
 import "./SobreHome.css";
-
+import { useNavigate } from "react-router-dom";
 function SobreHome() {
+    const navigate = useNavigate();
 
     return (
 
@@ -37,11 +38,12 @@ function SobreHome() {
 
                 </p>
 
-                <button>
-
-                    Conheça Nossa História →
-
-                </button>
+                <button
+    className="btnHistoria"
+    onClick={() => navigate("/sobre")}
+>
+    Conheça Nossa História →
+</button>
 
             </div>
 

@@ -63,3 +63,32 @@
     box-shadow:0 15px 30px rgba(0,0,0,.15);
 
 }
+.chamadaWhatsapp h2{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.iconeInstagram{
+
+    font-size:34px;
+
+    color:#E1306C;
+
+}
+
+.chamadaWhatsapp a{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}

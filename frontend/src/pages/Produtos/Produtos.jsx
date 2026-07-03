@@ -57,15 +57,20 @@ function Produtos() {
 
     }
 
-    const produtosFiltrados = produtos.filter(produto => {
+    const produtosFiltrados = produtos.filter((produto) => {
 
         const pesquisaOk = produto.nome
             .toLowerCase()
             .includes(pesquisa.toLowerCase());
 
+        const nomeCategoria =
+            typeof produto.categoria === "string"
+                ? produto.categoria
+                : produto.categoria?.nome;
+
         const categoriaOk =
             categoriaSelecionada === "Todos" ||
-            produto.categoria.nome === categoriaSelecionada;
+            nomeCategoria === categoriaSelecionada;
 
         return pesquisaOk && categoriaOk;
 
@@ -82,10 +87,8 @@ function Produtos() {
                 <h1>Nossos Produtos</h1>
 
                 <p>
-
                     Descubra peças artesanais feitas com carinho,
                     qualidade e exclusividade.
-
                 </p>
 
             </section>
@@ -125,9 +128,7 @@ function Produtos() {
                         }
                         onClick={() => setCategoriaSelecionada(categoria.nome)}
                     >
-
                         {categoria.nome}
-
                     </button>
 
                 ))}

@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
+
     return (
+
         <header className="navbar">
 
             <div className="logo">
@@ -17,12 +19,20 @@ function Navbar() {
 
                 <Link to="/sobre">Sobre</Link>
 
-                <Link to="/contato">Contato</Link>
+                <a
+                    href="https://wa.me/5518997269333"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Contato
+                </a>
 
             </nav>
 
         </header>
+
     );
+
 }
 
 export default Navbar;

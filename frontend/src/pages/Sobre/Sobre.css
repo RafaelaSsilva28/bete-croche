@@ -1,0 +1,439 @@
+/* ================= BANNER ================= */
+
+.bannerSobre{
+
+    background:linear-gradient(135deg,#FFF5F8,#FFE8EF);
+
+    padding:120px 20px;
+
+    text-align:center;
+
+}
+
+.bannerSobre span{
+
+    color:#D98CA3;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+}
+
+.bannerSobre h1{
+
+    font-size:55px;
+
+    color:#444;
+
+    margin:20px 0;
+
+    max-width:900px;
+
+    margin-inline:auto;
+
+}
+
+.bannerSobre p{
+
+    color:#666;
+
+    max-width:700px;
+
+    margin:auto;
+
+    font-size:20px;
+
+    line-height:1.8;
+
+}
+
+/* ================= SEÇÕES ================= */
+
+.secaoSobre{
+
+    width:90%;
+
+    max-width:1300px;
+
+    margin:100px auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:70px;
+
+}
+
+.reverso{
+
+    flex-direction:row-reverse;
+
+}
+
+.imagemSobre{
+
+    flex:1;
+
+}
+
+.imagemSobre img{
+
+    width:100%;
+
+    border-radius:25px;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.12);
+
+    transition:.4s;
+
+}
+
+.imagemSobre img:hover{
+
+    transform:scale(1.03);
+
+}
+
+.textoSobre{
+
+    flex:1;
+
+}
+
+.textoSobre span{
+
+    color:#D98CA3;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+}
+
+.textoSobre h2{
+
+    font-size:42px;
+
+    color:#444;
+
+    margin:20px 0;
+
+}
+
+.textoSobre p{
+
+    color:#666;
+
+    line-height:1.9;
+
+    font-size:18px;
+
+    margin-bottom:18px;
+
+}
+
+/* ================= GALERIA ================= */
+
+.bastidores{
+
+    background:#FFF7FA;
+
+    padding:100px 20px;
+
+    text-align:center;
+
+}
+
+.bastidores h2{
+
+    font-size:42px;
+
+    color:#444;
+
+}
+
+.bastidores p{
+
+    color:#777;
+
+    margin:15px 0 50px;
+
+}
+
+.galeria{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+    gap:30px;
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:auto;
+
+}
+
+.itemGaleria{
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.itemGaleria:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.itemGaleria img{
+
+    width:100%;
+
+    height:230px;
+
+    object-fit:cover;
+
+}
+
+.itemGaleria h3{
+
+    padding:20px;
+
+    color:#555;
+
+}
+
+/* ================= TIMELINE ================= */
+
+.processo{
+
+    width:90%;
+
+    max-width:1300px;
+
+    margin:100px auto;
+
+    text-align:center;
+
+}
+
+.processo h2{
+
+    font-size:42px;
+
+    color:#444;
+
+    margin-bottom:60px;
+
+}
+
+.linhaTempo{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+    gap:25px;
+
+}
+
+.linhaTempo div{
+
+    background:#FFF7FA;
+
+    padding:35px 20px;
+
+    border-radius:20px;
+
+    transition:.3s;
+
+}
+
+.linhaTempo div:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.linhaTempo span{
+
+    width:60px;
+
+    height:60px;
+
+    background:#D98CA3;
+
+    color:white;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:auto;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+.linhaTempo h3{
+
+    margin:20px 0 15px;
+
+    color:#444;
+
+}
+
+.linhaTempo p{
+
+    color:#666;
+
+    line-height:1.6;
+
+}
+
+/* ================= CTA ================= */
+
+.compromisso{
+
+    background:linear-gradient(135deg,#D98CA3,#E8AFC0);
+
+    color:white;
+
+    text-align:center;
+
+    padding:110px 20px;
+
+}
+
+.textoCompromisso{
+
+    max-width:800px;
+
+    margin:auto;
+
+}
+
+.textoCompromisso span{
+
+    letter-spacing:2px;
+
+    font-weight:bold;
+
+}
+
+.textoCompromisso h2{
+
+    font-size:48px;
+
+    margin:25px 0;
+
+}
+
+.textoCompromisso p{
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    margin-bottom:45px;
+
+}
+
+.textoCompromisso button{
+
+    background:white;
+
+    color:#D98CA3;
+
+    border:none;
+
+    padding:18px 45px;
+
+    border-radius:50px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.textoCompromisso button:hover{
+
+    transform:scale(1.05);
+
+}
+
+/* ================= RESPONSIVO ================= */
+
+@media(max-width:900px){
+
+    .secaoSobre{
+
+        flex-direction:column;
+
+    }
+
+    .reverso{
+
+        flex-direction:column;
+
+    }
+
+    .bannerSobre h1{
+
+        font-size:38px;
+
+    }
+
+    .textoSobre{
+
+        text-align:center;
+
+    }
+
+    .textoSobre h2{
+
+        font-size:32px;
+
+    }
+
+    .processo h2{
+
+        font-size:34px;
+
+    }
+
+    .textoCompromisso h2{
+
+        font-size:34px;
+
+    }
+
+}

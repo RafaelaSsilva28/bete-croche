@@ -1,33 +1,36 @@
 import "./ChamadaWhatsapp.css";
+import { FaInstagram } from "react-icons/fa";
 
 function ChamadaWhatsapp() {
-
-    const mensagem = encodeURIComponent(
-        "Olá! Vim pelo site da Elizabeth Crochê e gostaria de solicitar um orçamento."
-    );
 
     return (
 
         <section className="chamadaWhatsapp">
 
             <h2>
-                ✨ Não encontrou o que procura?
+
+               
+                Nosso trabalho continua no Instagram
+
             </h2>
 
             <p>
 
-                Produzimos peças personalizadas especialmente para você.
-                Entre em contato e solicite um orçamento sem compromisso.
+                Descubra novas peças, acompanhe os bastidores
+                do ateliê, veja lançamentos exclusivos e inspire-se
+                com cada criação publicada em nosso perfil.
 
             </p>
 
             <a
-                href={`https://wa.me/5518997269333?text=${mensagem}`}
+                href="https://instagram.com/SEU_INSTAGRAM"
                 target="_blank"
                 rel="noreferrer"
             >
 
-                💬 Solicitar Orçamento
+                <FaInstagram />
+
+                Ver perfil no Instagram
 
             </a>
 
