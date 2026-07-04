@@ -1,0 +1,348 @@
+.overlayCarrinho{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+
+.modalCarrinho{
+    width: 900px;
+    max-width: 95%;
+    max-height: 90vh;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    animation: subir .3s ease;
+}
+
+@keyframes subir{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ================= HEADER ================= */
+
+.btnFecharCarrinho{
+    position:absolute;
+    top:18px;
+    right:18px;
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    background:#f5f5f5;
+    cursor:pointer;
+    transition:.3s;
+    font-size:18px;
+}
+
+.btnFecharCarrinho:hover{
+    background:#D98CA3;
+    color:#fff;
+}
+
+.tituloCarrinho{
+    padding:30px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#444;
+    border-bottom:1px solid #ececec;
+    font-size:30px;
+}
+
+/* ================= TOPO ================= */
+
+.topoCarrinho{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px 30px;
+    background:#fff8fb;
+    border-bottom:1px solid #ececec;
+}
+
+.topoCarrinho p{
+    color:#777;
+    margin-bottom:5px;
+}
+
+.topoCarrinho h3{
+    color:#D98CA3;
+    font-size:38px;
+}
+
+.btnWhatsappCarrinho{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#25D366;
+    color:white;
+    padding:15px 24px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btnWhatsappCarrinho:hover{
+    background:#20ba5a;
+    transform:translateY(-2px);
+}
+
+/* ================= SELECIONAR TODOS ================= */
+
+.selecionarTodos{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 30px;
+    border-bottom:1px solid #ececec;
+}
+
+.selecionarTodos label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:18px;
+    font-weight:600;
+    color:#444;
+}
+
+.checkboxCarrinho{
+    width:18px;
+    height:18px;
+    accent-color:#D98CA3;
+    cursor:pointer;
+}
+
+.btnExcluirSelecionados{
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:12px;
+    background:#ffe9ec;
+    color:#ff4d4d;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:18px;
+    transition:.3s;
+}
+
+.btnExcluirSelecionados:hover{
+    background:#ff4d4d;
+    color:white;
+}
+
+/* ================= LISTA ================= */
+
+.listaCarrinho{
+    flex:1;
+    overflow-y:auto;
+    padding:30px;
+}
+
+/* ================= ITEM ================= */
+
+.itemCarrinho{
+    display:grid;
+    grid-template-columns:35px 120px 1fr 60px;
+    align-items:center;
+    gap:20px;
+    padding:22px 0;
+    border-bottom:1px solid #ececec;
+}
+
+.itemCarrinho img{
+    width:120px;
+    height:120px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+.dadosCarrinho h3{
+    color:#444;
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.dadosCarrinho p{
+    color:#777;
+    font-size:18px;
+    margin-bottom:15px;
+}
+
+.dadosCarrinho h4{
+    color:#444;
+    margin-top:10px;
+}
+
+/* ================= QUANTIDADE ================= */
+
+.quantidadeCarrinho{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin:15px 0;
+}
+
+.quantidadeCarrinho button{
+    width:38px;
+    height:38px;
+    border:none;
+    border-radius:10px;
+    background:#D98CA3;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.quantidadeCarrinho button:hover{
+    background:#c87490;
+}
+
+.quantidadeCarrinho span{
+    width:30px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* ================= LIXEIRA ================= */
+
+.btnExcluir{
+    width:48px;
+    height:48px;
+    border:none;
+    border-radius:12px;
+    background:#ffe9ec;
+    color:#ff4d4d;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:.3s;
+}
+
+.btnExcluir:hover{
+    background:#ff4d4d;
+    color:white;
+}
+
+/* ================= CARRINHO VAZIO ================= */
+
+.carrinhoVazio{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:80px 20px;
+    text-align:center;
+}
+
+.iconeVazio{
+    font-size:70px;
+    color:#D98CA3;
+    margin-bottom:20px;
+}
+
+.carrinhoVazio h3{
+    color:#444;
+    margin-bottom:10px;
+}
+
+.carrinhoVazio p{
+    color:#777;
+}
+
+/* ================= RESPONSIVO ================= */
+
+@media(max-width:900px){
+
+    .modalCarrinho{
+        width:95%;
+    }
+
+    .topoCarrinho{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:18px;
+    }
+
+    .selecionarTodos{
+        padding:18px 20px;
+    }
+
+    .listaCarrinho{
+        padding:20px;
+    }
+
+    .itemCarrinho{
+
+        grid-template-columns:25px 90px 1fr 45px;
+
+        gap:15px;
+
+        align-items:center;
+
+    }
+
+    .itemCarrinho img{
+
+        width:90px;
+        height:90px;
+
+    }
+
+    .dadosCarrinho h3{
+
+        font-size:22px;
+
+    }
+
+    .dadosCarrinho p{
+
+        font-size:15px;
+
+    }
+
+    .quantidadeCarrinho button{
+
+        width:32px;
+        height:32px;
+
+    }
+
+    .quantidadeCarrinho span{
+
+        font-size:18px;
+
+    }
+
+    .btnExcluir{
+
+        width:40px;
+        height:40px;
+
+    }
+
+}

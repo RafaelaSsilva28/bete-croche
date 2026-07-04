@@ -1,0 +1,240 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+.login{
+
+    width:100%;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    background:linear-gradient(135deg,#fff7fa,#ffe9f0,#f8f8f8);
+
+}
+
+.cardLogin{
+
+    width:100%;
+    max-width:430px;
+
+    background:#fff;
+
+    border-radius:25px;
+
+    padding:45px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+
+    animation:subir .5s;
+
+}
+
+.cardLogin h1{
+
+    color:#D98CA3;
+
+    font-size:34px;
+
+    text-align:center;
+
+    margin-bottom:8px;
+
+}
+
+.cardLogin h2{
+
+    color:#444;
+
+    text-align:center;
+
+    font-size:22px;
+
+    margin-bottom:10px;
+
+}
+
+.cardLogin p{
+
+    text-align:center;
+
+    color:#777;
+
+    margin-bottom:35px;
+
+    line-height:1.5;
+
+}
+
+.campo{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    margin-bottom:22px;
+
+}
+
+.campo svg:first-child{
+
+    position:absolute;
+
+    left:18px;
+
+    color:#D98CA3;
+
+    font-size:18px;
+
+}
+
+.campo input{
+
+    width:100%;
+
+    height:55px;
+
+    border:2px solid #ececec;
+
+    border-radius:14px;
+
+    padding-left:50px;
+
+    padding-right:50px;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.campo input:focus{
+
+    border-color:#D98CA3;
+
+    box-shadow:0 0 0 4px rgba(217,140,163,.15);
+
+}
+
+.mostrarSenha{
+
+    position:absolute;
+
+    right:15px;
+
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+    color:#888;
+
+    font-size:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+}
+
+.mostrarSenha:hover{
+
+    color:#D98CA3;
+
+}
+
+.btnEntrar{
+
+    width:100%;
+
+    height:58px;
+
+    margin-top:12px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:linear-gradient(135deg,#D98CA3,#C8708F);
+
+    color:#fff;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.btnEntrar:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 25px rgba(217,140,163,.35);
+
+}
+
+.btnEntrar:disabled{
+
+    opacity:.7;
+
+    cursor:not-allowed;
+
+}
+
+@keyframes subir{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .cardLogin{
+
+        padding:35px 25px;
+
+    }
+
+    .cardLogin h1{
+
+        font-size:28px;
+
+    }
+
+    .cardLogin h2{
+
+        font-size:20px;
+
+    }
+
+}

@@ -5,6 +5,11 @@ import Navbar from "../../components/NavBar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import CardProduto from "../../components/CardProduto/CardProduto";
 import ModalProduto from "../../components/ModalProduto/ModalProduto";
+import BotaoCarrinho from "../../components/BotaoCarrinho/BotaoCarrinho";
+import ModalCarrinho from "../../components/ModalCarrinho/ModalCarrinho";
+
+import { useCart } from "../../context/CartContext";
+import { FaShoppingCart } from "react-icons/fa";
 
 import "./Produtos.css";
 
@@ -18,6 +23,23 @@ function Produtos() {
 
     const [pesquisa, setPesquisa] = useState("");
     const [categoriaSelecionada, setCategoriaSelecionada] = useState("Todos");
+
+    const [carrinhoAberto, setCarrinhoAberto] = useState(false);
+
+    // ==========================
+    // Carrinho
+    // ==========================
+
+    const { carrinho } = useCart();
+
+    const totalItens = carrinho.reduce(
+        (total, item) => total + item.quantidade,
+        0
+    );
+
+    // ==========================
+    // Carregar produtos
+    // ==========================
 
     useEffect(() => {
 
@@ -44,22 +66,24 @@ function Produtos() {
     }, []);
 
     // ==========================
-    // Buscar o produto completo
+    // Buscar produto completo
     // ==========================
+
     async function abrirProduto(produto) {
 
         try {
 
-            const resposta = await api.get(`/produtos/${produto.id_produto}`);
-
-            console.log(resposta.data);
+            const resposta = await api.get(
+                `/produtos/${produto.id_produto}`
+            );
 
             setProdutoSelecionado(resposta.data);
+
             setModalAberto(true);
 
         } catch (erro) {
 
-            console.log("Erro ao buscar produto:", erro);
+            console.log(erro);
 
         }
 
@@ -68,9 +92,14 @@ function Produtos() {
     function fecharProduto() {
 
         setModalAberto(false);
+
         setProdutoSelecionado(null);
 
     }
+
+    // ==========================
+    // Filtros
+    // ==========================
 
     const produtosFiltrados = produtos.filter((produto) => {
 
@@ -102,11 +131,17 @@ function Produtos() {
                 <h1>Nossos Produtos</h1>
 
                 <p>
+
                     Descubra peças artesanais feitas com carinho,
                     qualidade e exclusividade.
+
                 </p>
 
             </section>
+
+            {/* ==========================
+                Pesquisa
+            ========================== */}
 
             <section className="pesquisaProdutos">
 
@@ -117,7 +152,23 @@ function Produtos() {
                     onChange={(e) => setPesquisa(e.target.value)}
                 />
 
+                <div className="resumoCarrinho">
+
+                    <FaShoppingCart />
+
+                    <span>
+
+                        {totalItens} {totalItens === 1 ? "item" : "itens"} no carrinho
+
+                    </span>
+
+                </div>
+
             </section>
+
+            {/* ==========================
+                Categorias
+            ========================== */}
 
             <section className="categorias">
 
@@ -129,7 +180,9 @@ function Produtos() {
                     }
                     onClick={() => setCategoriaSelecionada("Todos")}
                 >
+
                     Todos
+
                 </button>
 
                 {categorias.map((categoria) => (
@@ -141,20 +194,32 @@ function Produtos() {
                                 ? "ativo"
                                 : ""
                         }
-                        onClick={() => setCategoriaSelecionada(categoria.nome)}
+                        onClick={() =>
+                            setCategoriaSelecionada(categoria.nome)
+                        }
                     >
+
                         {categoria.nome}
+
                     </button>
 
                 ))}
 
             </section>
 
+            {/* ==========================
+                Contador
+            ========================== */}
+
             <p className="contadorProdutos">
 
                 {produtosFiltrados.length} produto(s) encontrado(s)
 
             </p>
+
+            {/* ==========================
+                Lista
+            ========================== */}
 
             <section className="listaProdutosPagina">
 
@@ -170,10 +235,31 @@ function Produtos() {
 
             </section>
 
+            {/* ==========================
+                Modal Produto
+            ========================== */}
+
             <ModalProduto
                 aberto={modalAberto}
                 produto={produtoSelecionado}
                 fechar={fecharProduto}
+            />
+
+            {/* ==========================
+                Botão Flutuante
+            ========================== */}
+
+            <BotaoCarrinho
+                abrir={() => setCarrinhoAberto(true)}
+            />
+
+            {/* ==========================
+                Modal Carrinho
+            ========================== */}
+
+            <ModalCarrinho
+                aberto={carrinhoAberto}
+                fechar={() => setCarrinhoAberto(false)}
             />
 
             <Footer />

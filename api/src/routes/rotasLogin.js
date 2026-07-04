@@ -67,10 +67,23 @@ router.post(
                 }
             );
 
-            return res.status(200).json({
-                message: "Login realizado com sucesso.",
-                token
-            });
+           return res.status(200).json({
+
+    message: "Login realizado com sucesso.",
+
+    token,
+
+    usuario:{
+
+        id: dadosUsuario.id_usuario,
+
+        nome: dadosUsuario.nome,
+
+        email: dadosUsuario.email
+
+    }
+
+});
 
         } catch (error) {
 

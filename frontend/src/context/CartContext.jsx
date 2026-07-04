@@ -1,17 +1,39 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
 
-    const [carrinho, setCarrinho] = useState([]);
+    const [carrinho, setCarrinho] = useState(() => {
+
+        const carrinhoSalvo = localStorage.getItem("carrinho");
+
+        return carrinhoSalvo
+            ? JSON.parse(carrinhoSalvo)
+            : [];
+
+    });
+
+    useEffect(() => {
+
+        localStorage.setItem(
+
+            "carrinho",
+
+            JSON.stringify(carrinho)
+
+        );
+
+    }, [carrinho]);
 
     function adicionarProduto(produto, quantidade) {
 
         setCarrinho((itens) => {
 
             const existente = itens.find(
+
                 item => item.id_produto === produto.id_produto
+
             );
 
             if (existente) {
@@ -21,8 +43,13 @@ export function CartProvider({ children }) {
                     item.id_produto === produto.id_produto
 
                         ? {
+
                             ...item,
-                            quantidade: item.quantidade + quantidade
+
+                            quantidade: item.quantidade + quantidade,
+
+                            selecionado: true
+
                         }
 
                         : item
@@ -39,7 +66,9 @@ export function CartProvider({ children }) {
 
                     ...produto,
 
-                    quantidade
+                    quantidade,
+
+                    selecionado: true
 
                 }
 
@@ -51,42 +80,43 @@ export function CartProvider({ children }) {
 
     function removerProduto(id) {
 
-        setCarrinho(itens =>
-            itens.filter(item => item.id_produto !== id)
+        setCarrinho(
+
+            itens =>
+
+                itens.filter(
+
+                    item => item.id_produto !== id
+
+                )
+
+        );
+
+    }
+
+    function removerSelecionados() {
+
+        setCarrinho(
+
+            itens =>
+
+                itens.filter(
+
+                    item => !item.selecionado
+
+                )
+
         );
 
     }
 
     function aumentarQuantidade(id) {
 
-        setCarrinho(itens =>
+        setCarrinho(
 
-            itens.map(item =>
+            itens =>
 
-                item.id_produto === id
-
-                    ? {
-
-                        ...item,
-
-                        quantidade: item.quantidade + 1
-
-                    }
-
-                    : item
-
-            )
-
-        );
-
-    }
-
-    function diminuirQuantidade(id) {
-
-        setCarrinho(itens =>
-
-            itens
-                .map(item =>
+                itens.map(item =>
 
                     item.id_produto === id
 
@@ -94,14 +124,95 @@ export function CartProvider({ children }) {
 
                             ...item,
 
-                            quantidade: item.quantidade - 1
+                            quantidade: item.quantidade + 1
 
                         }
 
                         : item
 
                 )
-                .filter(item => item.quantidade > 0)
+
+        );
+
+    }
+
+    function diminuirQuantidade(id) {
+
+        setCarrinho(
+
+            itens =>
+
+                itens
+
+                    .map(item =>
+
+                        item.id_produto === id
+
+                            ? {
+
+                                ...item,
+
+                                quantidade: item.quantidade - 1
+
+                            }
+
+                            : item
+
+                    )
+
+                    .filter(
+
+                        item => item.quantidade > 0
+
+                    )
+
+        );
+
+    }
+
+    function selecionarProduto(id) {
+
+        setCarrinho(
+
+            itens =>
+
+                itens.map(item =>
+
+                    item.id_produto === id
+
+                        ? {
+
+                            ...item,
+
+                            selecionado: !item.selecionado
+
+                        }
+
+                        : item
+
+                )
+
+        );
+
+    }
+
+    function selecionarTodos() {
+
+        const todosSelecionados = carrinho.every(
+
+            item => item.selecionado
+
+        );
+
+        setCarrinho(
+
+            carrinho.map(item => ({
+
+                ...item,
+
+                selecionado: !todosSelecionados
+
+            }))
 
         );
 
@@ -119,9 +230,15 @@ export function CartProvider({ children }) {
 
                 removerProduto,
 
+                removerSelecionados,
+
                 aumentarQuantidade,
 
-                diminuirQuantidade
+                diminuirQuantidade,
+
+                selecionarProduto,
+
+                selecionarTodos
 
             }}
 

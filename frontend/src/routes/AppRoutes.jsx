@@ -6,6 +6,7 @@ import Produtos from "../pages/Produtos/Produtos";
 import Sobre from "../pages/Sobre/Sobre";
 import Contato from "../pages/Contato/Contato";
 import Login from "../pages/Login/Login";
+import Admin from  "../pages/Admin/Dashboard";
 
 function AppRoutes() {
     return (
@@ -19,6 +20,7 @@ function AppRoutes() {
                 <Route path="/sobre" element={<Sobre />} />
                 <Route path="/contato" element={<Contato />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/admin" element={<Admin />} />
 
             </Routes>
         </>

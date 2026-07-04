@@ -1,0 +1,51 @@
+.botaoCarrinho{
+
+    position:fixed;
+
+    bottom:30px;
+
+    right:30px;
+
+    width:70px;
+
+    height:70px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#D98CA3;
+
+    color:white;
+
+    font-size:28px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
+
+    transition:.3s;
+
+    z-index:999;
+
+}
+
+.botaoCarrinho:hover{
+
+    transform:scale(1.08);
+
+    background:#c87490;
+
+}
+
+.botaoCarrinho:active{
+
+    transform:scale(.95);
+
+}

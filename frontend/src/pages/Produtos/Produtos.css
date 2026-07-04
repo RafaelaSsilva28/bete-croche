@@ -178,3 +178,83 @@
     font-size:17px;
 
 }
+.pesquisaProdutos{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+.pesquisaProdutos input{
+
+    width:420px;
+
+    max-width:100%;
+
+}
+
+.resumoCarrinho{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px 18px;
+
+    border:2px solid #f4d9e2;
+
+    border-radius:14px;
+
+    background:white;
+
+    color:#D98CA3;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.05);
+
+}
+
+.resumoCarrinho svg{
+
+    font-size:22px;
+
+}
+
+.resumoCarrinho{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:#fff;
+
+    border:2px solid #f0d7df;
+
+    border-radius:14px;
+
+    padding:12px 20px;
+
+    color:#D98CA3;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.06);
+
+}
+
+.resumoCarrinho svg{
+
+    font-size:24px;
+
+}
