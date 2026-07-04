@@ -32,7 +32,7 @@ function Sobre() {
                 <div className="imagemSobre">
 
                     <img
-                        src="https://placehold.co/600x700?text=Nosso+Ateliê"
+                        src="public/atelie.jpg"
                         alt="Ateliê"
                     />
 
@@ -94,7 +94,7 @@ function Sobre() {
                 <div className="imagemSobre">
 
                     <img
-                        src="https://placehold.co/600x700?text=Inspiração"
+                        src="public/inspiracao.jpg"
                         alt="Inspiração"
                     />
 
@@ -117,7 +117,7 @@ function Sobre() {
                     <div className="itemGaleria">
 
                         <img
-                            src="https://placehold.co/300x300?text=Fios"
+                            src="public/FIOS.jpeg"
                             alt=""
                         />
 
@@ -128,7 +128,7 @@ function Sobre() {
                     <div className="itemGaleria">
 
                         <img
-                            src="https://placehold.co/300x300?text=Produção"
+                            src="public/MANUAL.jpg"
                             alt=""
                         />
 
@@ -139,7 +139,7 @@ function Sobre() {
                     <div className="itemGaleria">
 
                         <img
-                            src="https://placehold.co/300x300?text=Acabamento"
+                            src="public/ACABAMENTO.jpg"
                             alt=""
                         />
 
@@ -150,7 +150,7 @@ function Sobre() {
                     <div className="itemGaleria">
 
                         <img
-                            src="https://placehold.co/300x300?text=Embalagem"
+                            src="public/EMBALAGEM.jpeg"
                             alt=""
                         />
 
