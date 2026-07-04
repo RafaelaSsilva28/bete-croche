@@ -271,41 +271,137 @@
     line-height:1.4;
 
 }
-.miniaturas{
+/* ========================= */
+/* CARROSSEL DE IMAGENS */
+/* ========================= */
+
+.imagemProduto{
+
+    width:50%;
+    background:#f7f7f7;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    padding:30px;
+
+    position:relative;
+
+}
+
+.imagemProduto img{
+
+    width:100%;
+    max-width:500px;
+    height:450px;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+    transition:.4s;
+}
+
+/* SETAS */
+
+.seta{
+
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:45px;
+    height:45px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:white;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+    cursor:pointer;
+
+    font-size:22px;
+
+    transition:.3s;
+
+    z-index:5;
+
+}
+
+.seta:hover{
+
+    background:#D98CA3;
+
+    color:white;
+
+    transform:translateY(-50%) scale(1.08);
+
+}
+
+.esquerda{
+
+    left:20px;
+
+}
+
+.direita{
+
+    right:20px;
+
+}
+
+/* BOLINHAS */
+
+.bolinhas{
 
     display:flex;
 
     justify-content:center;
 
-    gap:12px;
+    align-items:center;
 
-    margin-top:20px;
+    gap:10px;
 
-    flex-wrap:wrap;
+    margin-top:25px;
 
 }
 
-.miniatura{
+.bolinha{
 
-    width:80px;
+    width:12px;
 
-    height:80px;
+    height:12px;
 
-    object-fit:cover;
+    border-radius:50%;
 
-    border-radius:10px;
+    background:#d4d4d4;
 
     cursor:pointer;
-
-    border:2px solid transparent;
-
     transition:.3s;
 
 }
 
-.miniatura:hover{
+.bolinha:hover{
 
-    transform:scale(1.08);
+    transform:scale(1.2);
+
+}
+
+
+.bolinha.ativa{
+
+    background:#D98CA3;
+
+    width:28px;
+
+    border-radius:20px;
 
 }
 
@@ -313,4 +409,144 @@
 
     border:3px solid #D98CA3;
 
+}
+.btnComprar{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-decoration:none;
+
+    width:100%;
+
+    background:#D98CA3;
+    color:white;
+
+    padding:18px;
+
+    border-radius:12px;
+
+    font-size:18px;
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btnComprar:hover{
+
+    background:#c87490;
+
+}
+.toast{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 99999;
+    animation: slideIn .3s ease;
+}
+
+.toastIcon{
+    color: #2ecc71;
+    font-size: 18px;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+.controleQuantidade {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 14px;
+
+    margin: 15px 0 25px;
+    padding: 10px 14px;
+
+    background: #fafafa;
+    border: 1px solid #ececec;
+    border-radius: 14px;
+
+    width: fit-content;
+}
+
+/* BOTÕES + e - */
+.controleQuantidade button {
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #D98CA3;
+    color: white;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: .2s;
+}
+
+.controleQuantidade button:hover {
+    background: #c87490;
+    transform: scale(1.08);
+}
+
+/* NÚMERO CENTRAL */
+.controleQuantidade span {
+    min-width: 45px;
+
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+
+    color: #444;
+
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 10px;
+
+    padding: 6px 12px;
+}
+.btnWhatsapp {
+    margin-top: 15px;
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    background: #25D366;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btnWhatsapp:hover {
+    transform: translateY(-2px);
+    background: #1ebe5d;
 }

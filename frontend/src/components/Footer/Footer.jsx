@@ -16,7 +16,7 @@ function Footer() {
                 <div className="footerRedes">
 
                     <a
-                        href="https://instagram.com/SEU_INSTAGRAM"
+                        href="https://instagram.com/elizabetecroches"
                         target="_blank"
                         rel="noreferrer"
                     >

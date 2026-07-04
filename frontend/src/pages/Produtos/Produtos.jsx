@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 
-import Navbar from "../../components/Navbar/Navbar";
+import Navbar from "../../components/NavBar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import CardProduto from "../../components/CardProduto/CardProduto";
 import ModalProduto from "../../components/ModalProduto/ModalProduto";
@@ -43,10 +43,25 @@ function Produtos() {
 
     }, []);
 
-    function abrirProduto(produto) {
+    // ==========================
+    // Buscar o produto completo
+    // ==========================
+    async function abrirProduto(produto) {
 
-        setProdutoSelecionado(produto);
-        setModalAberto(true);
+        try {
+
+            const resposta = await api.get(`/produtos/${produto.id_produto}`);
+
+            console.log(resposta.data);
+
+            setProdutoSelecionado(resposta.data);
+            setModalAberto(true);
+
+        } catch (erro) {
+
+            console.log("Erro ao buscar produto:", erro);
+
+        }
 
     }
 

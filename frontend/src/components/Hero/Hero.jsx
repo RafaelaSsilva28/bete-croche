@@ -28,7 +28,7 @@ function Hero() {
             <div className="hero-imagem">
 
                 <img
-                    src="https://m.magazineluiza.com.br/a-static/420x420/kit-2-capas-para-almofada-folha-de-uva-cru-40x40cm-croche-artesanal-maria-croche-veronez/crochemariaveronez/2189/9a2a92436151d1dbb7b4c97dafc0977f.jpeg"
+                    src="public/elizabete.jpg"
                     alt="Crochê artesanal"
                 />
 

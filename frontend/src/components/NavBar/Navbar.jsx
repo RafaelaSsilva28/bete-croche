@@ -2,9 +2,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
-
     return (
-
         <header className="navbar">
 
             <div className="logo">
@@ -13,11 +11,27 @@ function Navbar() {
 
             <nav className="menu">
 
-                <Link to="/">Início</Link>
-
-                <Link to="/produtos">Produtos</Link>
-
-                <Link to="/sobre">Sobre</Link>
+                <Link to="/" onClick={() => {
+                 console.log("CLIQUE INICIO");
+           window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+                }}>Início</Link>
+                <Link to="/produtos" onClick={() => {
+                 console.log("CLIQUE PRODUTOS");
+           window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+                }}>Produtos</Link>
+                <Link to="/sobre" onClick={() => {
+                 console.log("CLIQUE SOBRE");
+           window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+                }}>Sobre</Link>
 
                 <a
                     href="https://wa.me/5518997269333"
@@ -30,9 +44,7 @@ function Navbar() {
             </nav>
 
         </header>
-
     );
-
 }
 
 export default Navbar;

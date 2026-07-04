@@ -1,76 +1,90 @@
-.footer{
+.footer {
 
-    background:#2f2b38;
-
-    padding:20px 40px;
-
-    margin-top:60px;
+    background: #2f2b38;
+    padding: 20px 40px;
+    margin-top: 60px;
 
 }
 
-.footerConteudo{
+.footerConteudo {
 
-    max-width:1200px;
+    max-width: 1200px;
+    margin: auto;
 
-    margin:auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-}
-
-.footer span{
-
-    color:#d9d9d9;
-
-    font-size:14px;
-
-        margin-left:400px;
-
+    gap: 20px;
 
 }
 
-.footerRedes{
+.footer span {
 
-    display:flex;
-
-    gap:15px;
-
-}
-
-.footerRedes a{
-
-    width:40px;
-
-    height:40px;
-
-    border-radius:50%;
-
-    background:#D98CA3;
-
-    color:white;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-decoration:none;
-
-    font-size:18px;
-
-    transition:.3s;
+    color: #d9d9d9;
+    font-size: 14px;
 
 }
 
-.footerRedes a:hover{
+.footerRedes {
 
-    background:#c87490;
+    display: flex;
+    gap: 15px;
 
-    transform:translateY(-3px);
+}
+
+.footerRedes a {
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background: #D98CA3;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+    font-size: 18px;
+
+    transition: .3s;
+
+}
+
+.footerRedes a:hover {
+
+    background: #c87490;
+    transform: translateY(-3px);
+
+}
+
+/* ========================= */
+/* RESPONSIVIDADE */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+    .footer {
+
+        padding: 25px 20px;
+
+    }
+
+    .footerConteudo {
+
+        flex-direction: column;
+        text-align: center;
+        gap: 18px;
+
+    }
+
+    .footer span {
+
+        font-size: 13px;
+
+    }
 
 }

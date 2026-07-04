@@ -10,7 +10,7 @@ function SobreHome() {
             <div className="sobreImagem">
 
                 <img
-                    src="https://placehold.co/500x600?text=Elizabeth+Crochê"
+                    src="public/IMG_HOME.webp"
                     alt="Elizabeth Crochê"
                 />
 
