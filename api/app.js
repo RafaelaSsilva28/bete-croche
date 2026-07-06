@@ -7,7 +7,7 @@ import rotasUsuarios from "./src/routes/rotasUsuarios.js";
 import rotasProdutos from "./src/routes/rotasProdutos.js";
 import rotasLogin from "./src/routes/rotasLogin.js";
 import rotasImagens from "./src/routes/rotasImagens.js";
-
+import rotasDashboard from "./src/routes/rotasDashboard.js";
 import cors from "cors";
 
 // SWAGGER
@@ -34,6 +34,7 @@ app.use(rotasUsuarios);
 app.use(rotasImagens);
 app.use(rotasLogin);
 app.use(rotasProdutos);
+app.use(rotasDashboard)
 
 const porta = 3001;
 

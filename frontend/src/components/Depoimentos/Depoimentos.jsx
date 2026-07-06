@@ -1,75 +1,115 @@
 import "./Depoimentos.css";
 
+import {
+    FaHeart,
+    FaStar,
+    FaQuoteLeft,
+    FaUserCircle
+} from "react-icons/fa";
+
 function Depoimentos() {
+
+    const depoimentos = [
+
+        {
+            nome: "Mariana Souza",
+            texto:
+                "Meu amigurumi ficou simplesmente perfeito! Dá para perceber o carinho colocado em cada detalhe."
+        },
+
+        {
+            nome: "Juliana Lima",
+            texto:
+                "A bolsa ficou exatamente como imaginei. Atendimento excelente e acabamento impecável."
+        },
+
+        {
+            nome: "Camila Oliveira",
+            texto:
+                "Produtos lindos, entrega rápida e muita qualidade. Recomendo demais!"
+        }
+
+    ];
 
     return (
 
         <section className="depoimentos">
 
-            <span className="subtitulo">
-                ❤️ Clientes Satisfeitos
-            </span>
+            <div className="conteudoDepoimentos">
 
-            <h2>
-                O que dizem sobre nosso trabalho
-            </h2>
+                <div className="cabecalhoDepoimentos">
 
-            <div className="cardsDepoimentos">
+                    <div className="subtituloDepoimentos">
 
-                <div className="cardDepoimento">
+                        <FaHeart />
 
-                    <div className="estrelas">
-                        ⭐⭐⭐⭐⭐
+                        <span>Clientes satisfeitos</span>
+
                     </div>
 
+                    <h2>
+                        O que dizem sobre nosso trabalho
+                    </h2>
+
                     <p>
-
-                        "Meu amigurumi ficou simplesmente perfeito! Dá para perceber
-                        o carinho colocado em cada detalhe."
-
+                        Cada peça é feita com cuidado, dedicação
+                        e atenção aos mínimos detalhes.
                     </p>
-
-                    <h4>
-                        — Mariana Souza
-                    </h4>
 
                 </div>
 
-                <div className="cardDepoimento">
+                <div className="cardsDepoimentos">
 
-                    <div className="estrelas">
-                        ⭐⭐⭐⭐⭐
-                    </div>
+                    {depoimentos.map((depoimento, indice) => (
 
-                    <p>
+                        <article
+                            className="cardDepoimento"
+                            key={indice}
+                        >
 
-                        "A bolsa ficou exatamente como imaginei. Atendimento excelente
-                        e acabamento impecável."
+                            <div className="topoCardDepoimento">
 
-                    </p>
+                                <div className="iconeAspasDepoimento">
+                                    <FaQuoteLeft />
+                                </div>
 
-                    <h4>
-                        — Juliana Lima
-                    </h4>
+                                <div className="estrelasDepoimento">
 
-                </div>
+                                    {[1, 2, 3, 4, 5].map((estrela) => (
 
-                <div className="cardDepoimento">
+                                        <FaStar key={estrela} />
 
-                    <div className="estrelas">
-                        ⭐⭐⭐⭐⭐
-                    </div>
+                                    ))}
 
-                    <p>
+                                </div>
 
-                        "Produtos lindos, entrega rápida e muita qualidade.
-                        Recomendo demais!"
+                            </div>
 
-                    </p>
+                            <p className="textoDepoimento">
+                                “{depoimento.texto}”
+                            </p>
 
-                    <h4>
-                        — Camila Oliveira
-                    </h4>
+                            <div className="clienteDepoimento">
+
+                                <div className="iconeClienteDepoimento">
+                                    <FaUserCircle />
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        {depoimento.nome}
+                                    </strong>
+
+                                    <span>Cliente Elizabeth Crochê</span>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                    ))}
 
                 </div>
 

@@ -1,0 +1,452 @@
+.overlayModalCategoriaAdmin{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:9999;
+
+}
+
+.modalCategoriaAdmin{
+
+    width:100%;
+    max-width:650px;
+
+    background:#fff;
+
+    border-radius:26px;
+
+    overflow:hidden;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
+
+    animation:abrirModalCategoria .3s ease;
+
+}
+
+@keyframes abrirModalCategoria{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px) scale(.96);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+
+/* ========================= */
+/* CABEÇALHO */
+/* ========================= */
+
+.cabecalhoModalCategoriaAdmin{
+
+    background:linear-gradient(
+        135deg,
+        #D98CA3,
+        #b96b85
+    );
+
+    color:white;
+
+    padding:28px 30px;
+
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+.tituloModalCategoriaAdmin{
+
+    display:flex;
+    align-items:center;
+
+    gap:16px;
+
+}
+
+.iconeTituloCategoriaAdmin{
+
+    width:52px;
+    height:52px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.2);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:22px;
+
+    flex-shrink:0;
+
+}
+
+.tituloModalCategoriaAdmin h2{
+
+    font-size:28px;
+
+    margin-bottom:6px;
+
+}
+
+.tituloModalCategoriaAdmin p{
+
+    color:#fff4f7;
+
+    line-height:1.5;
+
+}
+
+.fecharModalCategoriaAdmin{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.2);
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    flex-shrink:0;
+
+}
+
+.fecharModalCategoriaAdmin:hover{
+
+    background:white;
+
+    color:#D98CA3;
+
+}
+
+.fecharModalCategoriaAdmin:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+/* ========================= */
+/* FORMULÁRIO */
+/* ========================= */
+
+.modalCategoriaAdmin form{
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+.conteudoModalCategoriaAdmin{
+
+    padding:30px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+.campoCategoriaAdmin{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.campoCategoriaAdmin label{
+
+    color:#555;
+
+    font-size:15px;
+
+    font-weight:700;
+
+}
+
+.campoCategoriaAdmin input,
+.campoCategoriaAdmin textarea{
+
+    width:100%;
+
+    border:2px solid #f1d8e1;
+
+    border-radius:14px;
+
+    padding:14px 16px;
+
+    font-size:15px;
+
+    color:#444;
+
+    outline:none;
+
+    background:white;
+
+    transition:.3s;
+
+    box-sizing:border-box;
+
+}
+
+.campoCategoriaAdmin textarea{
+
+    min-height:130px;
+
+    resize:vertical;
+
+    font-family:inherit;
+
+}
+
+.campoCategoriaAdmin input::placeholder,
+.campoCategoriaAdmin textarea::placeholder{
+
+    color:#aaa;
+
+}
+
+.campoCategoriaAdmin input:focus,
+.campoCategoriaAdmin textarea:focus{
+
+    border-color:#D98CA3;
+
+    box-shadow:0 0 0 4px rgba(217,140,163,.14);
+
+}
+
+.campoCategoriaAdmin input:disabled,
+.campoCategoriaAdmin textarea:disabled{
+
+    background:#f7f7f7;
+
+    cursor:not-allowed;
+
+}
+
+/* ========================= */
+/* RODAPÉ */
+/* ========================= */
+
+.rodapeModalCategoriaAdmin{
+
+    border-top:1px solid #f1d8e1;
+
+    padding:22px 30px;
+
+    display:flex;
+    justify-content:flex-end;
+
+    gap:14px;
+
+    background:#fff;
+
+}
+
+.btnCancelarCategoria,
+.btnSalvarCategoria{
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:15px 24px;
+
+    font-size:15px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:10px;
+
+    transition:.3s;
+
+}
+
+.btnCancelarCategoria{
+
+    background:#f3f3f3;
+
+    color:#555;
+
+}
+
+.btnCancelarCategoria:hover{
+
+    background:#e6e6e6;
+
+}
+
+.btnSalvarCategoria{
+
+    background:#D98CA3;
+
+    color:white;
+
+}
+
+.btnSalvarCategoria:hover{
+
+    background:#c87490;
+
+    transform:translateY(-2px);
+
+}
+
+.btnCancelarCategoria:disabled,
+.btnSalvarCategoria:disabled{
+
+    opacity:.65;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+}
+
+/* ========================= */
+/* SPINNER */
+/* ========================= */
+
+.iconeGirando{
+
+    animation:girarIconeCategoria 1s linear infinite;
+
+}
+
+@keyframes girarIconeCategoria{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media(max-width:600px){
+
+    .overlayModalCategoriaAdmin{
+
+        padding:10px;
+
+        align-items:flex-start;
+
+    }
+
+    .modalCategoriaAdmin{
+
+        margin-top:20px;
+
+        border-radius:20px;
+
+    }
+
+    .cabecalhoModalCategoriaAdmin{
+
+        padding:22px;
+
+    }
+
+    .tituloModalCategoriaAdmin{
+
+        align-items:flex-start;
+
+    }
+
+    .iconeTituloCategoriaAdmin{
+
+        width:46px;
+        height:46px;
+
+    }
+
+    .tituloModalCategoriaAdmin h2{
+
+        font-size:23px;
+
+    }
+
+    .tituloModalCategoriaAdmin p{
+
+        font-size:14px;
+
+    }
+
+    .conteudoModalCategoriaAdmin{
+
+        padding:22px;
+
+    }
+
+    .rodapeModalCategoriaAdmin{
+
+        padding:18px;
+
+        flex-direction:column-reverse;
+
+    }
+
+    .btnCancelarCategoria,
+    .btnSalvarCategoria{
+
+        width:100%;
+
+    }
+
+}

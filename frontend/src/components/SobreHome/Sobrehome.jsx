@@ -1,49 +1,128 @@
 import "./SobreHome.css";
+
 import { useNavigate } from "react-router-dom";
+
+import {
+    FaHeart,
+    FaArrowRight,
+    FaCheckCircle
+} from "react-icons/fa";
+
+import { GiYarn } from "react-icons/gi";
+
 function SobreHome() {
+
     const navigate = useNavigate();
+
+    function irParaSobre() {
+
+        navigate("/sobre");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
 
     return (
 
         <section className="sobreHome">
 
-            <div className="sobreImagem">
+            <div className="sobreHomeConteudo">
 
-                <img
-                    src="public/IMG_HOME.webp"
-                    alt="Elizabeth Crochê"
-                />
+                <div className="sobreImagem">
 
-            </div>
+                    <div className="decoracaoImagemSobre"></div>
 
-            <div className="sobreTexto">
+                    <img
+                        src="/IMG_HOME.webp"
+                        alt="Peças artesanais da Elizabeth Crochê"
+                    />
 
-                <span>🧶 Feito com carinho</span>
+                    <div className="seloImagemSobre">
 
-                <h2>Nossa História</h2>
+                        <div className="iconeSeloSobre">
+                            <GiYarn />
+                        </div>
 
-                <p>
+                        <div>
+                            <strong>Feito à mão</strong>
+                            <span>com carinho e dedicação</span>
+                        </div>
 
-                    A Elizabeth Crochê nasceu da paixão pelo artesanato e do
-                    desejo de criar peças únicas, feitas manualmente com muito
-                    amor, dedicação e atenção aos mínimos detalhes.
+                    </div>
 
-                </p>
+                </div>
 
-                <p>
+                <div className="sobreTexto">
 
-                    Cada criação é produzida cuidadosamente para proporcionar
-                    beleza, qualidade e exclusividade, tornando cada peça
-                    especial para quem a recebe.
+                    <div className="subtituloSobreHome">
 
-                </p>
+                        <FaHeart />
 
-                <button
-    className="btnHistoria"
-    onClick={() => navigate("/sobre")}
->
-    Conheça Nossa História →
-</button>
+                        <span>Feito com carinho</span>
+
+                    </div>
+
+                    <h2>
+                        Nossa história é feita
+                        <strong> ponto por ponto</strong>
+                    </h2>
+
+                    <p>
+                        A Elizabeth Crochê nasceu da paixão pelo artesanato
+                        e do desejo de criar peças únicas, produzidas
+                        manualmente com dedicação e atenção aos mínimos detalhes.
+                    </p>
+
+                    <p>
+                        Cada criação é preparada cuidadosamente para oferecer
+                        beleza, qualidade e exclusividade, tornando cada peça
+                        especial para quem a recebe.
+                    </p>
+
+                    <div className="diferenciaisSobreHome">
+
+                        <div className="diferencialSobreHome">
+
+                            <FaCheckCircle />
+
+                            <span>Produção totalmente artesanal</span>
+
+                        </div>
+
+                        <div className="diferencialSobreHome">
+
+                            <FaCheckCircle />
+
+                            <span>Peças únicas e personalizadas</span>
+
+                        </div>
+
+                        <div className="diferencialSobreHome">
+
+                            <FaCheckCircle />
+
+                            <span>Cuidado em cada acabamento</span>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        className="btnHistoria"
+                        onClick={irParaSobre}
+                    >
+
+                        <span>Conheça nossa história</span>
+
+                        <FaArrowRight />
+
+                    </button>
+
+                </div>
 
             </div>
 

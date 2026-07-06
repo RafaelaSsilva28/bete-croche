@@ -9,7 +9,13 @@ import BotaoCarrinho from "../../components/BotaoCarrinho/BotaoCarrinho";
 import ModalCarrinho from "../../components/ModalCarrinho/ModalCarrinho";
 
 import { useCart } from "../../context/CartContext";
-import { FaShoppingCart } from "react-icons/fa";
+
+import {
+    FaShoppingCart,
+    FaSearch,
+    FaFilter,
+    FaBoxOpen
+} from "react-icons/fa";
 
 import "./Produtos.css";
 
@@ -26,20 +32,12 @@ function Produtos() {
 
     const [carrinhoAberto, setCarrinhoAberto] = useState(false);
 
-    // ==========================
-    // Carrinho
-    // ==========================
-
     const { carrinho } = useCart();
 
     const totalItens = carrinho.reduce(
         (total, item) => total + item.quantidade,
         0
     );
-
-    // ==========================
-    // Carregar produtos
-    // ==========================
 
     useEffect(() => {
 
@@ -48,14 +46,16 @@ function Produtos() {
             try {
 
                 const respostaProdutos = await api.get("/produtos");
+
                 setProdutos(respostaProdutos.data);
 
                 const respostaCategorias = await api.get("/categorias");
+
                 setCategorias(respostaCategorias.data);
 
             } catch (erro) {
 
-                console.log(erro);
+                console.log("Erro ao carregar dados:", erro);
 
             }
 
@@ -64,10 +64,6 @@ function Produtos() {
         carregarDados();
 
     }, []);
-
-    // ==========================
-    // Buscar produto completo
-    // ==========================
 
     async function abrirProduto(produto) {
 
@@ -78,12 +74,11 @@ function Produtos() {
             );
 
             setProdutoSelecionado(resposta.data);
-
             setModalAberto(true);
 
         } catch (erro) {
 
-            console.log(erro);
+            console.log("Erro ao carregar produto:", erro);
 
         }
 
@@ -92,18 +87,15 @@ function Produtos() {
     function fecharProduto() {
 
         setModalAberto(false);
-
         setProdutoSelecionado(null);
 
     }
 
-    // ==========================
-    // Filtros
-    // ==========================
-
     const produtosFiltrados = produtos.filter((produto) => {
 
-        const pesquisaOk = produto.nome
+        const nomeProduto = produto.nome || "";
+
+        const pesquisaOk = nomeProduto
             .toLowerCase()
             .includes(pesquisa.toLowerCase());
 
@@ -128,116 +120,138 @@ function Produtos() {
 
             <section className="bannerProdutos">
 
+                <div>
+                    
+                </div>
+
                 <h1>Nossos Produtos</h1>
 
                 <p>
-
                     Descubra peças artesanais feitas com carinho,
                     qualidade e exclusividade.
-
                 </p>
 
             </section>
 
-            {/* ==========================
-                Pesquisa
-            ========================== */}
+            <section className="areaFiltrosProdutos">
 
-            <section className="pesquisaProdutos">
+                <div className="filtrosProdutos">
 
-                <input
-                    type="text"
-                    placeholder="🔍 Pesquisar produtos..."
-                    value={pesquisa}
-                    onChange={(e) => setPesquisa(e.target.value)}
-                />
+                    <div className="campoPesquisaProdutos">
 
-                <div className="resumoCarrinho">
+                        <FaSearch />
 
-                    <FaShoppingCart />
+                        <input
+                            type="text"
+                            placeholder="Pesquisar produtos..."
+                            value={pesquisa}
+                            onChange={(evento) =>
+                                setPesquisa(evento.target.value)
+                            }
+                        />
 
-                    <span>
+                    </div>
 
-                        {totalItens} {totalItens === 1 ? "item" : "itens"} no carrinho
+                    <div className="campoCategoriaProdutos">
 
-                    </span>
+                        <FaFilter />
+
+                        <select
+                            value={categoriaSelecionada}
+                            onChange={(evento) =>
+                                setCategoriaSelecionada(
+                                    evento.target.value
+                                )
+                            }
+                        >
+
+                            <option value="Todos">
+                                Todas as categorias
+                            </option>
+
+                            {categorias.map((categoria) => (
+
+                                <option
+                                    key={categoria.id_categoria}
+                                    value={categoria.nome}
+                                >
+                                    {categoria.nome}
+                                </option>
+
+                            ))}
+
+                        </select>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        className="resumoCarrinho"
+                        onClick={() => setCarrinhoAberto(true)}
+                    >
+
+                        <FaShoppingCart />
+
+                        <span>
+                            {totalItens}{" "}
+                            {totalItens === 1 ? "item" : "itens"} no carrinho
+                        </span>
+
+                    </button>
 
                 </div>
 
             </section>
 
-            {/* ==========================
-                Categorias
-            ========================== */}
+            <div className="informacoesProdutos">
 
-            <section className="categorias">
+                <p className="contadorProdutos">
 
-                <button
-                    className={
-                        categoriaSelecionada === "Todos"
-                            ? "ativo"
-                            : ""
-                    }
-                    onClick={() => setCategoriaSelecionada("Todos")}
-                >
+                    <FaBoxOpen />
 
-                    Todos
+                    <span>
+                        {produtosFiltrados.length}{" "}
+                        {produtosFiltrados.length === 1
+                            ? "produto encontrado"
+                            : "produtos encontrados"}
+                    </span>
 
-                </button>
+                </p>
 
-                {categorias.map((categoria) => (
-
-                    <button
-                        key={categoria.id_categoria}
-                        className={
-                            categoriaSelecionada === categoria.nome
-                                ? "ativo"
-                                : ""
-                        }
-                        onClick={() =>
-                            setCategoriaSelecionada(categoria.nome)
-                        }
-                    >
-
-                        {categoria.nome}
-
-                    </button>
-
-                ))}
-
-            </section>
-
-            {/* ==========================
-                Contador
-            ========================== */}
-
-            <p className="contadorProdutos">
-
-                {produtosFiltrados.length} produto(s) encontrado(s)
-
-            </p>
-
-            {/* ==========================
-                Lista
-            ========================== */}
+            </div>
 
             <section className="listaProdutosPagina">
 
-                {produtosFiltrados.map((produto) => (
+                {produtosFiltrados.length > 0 ? (
 
-                    <CardProduto
-                        key={produto.id_produto}
-                        produto={produto}
-                        abrirProduto={abrirProduto}
-                    />
+                    produtosFiltrados.map((produto) => (
 
-                ))}
+                        <CardProduto
+                            key={produto.id_produto}
+                            produto={produto}
+                            abrirProduto={abrirProduto}
+                        />
+
+                    ))
+
+                ) : (
+
+                    <div className="nenhumProdutoEncontrado">
+
+                        <FaSearch />
+
+                        <h3>Nenhum produto encontrado</h3>
+
+                        <p>
+                            Tente pesquisar outro nome ou escolher
+                            uma categoria diferente.
+                        </p>
+
+                    </div>
+
+                )}
 
             </section>
-
-            {/* ==========================
-                Modal Produto
-            ========================== */}
 
             <ModalProduto
                 aberto={modalAberto}
@@ -245,17 +259,9 @@ function Produtos() {
                 fechar={fecharProduto}
             />
 
-            {/* ==========================
-                Botão Flutuante
-            ========================== */}
-
             <BotaoCarrinho
                 abrir={() => setCarrinhoAberto(true)}
             />
-
-            {/* ==========================
-                Modal Carrinho
-            ========================== */}
 
             <ModalCarrinho
                 aberto={carrinhoAberto}

@@ -1,85 +1,362 @@
-.depoimentos{
+.depoimentos {
 
-    padding:100px 40px;
+    width: 100%;
 
-    text-align:center;
+    padding: 85px 30px;
 
-    background:white;
-
-}
-
-.subtitulo{
-
-    color:#D98CA3;
-
-    font-size:18px;
-
-    font-weight:bold;
-
-}
-
-.depoimentos h2{
-
-    font-size:42px;
-
-    color:#444;
-
-    margin:15px 0 60px;
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(217, 140, 163, .12),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #fff8fb
+        );
 
 }
 
-.cardsDepoimentos{
+.conteudoDepoimentos {
 
-    display:grid;
+    width: 100%;
+    max-width: 1200px;
 
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-
-    gap:30px;
-
-}
-
-.cardDepoimento{
-
-    background:#FFF7FA;
-
-    padding:35px;
-
-    border-radius:20px;
-
-    transition:.3s;
-
-    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    margin: 0 auto;
 
 }
 
-.cardDepoimento:hover{
+/* ========================= */
+/* CABEÇALHO */
+/* ========================= */
 
-    transform:translateY(-8px);
+.cabecalhoDepoimentos {
 
-}
+    max-width: 720px;
 
-.estrelas{
+    margin: 0 auto 50px;
 
-    font-size:24px;
-
-    margin-bottom:20px;
-
-}
-
-.cardDepoimento p{
-
-    color:#666;
-
-    line-height:1.8;
-
-    margin-bottom:25px;
-
-    font-style:italic;
+    text-align: center;
 
 }
 
-.cardDepoimento h4{
+.subtituloDepoimentos {
 
-    color:#D98CA3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    margin-bottom: 15px;
+
+    padding: 8px 14px;
+
+    border-radius: 999px;
+
+    color: #a8496d;
+
+    background: #fff0f5;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+}
+
+.subtituloDepoimentos svg {
+
+    font-size: 14px;
+
+}
+
+.cabecalhoDepoimentos h2 {
+
+    margin-bottom: 15px;
+
+    color: #40383b;
+
+    font-size: 42px;
+
+    line-height: 1.25;
+
+}
+
+.cabecalhoDepoimentos > p {
+
+    color: #786d71;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+}
+
+/* ========================= */
+/* CARDS */
+/* ========================= */
+
+.cardsDepoimentos {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+
+    gap: 26px;
+
+}
+
+.cardDepoimento {
+
+    min-height: 310px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 30px;
+
+    border: 1px solid #f0dce3;
+
+    border-radius: 22px;
+
+    background: rgba(255, 255, 255, .96);
+
+    box-shadow:
+        0 12px 30px rgba(71, 42, 53, .08);
+
+    transition: .35s;
+
+}
+
+.cardDepoimento:hover {
+
+    transform: translateY(-8px);
+
+    border-color: #e8bfd0;
+
+    box-shadow:
+        0 20px 42px rgba(104, 53, 73, .14);
+
+}
+
+/* ========================= */
+/* TOPO DO CARD */
+/* ========================= */
+
+.topoCardDepoimento {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 24px;
+
+}
+
+.iconeAspasDepoimento {
+
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 14px;
+
+    color: white;
+
+    font-size: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d98ca3,
+            #a8496d
+        );
+
+    box-shadow:
+        0 8px 18px rgba(168, 73, 109, .22);
+
+}
+
+.estrelasDepoimento {
+
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+
+}
+
+.estrelasDepoimento svg {
+
+    color: #e7b14d;
+
+    font-size: 16px;
+
+}
+
+/* ========================= */
+/* TEXTO */
+/* ========================= */
+
+.textoDepoimento {
+
+    flex: 1;
+
+    margin-bottom: 28px;
+
+    color: #675d61;
+
+    font-size: 15px;
+    font-style: italic;
+
+    line-height: 1.8;
+
+}
+
+/* ========================= */
+/* CLIENTE */
+/* ========================= */
+
+.clienteDepoimento {
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #f2e4e9;
+
+}
+
+.iconeClienteDepoimento {
+
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    color: #b85c7e;
+
+    background: #fff0f5;
+
+    font-size: 24px;
+
+}
+
+.clienteDepoimento > div:last-child {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+}
+
+.clienteDepoimento strong {
+
+    color: #4b4145;
+
+    font-size: 14px;
+
+}
+
+.clienteDepoimento span {
+
+    color: #96898e;
+
+    font-size: 11px;
+
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+    .depoimentos {
+
+        padding: 70px 20px;
+
+    }
+
+    .cabecalhoDepoimentos {
+
+        margin-bottom: 40px;
+
+    }
+
+    .cabecalhoDepoimentos h2 {
+
+        font-size: 34px;
+
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .depoimentos {
+
+        padding: 55px 16px;
+
+    }
+
+    .subtituloDepoimentos {
+
+        font-size: 11px;
+
+        letter-spacing: .7px;
+
+    }
+
+    .cabecalhoDepoimentos h2 {
+
+        font-size: 29px;
+
+    }
+
+    .cabecalhoDepoimentos > p {
+
+        font-size: 14px;
+
+    }
+
+    .cardDepoimento {
+
+        min-height: auto;
+
+        padding: 24px;
+
+    }
+
+    .textoDepoimento {
+
+        font-size: 14px;
+
+    }
 
 }

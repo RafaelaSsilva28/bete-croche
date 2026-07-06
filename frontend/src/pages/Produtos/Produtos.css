@@ -1,260 +1,576 @@
-.bannerProdutos{
+.bannerProdutos {
 
-    background:#FFF7FA;
+    min-height: 330px;
 
-    text-align:center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-    padding:80px 20px;
+    padding: 70px 20px;
 
-}
+    text-align: center;
 
-.bannerProdutos h1{
-
-    font-size:52px;
-
-    color:#444;
-
-    margin-bottom:20px;
-
-}
-
-.bannerProdutos p{
-
-    color:#666;
-
-    font-size:20px;
-
-}
-
-.listaProdutosPagina{
-
-    max-width:1300px;
-
-    margin:70px auto;
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-
-    gap:35px;
-
-    padding:0 40px 80px;
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(217, 140, 163, .18),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #fff7fa,
+            #fff
+        );
 
 }
 
-.pesquisaProdutos{
+.iconeBannerProdutos {
 
-    display:flex;
+    width: 70px;
+    height: 70px;
 
-    justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    margin:50px 0;
+    margin-bottom: 20px;
 
-}
+    border-radius: 22px;
 
-.pesquisaProdutos input{
+    color: white;
 
-    width:500px;
+    font-size: 29px;
 
-    max-width:90%;
+    background:
+        linear-gradient(
+            135deg,
+            #d98ca3,
+            #a8496d
+        );
 
-    padding:18px 25px;
-
-    border:2px solid #eee;
-
-    border-radius:50px;
-
-    outline:none;
-
-    font-size:17px;
-
-    transition:.3s;
-
-}
-
-.pesquisaProdutos input:focus{
-
-    border-color:#D98CA3;
-
-    box-shadow:0 0 15px rgba(217,140,163,.2);
-
-}
-.pesquisaProdutos{
-
-    display:flex;
-
-    justify-content:center;
-
-    margin:50px 0 20px;
+    box-shadow:
+        0 12px 28px rgba(168, 73, 109, .25);
 
 }
 
-.pesquisaProdutos input{
+.bannerProdutos h1 {
 
-    width:550px;
+    margin-bottom: 15px;
 
-    max-width:90%;
+    color: #3f373a;
 
-    padding:18px 25px;
+    font-size: 50px;
 
-    border:2px solid #eee;
-
-    border-radius:50px;
-
-    outline:none;
-
-    font-size:17px;
-
-    transition:.3s;
+    line-height: 1.2;
 
 }
 
-.pesquisaProdutos input:focus{
+.bannerProdutos p {
 
-    border-color:#D98CA3;
+    max-width: 650px;
 
-    box-shadow:0 0 15px rgba(217,140,163,.2);
+    color: #6d6367;
 
-}
+    font-size: 18px;
 
-.categorias{
-
-    display:flex;
-
-    justify-content:center;
-
-    flex-wrap:wrap;
-
-    gap:15px;
-
-    margin-bottom:30px;
-
-    padding:0 20px;
+    line-height: 1.7;
 
 }
 
-.categorias button{
+/* ========================= */
+/* ÁREA DOS FILTROS */
+/* ========================= */
 
-    padding:12px 25px;
+.areaFiltrosProdutos {
 
-    border:none;
+    width: 100%;
 
-    border-radius:30px;
-
-    background:#F5F5F5;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    font-size:16px;
+    padding: 40px 30px 15px;
 
 }
 
-.categorias button:hover{
+.filtrosProdutos {
 
-    background:#D98CA3;
+    width: 100%;
+    max-width: 1150px;
 
-    color:white;
+    margin: 0 auto;
 
-}
+    display: grid;
 
-.categorias .ativo{
+    grid-template-columns:
+        minmax(280px, 1fr)
+        minmax(220px, 320px)
+        auto;
 
-    background:#D98CA3;
+    align-items: center;
 
-    color:white;
+    gap: 16px;
 
-}
+    padding: 20px;
 
-.contadorProdutos{
+    border: 1px solid #f1dce4;
 
-    text-align:center;
+    border-radius: 22px;
 
-    color:#777;
+    background: white;
 
-    margin-bottom:40px;
-
-    font-size:17px;
-
-}
-.pesquisaProdutos{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:18px;
-
-}
-.pesquisaProdutos input{
-
-    width:420px;
-
-    max-width:100%;
+    box-shadow:
+        0 10px 30px rgba(73, 45, 56, .08);
 
 }
 
-.resumoCarrinho{
+/* ========================= */
+/* PESQUISA */
+/* ========================= */
 
-    display:flex;
+.campoPesquisaProdutos {
 
-    align-items:center;
+    min-height: 55px;
 
-    gap:10px;
+    display: flex;
+    align-items: center;
 
-    padding:12px 18px;
+    gap: 13px;
 
-    border:2px solid #f4d9e2;
+    padding: 0 18px;
 
-    border-radius:14px;
+    border: 2px solid #f0dce3;
 
-    background:white;
+    border-radius: 15px;
 
-    color:#D98CA3;
+    background: #fff;
 
-    font-weight:600;
-
-    white-space:nowrap;
-
-    box-shadow:0 4px 12px rgba(0,0,0,.05);
-
-}
-
-.resumoCarrinho svg{
-
-    font-size:22px;
+    transition: .3s;
 
 }
 
-.resumoCarrinho{
+.campoPesquisaProdutos:focus-within {
 
-    display:flex;
+    border-color: #d98ca3;
 
-    align-items:center;
-
-    gap:10px;
-
-    background:#fff;
-
-    border:2px solid #f0d7df;
-
-    border-radius:14px;
-
-    padding:12px 20px;
-
-    color:#D98CA3;
-
-    font-size:18px;
-
-    font-weight:600;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.06);
+    box-shadow:
+        0 0 0 4px rgba(217, 140, 163, .12);
 
 }
 
-.resumoCarrinho svg{
+.campoPesquisaProdutos svg {
 
-    font-size:24px;
+    flex-shrink: 0;
+
+    color: #b85c7e;
+
+    font-size: 18px;
+
+}
+
+.campoPesquisaProdutos input {
+
+    width: 100%;
+
+    padding: 15px 0;
+
+    border: none;
+
+    outline: none;
+
+    color: #3f373a;
+
+    background: transparent;
+
+    font-size: 15px;
+
+}
+
+.campoPesquisaProdutos input::placeholder {
+
+    color: #aaa1a5;
+
+}
+
+/* ========================= */
+/* FILTRO DE CATEGORIA */
+/* ========================= */
+
+.campoCategoriaProdutos {
+
+    min-height: 55px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 0 16px;
+
+    border: 2px solid #f0dce3;
+
+    border-radius: 15px;
+
+    background: white;
+
+    transition: .3s;
+
+}
+
+.campoCategoriaProdutos:focus-within {
+
+    border-color: #d98ca3;
+
+    box-shadow:
+        0 0 0 4px rgba(217, 140, 163, .12);
+
+}
+
+.campoCategoriaProdutos svg {
+
+    flex-shrink: 0;
+
+    color: #b85c7e;
+
+    font-size: 17px;
+
+}
+
+.campoCategoriaProdutos select {
+
+    width: 100%;
+
+    padding: 15px 5px;
+
+    border: none;
+
+    outline: none;
+
+    color: #51474b;
+
+    background: transparent;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+/* ========================= */
+/* BOTÃO DO CARRINHO */
+/* ========================= */
+
+.resumoCarrinho {
+
+    min-height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 13px 19px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b85c7e,
+            #8f3456
+        );
+
+    font-size: 14px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(143, 52, 86, .22);
+
+    transition: .3s;
+
+}
+
+.resumoCarrinho svg {
+
+    font-size: 20px;
+
+}
+
+.resumoCarrinho:hover {
+
+    transform: translateY(-3px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #a8496d,
+            #772844
+        );
+
+    box-shadow:
+        0 12px 26px rgba(119, 40, 68, .3);
+
+}
+
+/* ========================= */
+/* CONTADOR */
+/* ========================= */
+
+.informacoesProdutos {
+
+    width: 100%;
+
+    padding: 15px 30px 0;
+
+}
+
+.contadorProdutos {
+
+    width: fit-content;
+    max-width: 1150px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    color: #74696d;
+
+    font-size: 15px;
+    font-weight: 600;
+
+}
+
+.contadorProdutos svg {
+
+    color: #b85c7e;
+
+    font-size: 17px;
+
+}
+
+/* ========================= */
+/* LISTA DE PRODUTOS */
+/* ========================= */
+
+.listaProdutosPagina {
+
+    width: 100%;
+    max-width: 1300px;
+
+    min-height: 300px;
+
+    margin: 35px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(270px, 1fr)
+        );
+
+    gap: 30px;
+
+    padding: 0 40px 50px;
+
+}
+
+/* ========================= */
+/* NENHUM PRODUTO */
+/* ========================= */
+
+.nenhumProdutoEncontrado {
+
+    grid-column: 1 / -1;
+
+    width: 100%;
+    max-width: 600px;
+
+    margin: 30px auto;
+
+    padding: 55px 30px;
+
+    text-align: center;
+
+    border: 1px solid #f0dce3;
+
+    border-radius: 22px;
+
+    background: #fff8fb;
+
+}
+
+.nenhumProdutoEncontrado > svg {
+
+    margin-bottom: 18px;
+
+    color: #d98ca3;
+
+    font-size: 42px;
+
+}
+
+.nenhumProdutoEncontrado h3 {
+
+    margin-bottom: 9px;
+
+    color: #4b4145;
+
+    font-size: 21px;
+
+}
+
+.nenhumProdutoEncontrado p {
+
+    color: #807579;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+}
+
+/* ========================= */
+/* RESPONSIVIDADE */
+/* ========================= */
+
+@media (max-width: 950px) {
+
+    .filtrosProdutos {
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+    .resumoCarrinho {
+
+        grid-column: 1 / -1;
+
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .bannerProdutos {
+
+        min-height: 280px;
+
+        padding: 55px 20px;
+
+    }
+
+    .iconeBannerProdutos {
+
+        width: 60px;
+        height: 60px;
+
+        font-size: 25px;
+
+    }
+
+    .bannerProdutos h1 {
+
+        font-size: 38px;
+
+    }
+
+    .bannerProdutos p {
+
+        font-size: 16px;
+
+    }
+
+    .areaFiltrosProdutos {
+
+        padding: 30px 18px 12px;
+
+    }
+
+    .filtrosProdutos {
+
+        grid-template-columns: 1fr;
+
+        padding: 16px;
+
+    }
+
+    .resumoCarrinho {
+
+        grid-column: auto;
+
+    }
+
+    .listaProdutosPagina {
+
+        grid-template-columns:
+            repeat(
+                auto-fit,
+                minmax(240px, 1fr)
+            );
+
+        gap: 24px;
+
+        padding: 0 20px 40px;
+
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .bannerProdutos {
+
+        min-height: 250px;
+
+        padding: 45px 18px;
+
+    }
+
+    .bannerProdutos h1 {
+
+        font-size: 32px;
+
+    }
+
+    .bannerProdutos p {
+
+        font-size: 14px;
+
+    }
+
+    .campoPesquisaProdutos,
+    .campoCategoriaProdutos,
+    .resumoCarrinho {
+
+        min-height: 52px;
+
+    }
+
+    .resumoCarrinho {
+
+        width: 100%;
+
+    }
+
+    .listaProdutosPagina {
+
+        grid-template-columns: 1fr;
+
+        padding: 0 16px 35px;
+
+    }
 
 }

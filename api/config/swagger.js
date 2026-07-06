@@ -3,7 +3,7 @@ import login from "../docs/login.js";
 import categorias from "../docs/categorias.js";
 import produtos from "../docs/produtos.js";
 import imagens from "../docs/imagens.js";
-
+import dashboard from "../docs/dashboard.js";
 const documentacao = {
     openapi: "3.0.3",
 
@@ -56,6 +56,10 @@ const documentacao = {
         {
             name: "Imagens",
             description: "Gerenciamento das imagens dos produtos"
+        },
+        {
+            name: "Dashboard",
+            description: "Gerenciamento de todos os dados Produtos, categorias, imagens e ativos"
         }
     ],
 
@@ -64,7 +68,8 @@ const documentacao = {
         ...usuarios,
         ...categorias,
         ...produtos,
-        ...imagens
+        ...imagens,
+        ...dashboard
     }
 };
 

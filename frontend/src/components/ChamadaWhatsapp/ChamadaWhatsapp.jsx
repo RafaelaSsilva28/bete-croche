@@ -1,5 +1,10 @@
 import "./ChamadaWhatsapp.css";
-import { FaInstagram } from "react-icons/fa";
+
+import {
+    FaInstagram,
+    FaArrowRight,
+    FaHeart
+} from "react-icons/fa";
 
 function ChamadaWhatsapp() {
 
@@ -7,32 +12,49 @@ function ChamadaWhatsapp() {
 
         <section className="chamadaWhatsapp">
 
-            <h2>
+            <div className="decoracaoInstagram decoracaoInstagramUm"></div>
+            <div className="decoracaoInstagram decoracaoInstagramDois"></div>
 
-               
-                Nosso trabalho continua no Instagram
+            <div className="conteudoChamadaInstagram">
 
-            </h2>
+                <div className="iconePrincipalInstagram">
+                    <FaInstagram />
+                </div>
 
-            <p>
+                <span className="subtituloInstagram">
 
-                Descubra novas peças, acompanhe os bastidores
-                do ateliê, veja lançamentos exclusivos e inspire-se
-                com cada criação publicada em nosso perfil.
+                    <FaHeart />
 
-            </p>
+                    Acompanhe nosso trabalho
 
-            <a
-                href="https://instagram.com/elizabetecroches"
-                target="_blank"
-                rel="noreferrer"
-            >
+                </span>
 
-                <FaInstagram />
+                <h2>
+                    Nosso trabalho continua no Instagram
+                </h2>
 
-                Ver perfil no Instagram
+                <p>
+                    Descubra novas peças, acompanhe os bastidores
+                    do ateliê, veja lançamentos exclusivos e inspire-se
+                    com cada criação publicada em nosso perfil.
+                </p>
 
-            </a>
+                <a
+                    href="https://instagram.com/elizabetecroches"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="botaoInstagram"
+                >
+
+                    <FaInstagram />
+
+                    <span>Ver perfil no Instagram</span>
+
+                    <FaArrowRight />
+
+                </a>
+
+            </div>
 
         </section>
 

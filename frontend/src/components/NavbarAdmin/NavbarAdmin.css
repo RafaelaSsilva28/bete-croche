@@ -1,0 +1,306 @@
+.navbarAdmin{
+
+    width:100%;
+    height:80px;
+
+    background:white;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 45px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+    position:sticky;
+    top:0;
+
+    z-index:999;
+
+}
+
+.logoNavbarAdmin{
+
+    color:#D98CA3;
+
+    font-size:27px;
+    font-weight:800;
+
+    text-decoration:none;
+
+    white-space:nowrap;
+
+}
+
+/* ========================= */
+/* MENU DESKTOP */
+/* ========================= */
+
+.menuAdmin{
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.menuAdmin a{
+
+    text-decoration:none;
+
+    color:#555;
+
+    padding:12px 15px;
+
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+
+    gap:9px;
+
+    font-size:14px;
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.menuAdmin a:hover{
+
+    background:#FFF3F7;
+
+    color:#D98CA3;
+
+}
+
+.menuAdmin a.ativo{
+
+    background:#D98CA3;
+
+    color:white;
+
+}
+
+/* ========================= */
+/* BOTÃO SAIR */
+/* ========================= */
+
+.btnSairAdmin{
+
+    border:none;
+
+    background:#ffefef;
+
+    color:#e74c3c;
+
+    padding:12px 16px;
+
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+
+    gap:9px;
+
+    cursor:pointer;
+
+    font-size:14px;
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.btnSairAdmin:hover{
+
+    background:#e74c3c;
+
+    color:white;
+
+}
+
+/* ========================= */
+/* BOTÃO MENU */
+/* ========================= */
+
+.btnMenuAdmin{
+
+    display:none;
+
+    width:45px;
+    height:45px;
+
+    border:none;
+
+    background:#D98CA3;
+
+    color:white;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    align-items:center;
+    justify-content:center;
+
+    transition:.3s;
+
+}
+
+.btnMenuAdmin:hover{
+
+    background:#c87490;
+
+}
+
+/* ========================= */
+/* OVERLAY */
+/* ========================= */
+
+.overlayMenuAdmin{
+
+    display:none;
+
+    position:fixed;
+    inset:80px 0 0 0;
+
+    border:none;
+
+    background:rgba(0,0,0,.35);
+
+    z-index:997;
+
+    cursor:pointer;
+
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media(max-width:1100px){
+
+    .navbarAdmin{
+
+        padding:0 25px;
+
+    }
+
+    .btnMenuAdmin{
+
+        display:flex;
+
+    }
+
+    .menuAdmin{
+
+        position:fixed;
+
+        top:80px;
+        right:-100%;
+
+        width:290px;
+        height:calc(100vh - 80px);
+
+        background:white;
+
+        flex-direction:column;
+        align-items:flex-start;
+
+        padding:30px 24px;
+
+        transition:right .35s ease;
+
+        box-shadow:-10px 0 30px rgba(0,0,0,.12);
+
+        gap:8px;
+
+        z-index:998;
+
+        overflow-y:auto;
+
+    }
+
+    .menuAdmin.ativo{
+
+        right:0;
+
+    }
+
+    .menuAdmin a{
+
+        width:100%;
+
+        padding:15px 16px;
+
+        font-size:15px;
+
+    }
+
+    .btnSairAdmin{
+
+        width:100%;
+
+        justify-content:center;
+
+        margin-top:15px;
+
+        padding:15px 16px;
+
+    }
+
+    .overlayMenuAdmin{
+
+        display:block;
+
+    }
+
+}
+
+@media(max-width:500px){
+
+    .navbarAdmin{
+
+        height:72px;
+
+        padding:0 16px;
+
+    }
+
+    .logoNavbarAdmin{
+
+        font-size:21px;
+
+    }
+
+    .btnMenuAdmin{
+
+        width:42px;
+        height:42px;
+
+    }
+
+    .menuAdmin{
+
+        top:72px;
+
+        width:85%;
+
+        max-width:300px;
+
+        height:calc(100vh - 72px);
+
+    }
+
+    .overlayMenuAdmin{
+
+        inset:72px 0 0 0;
+
+    }
+
+}

@@ -1,0 +1,621 @@
+.categoriasAdmin{
+
+    min-height:calc(100vh - 80px);
+
+    padding:40px;
+
+    background:#FFF8FB;
+
+}
+
+/* ========================= */
+/* TOAST */
+/* ========================= */
+
+.toastCategoriaAdmin{
+
+    position:fixed;
+
+    top:25px;
+    right:25px;
+
+    z-index:10000;
+
+    padding:16px 22px;
+
+    border-radius:16px;
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    font-weight:700;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.22);
+
+    animation:toastCategoriaEntrando .3s ease;
+
+}
+
+.toastCategoriaAdmin svg{
+
+    font-size:20px;
+
+    flex-shrink:0;
+
+}
+
+.toastCategoriaAdmin.sucesso{
+
+    background:#2ecc71;
+
+}
+
+.toastCategoriaAdmin.erro{
+
+    background:#e74c3c;
+
+}
+
+@keyframes toastCategoriaEntrando{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+/* ========================= */
+/* TOPO */
+/* ========================= */
+
+.topoCategoriasAdmin{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:22px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:25px;
+
+    margin-bottom:30px;
+
+}
+
+.topoCategoriasAdmin h1{
+
+    color:#444;
+
+    font-size:34px;
+
+    margin-bottom:8px;
+
+}
+
+.topoCategoriasAdmin p{
+
+    color:#777;
+
+    line-height:1.6;
+
+}
+
+.btnNovaCategoria{
+
+    border:none;
+
+    background:#D98CA3;
+
+    color:white;
+
+    padding:15px 24px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:10px;
+
+    font-size:15px;
+
+    font-weight:800;
+
+    white-space:nowrap;
+
+    transition:.3s;
+
+}
+
+.btnNovaCategoria:hover{
+
+    background:#c87490;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 22px rgba(217,140,163,.25);
+
+}
+
+/* ========================= */
+/* PESQUISA */
+/* ========================= */
+
+.barraPesquisaCategoria{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:18px 22px;
+
+    display:flex;
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:30px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+
+}
+
+.barraPesquisaCategoria svg{
+
+    color:#D98CA3;
+
+    font-size:20px;
+
+    flex-shrink:0;
+
+}
+
+.barraPesquisaCategoria input{
+
+    flex:1;
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    font-size:16px;
+
+    color:#444;
+
+    background:transparent;
+
+}
+
+.barraPesquisaCategoria input::placeholder{
+
+    color:#aaa;
+
+}
+
+/* ========================= */
+/* GRADE */
+/* ========================= */
+
+.gradeCategoriasAdmin{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,minmax(0,1fr));
+
+    gap:22px;
+
+}
+
+/* ========================= */
+/* CARD */
+/* ========================= */
+
+.cardCategoriaAdmin{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:24px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+
+    display:flex;
+    flex-direction:column;
+
+    gap:20px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+}
+
+.cardCategoriaAdmin::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:5px;
+
+    background:linear-gradient(
+        90deg,
+        #D98CA3,
+        #b96b85
+    );
+
+}
+
+.cardCategoriaAdmin:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 16px 35px rgba(217,140,163,.16);
+
+}
+
+.iconeCategoriaAdmin{
+
+    width:58px;
+    height:58px;
+
+    border-radius:18px;
+
+    background:#FFF3F7;
+
+    color:#D98CA3;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:24px;
+
+    flex-shrink:0;
+
+}
+
+.infoCategoriaAdmin{
+
+    flex:1;
+
+}
+
+.infoCategoriaAdmin h3{
+
+    color:#444;
+
+    font-size:22px;
+
+    margin-bottom:10px;
+
+}
+
+.infoCategoriaAdmin p{
+
+    color:#777;
+
+    line-height:1.6;
+
+    word-break:break-word;
+
+}
+
+/* ========================= */
+/* AÇÕES */
+/* ========================= */
+
+.acoesCategoriaAdmin{
+
+    display:flex;
+    justify-content:flex-end;
+
+    gap:12px;
+
+    border-top:1px solid #f4e3e9;
+
+    padding-top:18px;
+
+}
+
+.acoesCategoriaAdmin button{
+
+    width:46px;
+    height:46px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:17px;
+
+    transition:.3s;
+
+}
+
+.btnEditarCategoria{
+
+    background:#FFF3F7;
+
+    color:#D98CA3;
+
+}
+
+.btnEditarCategoria:hover{
+
+    background:#D98CA3;
+
+    color:white;
+
+    transform:translateY(-2px);
+
+}
+
+.btnExcluirCategoria{
+
+    background:#FFEAEA;
+
+    color:#E74C3C;
+
+}
+
+.btnExcluirCategoria:hover{
+
+    background:#E74C3C;
+
+    color:white;
+
+    transform:translateY(-2px);
+
+}
+
+.btnExcluirCategoria:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+}
+
+/* ========================= */
+/* CARREGANDO */
+/* ========================= */
+
+.carregandoCategorias{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:65px 20px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    gap:16px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+
+}
+
+.carregandoCategorias svg{
+
+    color:#D98CA3;
+
+    font-size:38px;
+
+}
+
+.carregandoCategorias p{
+
+    color:#777;
+
+    font-weight:600;
+
+}
+
+/* ========================= */
+/* SEM CATEGORIAS */
+/* ========================= */
+
+.semCategoriasAdmin{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:70px 20px;
+
+    text-align:center;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+
+}
+
+.semCategoriasAdmin svg{
+
+    font-size:65px;
+
+    color:#D98CA3;
+
+    margin-bottom:20px;
+
+}
+
+.semCategoriasAdmin h3{
+
+    color:#555;
+
+    font-size:23px;
+
+    margin-bottom:10px;
+
+}
+
+.semCategoriasAdmin p{
+
+    color:#888;
+
+    line-height:1.6;
+
+}
+
+/* ========================= */
+/* SPINNER */
+/* ========================= */
+
+.iconeGirando{
+
+    animation:girarIconeCategoriaPagina 1s linear infinite;
+
+}
+
+@keyframes girarIconeCategoriaPagina{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media(max-width:1100px){
+
+    .gradeCategoriasAdmin{
+
+        grid-template-columns:repeat(2,minmax(0,1fr));
+
+    }
+
+}
+
+@media(max-width:800px){
+
+    .categoriasAdmin{
+
+        padding:25px;
+
+    }
+
+    .topoCategoriasAdmin{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .btnNovaCategoria{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .categoriasAdmin{
+
+        padding:18px;
+
+    }
+
+    .topoCategoriasAdmin{
+
+        padding:22px;
+
+        border-radius:18px;
+
+    }
+
+    .topoCategoriasAdmin h1{
+
+        font-size:28px;
+
+    }
+
+    .barraPesquisaCategoria{
+
+        padding:15px 18px;
+
+    }
+
+    .gradeCategoriasAdmin{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .cardCategoriaAdmin{
+
+        padding:22px;
+
+    }
+
+    .toastCategoriaAdmin{
+
+        left:15px;
+        right:15px;
+        top:15px;
+
+        justify-content:center;
+
+    }
+
+}

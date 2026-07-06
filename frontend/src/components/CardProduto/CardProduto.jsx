@@ -1,33 +1,74 @@
 import "./CardProduto.css";
 
+import {
+    FaEye,
+    FaTag
+} from "react-icons/fa";
+
 function CardProduto({ produto, abrirProduto }) {
 
     return (
 
-        <div className="cardProduto">
+        <article className="cardProduto">
 
-            <img
-                src={
-                    produto.imagem_principal
-                        ? `http://localhost:3001/uploads/${produto.imagem_principal}`
-                        : "https://placehold.co/300x300"
-                }
-                alt={produto.nome}
-            />
+            <div className="imagemCardProduto">
 
-            <h3>{produto.nome}</h3>
+                <img
+                    src={
+                        produto.imagem_principal
+                            ? `http://localhost:3001/uploads/${produto.imagem_principal}`
+                            : "https://placehold.co/400x400?text=Sem+imagem"
+                    }
+                    alt={produto.nome}
+                />
 
-            <p>{produto.descricao}</p>
+                {produto.destaque === true && (
 
-            <span>
-                R$ {Number(produto.preco).toFixed(2)}
-            </span>
+                    <div className="seloCardProduto">
 
-            <button onClick={() => abrirProduto(produto)}>
-                Ver Produto
-            </button>
+                        <FaTag />
 
-        </div>
+                        <span>Destaque</span>
+
+                    </div>
+
+                )}
+
+            </div>
+
+            <div className="conteudoCardProduto">
+
+                <h3>{produto.nome}</h3>
+
+                <p className="descricaoCardProduto">
+                    {produto.descricao}
+                </p>
+
+                <div className="precoCardProduto">
+
+                    <span>A partir de</span>
+
+                    <strong>
+                        R$ {Number(produto.preco).toFixed(2)}
+                    </strong>
+
+                </div>
+
+                <button
+                    type="button"
+                    className="botaoVerProduto"
+                    onClick={() => abrirProduto(produto)}
+                >
+
+                    <FaEye />
+
+                    <span>Ver produto</span>
+
+                </button>
+
+            </div>
+
+        </article>
 
     );
 

@@ -1,99 +1,331 @@
-.cardProduto{
+.cardProduto {
 
-    width:280px;
+    width: 100%;
+    max-width: 250px;
 
-    background:white;
+    overflow: hidden;
 
-    border-radius:15px;
+    display: flex;
+    flex-direction: column;
 
-    padding:20px;
+    border: 1px solid #f0dce3;
 
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    border-radius: 18px;
 
-    transition:.3s;
+    background: white;
 
-    overflow:hidden;
+    box-shadow:
+        0 10px 24px rgba(70, 41, 52, .08);
 
-}
-
-.cardProduto:hover{
-
-    transform:translateY(-8px);
-
-}
-
-.cardProduto img{
-
-    width:100%;
-
-    height:280px;
-
-    object-fit:cover;
-
-    border-radius:10px;
-
-    transition:.4s;
+    transition: .3s;
 
 }
 
-.cardProduto:hover img{
+.cardProduto:hover {
 
-    transform:scale(1.05);
+    transform: translateY(-6px);
 
-}
+    border-color: #e5b8c8;
 
-.cardProduto h3{
-
-    margin:15px 0;
-
-    color:#444;
+    box-shadow:
+        0 16px 34px rgba(97, 51, 69, .13);
 
 }
 
-.cardProduto p{
+/* ========================= */
+/* IMAGEM */
+/* ========================= */
 
-    color:#777;
+.imagemCardProduto {
 
-    min-height:60px;
+    width: 100%;
+    height: 185px;
 
-}
+    position: relative;
 
-.cardProduto span{
+    overflow: hidden;
 
-    display:block;
-
-    margin:20px 0;
-
-    font-size:22px;
-
-    font-weight:bold;
-
-    color:#D98CA3;
+    background: #fff6f9;
 
 }
 
-.cardProduto button{
+.imagemCardProduto img {
 
-    width:100%;
+    width: 100%;
+    height: 100%;
 
-    border:none;
+    display: block;
 
-    background:#D98CA3;
+    object-fit: cover;
 
-    color:white;
-
-    padding:12px;
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-    transition:.3s;
+    transition: .4s;
 
 }
 
-.cardProduto button:hover{
+.cardProduto:hover .imagemCardProduto img {
 
-    background:#c96f90;
+    transform: scale(1.05);
+
+}
+
+.imagemCardProduto::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 65%,
+            rgba(44, 25, 32, .08)
+        );
+
+}
+
+/* ========================= */
+/* SELO */
+/* ========================= */
+
+.seloCardProduto {
+
+    position: absolute;
+
+    top: 10px;
+    left: 10px;
+
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 6px 9px;
+
+    border-radius: 999px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b85c7e,
+            #8f3456
+        );
+
+    font-size: 9px;
+    font-weight: 800;
+
+    box-shadow:
+        0 6px 14px rgba(92, 40, 60, .18);
+
+}
+
+/* ========================= */
+/* CONTEÚDO */
+/* ========================= */
+
+.conteudoCardProduto {
+
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 15px;
+
+}
+
+.conteudoCardProduto h3 {
+
+    margin-bottom: 7px;
+
+    color: #41383c;
+
+    font-size: 16px;
+
+    line-height: 1.25;
+
+}
+
+.descricaoCardProduto {
+
+    min-height: 38px;
+
+    margin-bottom: 12px;
+
+    display: -webkit-box;
+
+    overflow: hidden;
+
+    color: #766b6f;
+
+    font-size: 12px;
+
+    line-height: 1.45;
+
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+}
+
+/* ========================= */
+/* PREÇO */
+/* ========================= */
+
+.precoCardProduto {
+
+    margin-top: auto;
+    margin-bottom: 13px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 1px;
+
+}
+
+.precoCardProduto span {
+
+    color: #9a8e93;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+
+}
+
+.precoCardProduto strong {
+
+    color: #b85c7e;
+
+    font-size: 19px;
+
+    line-height: 1.1;
+
+}
+
+/* ========================= */
+/* BOTÃO */
+/* ========================= */
+
+.botaoVerProduto {
+
+    width: 100%;
+    min-height: 39px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    padding: 9px 10px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b85c7e,
+            #8f3456
+        );
+
+    font-size: 11px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 14px rgba(143, 52, 86, .17);
+
+    transition: .3s;
+
+}
+
+.botaoVerProduto:hover {
+
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #a8496d,
+            #772844
+        );
+
+}
+
+.botaoVerProduto:active {
+
+    transform: translateY(0);
+
+}
+
+.botaoVerProduto svg {
+
+    flex-shrink: 0;
+
+    font-size: 13px;
+
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media(max-width:600px) {
+
+    .cardProduto {
+
+        max-width: 100%;
+
+    }
+
+    .imagemCardProduto {
+
+        height: 200px;
+
+    }
+
+}
+
+@media(max-width:380px) {
+
+    .conteudoCardProduto {
+
+        padding: 13px;
+
+    }
+
+    .conteudoCardProduto h3 {
+
+        font-size: 15px;
+
+    }
+
+    .descricaoCardProduto {
+
+        font-size: 11px;
+
+    }
+
+    .precoCardProduto strong {
+
+        font-size: 18px;
+
+    }
 
 }

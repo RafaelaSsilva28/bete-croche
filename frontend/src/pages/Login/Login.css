@@ -1,209 +1,681 @@
 *{
+
     margin:0;
     padding:0;
     box-sizing:border-box;
     font-family:"Poppins",sans-serif;
+
 }
 
 .login{
 
-    width:100%;
     min-height:100vh;
 
+    position:relative;
+
+    overflow:hidden;
+
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
 
-    padding:20px;
+    padding:35px;
 
-    background:linear-gradient(135deg,#fff7fa,#ffe9f0,#f8f8f8);
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(217,140,163,.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(199,111,144,.14),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #fff8fb,
+            #fdeef4,
+            #fff
+        );
 
 }
+
+/* ========================= */
+/* DECORAÇÕES DO FUNDO */
+/* ========================= */
+
+.decoracaoLogin{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(2px);
+
+    pointer-events:none;
+
+}
+
+.decoracaoUm{
+
+    width:280px;
+    height:280px;
+
+    top:-90px;
+    left:-80px;
+
+    background:rgba(217,140,163,.15);
+
+}
+
+.decoracaoDois{
+
+    width:220px;
+    height:220px;
+
+    bottom:-80px;
+    right:-50px;
+
+    background:rgba(199,111,144,.12);
+
+}
+
+.decoracaoTres{
+
+    width:110px;
+    height:110px;
+
+    top:80px;
+    right:10%;
+
+    border:20px solid rgba(217,140,163,.08);
+
+    background:transparent;
+
+}
+
+/* ========================= */
+/* CARD PRINCIPAL */
+/* ========================= */
 
 .cardLogin{
 
     width:100%;
-    max-width:430px;
-
-    background:#fff;
-
-    border-radius:25px;
-
-    padding:45px;
-
-    box-shadow:0 15px 40px rgba(0,0,0,.12);
-
-    animation:subir .5s;
-
-}
-
-.cardLogin h1{
-
-    color:#D98CA3;
-
-    font-size:34px;
-
-    text-align:center;
-
-    margin-bottom:8px;
-
-}
-
-.cardLogin h2{
-
-    color:#444;
-
-    text-align:center;
-
-    font-size:22px;
-
-    margin-bottom:10px;
-
-}
-
-.cardLogin p{
-
-    text-align:center;
-
-    color:#777;
-
-    margin-bottom:35px;
-
-    line-height:1.5;
-
-}
-
-.campo{
+    max-width:1050px;
+    min-height:630px;
 
     position:relative;
 
-    display:flex;
+    z-index:2;
 
-    align-items:center;
+    display:grid;
 
-    margin-bottom:22px;
+    grid-template-columns:45% 55%;
 
-}
+    background:white;
 
-.campo svg:first-child{
+    border-radius:30px;
 
-    position:absolute;
+    overflow:hidden;
 
-    left:18px;
+    box-shadow:
+        0 25px 70px rgba(105,60,75,.16),
+        0 5px 20px rgba(0,0,0,.06);
 
-    color:#D98CA3;
-
-    font-size:18px;
-
-}
-
-.campo input{
-
-    width:100%;
-
-    height:55px;
-
-    border:2px solid #ececec;
-
-    border-radius:14px;
-
-    padding-left:50px;
-
-    padding-right:50px;
-
-    font-size:16px;
-
-    outline:none;
-
-    transition:.3s;
+    animation:entradaCardLogin .5s ease;
 
 }
 
-.campo input:focus{
+/* ========================= */
+/* LADO ESQUERDO */
+/* ========================= */
 
-    border-color:#D98CA3;
+.ladoEsquerdoLogin{
 
-    box-shadow:0 0 0 4px rgba(217,140,163,.15);
+    position:relative;
 
-}
-
-.mostrarSenha{
-
-    position:absolute;
-
-    right:15px;
-
-    background:none;
-
-    border:none;
-
-    cursor:pointer;
-
-    color:#888;
-
-    font-size:18px;
+    overflow:hidden;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
+    padding:60px 50px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            145deg,
+            #d98ca3,
+            #c76f90
+        );
+
 }
 
-.mostrarSenha:hover{
+.ladoEsquerdoLogin::after{
 
-    color:#D98CA3;
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.05),
+            rgba(92,31,54,.08)
+        );
 
 }
 
-.btnEntrar{
+.conteudoEsquerdoLogin{
 
-    width:100%;
+    position:relative;
 
-    height:58px;
+    z-index:2;
 
-    margin-top:12px;
+    max-width:350px;
 
-    border:none;
+    text-align:center;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+}
+
+.iconeMarcaLogin{
+
+    width:72px;
+    height:72px;
+
+    margin-bottom:24px;
+
+    border-radius:22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:28px;
+
+    color:#c76f90;
+
+    background:white;
+
+    box-shadow:0 15px 35px rgba(87,26,48,.2);
+
+}
+
+.seloLogin{
+
+    margin-bottom:18px;
+
+    padding:8px 15px;
+
+    border:1px solid rgba(255,255,255,.35);
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.12);
+
+    font-size:13px;
+    font-weight:700;
+
+    letter-spacing:.4px;
+
+}
+
+.ladoEsquerdoLogin h1{
+
+    font-size:46px;
+
+    line-height:1.05;
+
+    margin-bottom:18px;
+
+    font-weight:800;
+
+}
+
+.ladoEsquerdoLogin h1 span{
+
+    display:block;
+
+}
+
+.ladoEsquerdoLogin h3{
+
+    font-size:21px;
+
+    margin-bottom:20px;
+
+    font-weight:700;
+
+}
+
+.ladoEsquerdoLogin p{
+
+    font-size:16px;
+
+    line-height:1.8;
+
+    color:#fff8fb;
+
+}
+
+.segurancaLogin{
+
+    margin-top:30px;
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px 16px;
 
     border-radius:14px;
 
-    background:linear-gradient(135deg,#D98CA3,#C8708F);
+    background:rgba(255,255,255,.14);
 
-    color:#fff;
-
-    font-size:18px;
-
+    font-size:13px;
     font-weight:600;
 
-    cursor:pointer;
+}
+
+.segurancaLogin svg{
+
+    font-size:16px;
+
+}
+
+.circuloDecorativo{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.18);
+
+}
+
+.circuloUm{
+
+    width:230px;
+    height:230px;
+
+    top:-70px;
+    right:-80px;
+
+}
+
+.circuloDois{
+
+    width:180px;
+    height:180px;
+
+    bottom:-70px;
+    left:-50px;
+
+}
+
+/* ========================= */
+/* LADO DIREITO */
+/* ========================= */
+
+.ladoDireitoLogin{
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    padding:70px 60px;
+
+    background:#fff;
+
+}
+
+.cabecalhoLogin{
+
+    margin-bottom:34px;
+
+}
+
+.tituloPequenoLogin{
+
+    display:inline-block;
+
+    margin-bottom:10px;
+
+    color:#D98CA3;
+
+    font-size:13px;
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+}
+
+.cabecalhoLogin h2{
+
+    color:#333;
+
+    font-size:36px;
+
+    line-height:1.2;
+
+    margin-bottom:12px;
+
+}
+
+.cabecalhoLogin p{
+
+    color:#777;
+
+    font-size:15px;
+
+    line-height:1.7;
+
+}
+
+/* ========================= */
+/* FORMULÁRIO */
+/* ========================= */
+
+.formularioLogin{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+.grupoCampoLogin{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.grupoCampoLogin label{
+
+    color:#555;
+
+    font-size:14px;
+    font-weight:700;
+
+}
+
+.campoLogin{
+
+    width:100%;
+    min-height:58px;
+
+    display:flex;
+    align-items:center;
+
+    gap:14px;
+
+    padding:0 17px;
+
+    border:2px solid #f0dce3;
+
+    border-radius:16px;
+
+    background:#fff;
 
     transition:.3s;
 
 }
 
-.btnEntrar:hover{
+.campoLogin:focus-within{
 
-    transform:translateY(-3px);
+    border-color:#D98CA3;
 
-    box-shadow:0 12px 25px rgba(217,140,163,.35);
+    box-shadow:0 0 0 5px rgba(217,140,163,.13);
 
 }
 
-.btnEntrar:disabled{
+.campoLogin > svg{
 
-    opacity:.7;
+    color:#D98CA3;
+
+    font-size:18px;
+
+    flex-shrink:0;
+
+}
+
+.campoLogin input{
+
+    flex:1;
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:#333;
+
+    font-size:15px;
+
+    padding:16px 0;
+
+}
+
+.campoLogin input::placeholder{
+
+    color:#aaa;
+
+}
+
+.campoLogin input:disabled{
 
     cursor:not-allowed;
 
 }
 
-@keyframes subir{
+.mostrarSenhaLogin{
+
+    width:40px;
+    height:40px;
+
+    flex-shrink:0;
+
+    border:none;
+
+    border-radius:11px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#FFF3F7;
+
+    color:#D98CA3;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+.mostrarSenhaLogin:hover{
+
+    background:#D98CA3;
+
+    color:white;
+
+}
+
+/* ========================= */
+/* BOTÃO */
+/* ========================= */
+
+.btnEntrarLogin{
+
+    width:100%;
+    min-height:58px;
+
+    margin-top:4px;
+
+    border:none;
+
+    border-radius:16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:10px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #D98CA3,
+            #C76F90
+        );
+
+    font-size:16px;
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 10px 25px rgba(199,111,144,.24);
+
+}
+
+.btnEntrarLogin:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 32px rgba(199,111,144,.34);
+
+}
+
+.btnEntrarLogin:disabled{
+
+    opacity:.65;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+}
+
+.rodapeLogin{
+
+    margin-top:24px;
+
+    text-align:center;
+
+    color:#999;
+
+    font-size:13px;
+
+}
+
+/* ========================= */
+/* TOAST */
+/* ========================= */
+
+.toastLogin{
+
+    position:fixed;
+
+    top:25px;
+    right:25px;
+
+    z-index:9999;
+
+    max-width:420px;
+
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    padding:16px 22px;
+
+    border-radius:15px;
+
+    color:white;
+
+    font-weight:700;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.2);
+
+    animation:entradaToastLogin .35s ease;
+
+}
+
+.toastLogin.sucesso{
+
+    background:#2ecc71;
+
+}
+
+.toastLogin.erro{
+
+    background:#e74c3c;
+
+}
+
+.toastLogin svg{
+
+    font-size:21px;
+
+    flex-shrink:0;
+
+}
+
+/* ========================= */
+/* ANIMAÇÕES */
+/* ========================= */
+
+.iconeGirandoLogin{
+
+    animation:girarLogin 1s linear infinite;
+
+}
+
+@keyframes girarLogin{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+@keyframes entradaCardLogin{
 
     from{
 
         opacity:0;
 
-        transform:translateY(40px);
+        transform:translateY(35px) scale(.98);
 
     }
 
@@ -211,29 +683,144 @@
 
         opacity:1;
 
-        transform:translateY(0);
+        transform:translateY(0) scale(1);
 
     }
 
 }
 
-@media(max-width:600px){
+@keyframes entradaToastLogin{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(50px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media(max-width:900px){
+
+    .login{
+
+        padding:25px;
+
+    }
 
     .cardLogin{
 
-        padding:35px 25px;
+        max-width:650px;
+
+        grid-template-columns:1fr;
 
     }
 
-    .cardLogin h1{
+    .ladoEsquerdoLogin{
 
-        font-size:28px;
+        padding:45px 35px;
 
     }
 
-    .cardLogin h2{
+    .ladoEsquerdoLogin h1{
 
-        font-size:20px;
+        font-size:38px;
+
+    }
+
+    .ladoDireitoLogin{
+
+        padding:50px 40px;
+
+    }
+
+}
+
+@media(max-width:550px){
+
+    .login{
+
+        align-items:flex-start;
+
+        padding:16px;
+
+    }
+
+    .cardLogin{
+
+        border-radius:22px;
+
+    }
+
+    .ladoEsquerdoLogin{
+
+        padding:38px 24px;
+
+    }
+
+    .iconeMarcaLogin{
+
+        width:60px;
+        height:60px;
+
+        border-radius:18px;
+
+        font-size:23px;
+
+    }
+
+    .ladoEsquerdoLogin h1{
+
+        font-size:32px;
+
+    }
+
+    .ladoEsquerdoLogin h3{
+
+        font-size:18px;
+
+    }
+
+    .ladoEsquerdoLogin p{
+
+        font-size:14px;
+
+    }
+
+    .ladoDireitoLogin{
+
+        padding:38px 24px;
+
+    }
+
+    .cabecalhoLogin h2{
+
+        font-size:29px;
+
+    }
+
+    .toastLogin{
+
+        left:15px;
+        right:15px;
+        top:15px;
+
+        max-width:none;
+
+        justify-content:center;
 
     }
 

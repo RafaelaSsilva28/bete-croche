@@ -1,0 +1,457 @@
+.dashboard{
+
+    min-height:calc(100vh - 80px);
+
+    padding:28px;
+
+    background:#FFF8FB;
+
+}
+
+/* ========================= */
+/* BOAS-VINDAS */
+/* ========================= */
+
+.boasVindas{
+
+    background:white;
+
+    padding:28px 32px;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+
+    margin-bottom:24px;
+
+}
+
+.boasVindas h1{
+
+    color:#3f3f3f;
+
+    font-size:32px;
+
+    margin-bottom:8px;
+
+}
+
+.boasVindas p{
+
+    color:#777;
+
+    font-size:16px;
+
+}
+
+/* ========================= */
+/* ÁREA PRINCIPAL */
+/* ========================= */
+
+.dashboardGrid{
+
+    display:grid;
+
+    grid-template-columns:minmax(0, 2fr) minmax(320px, 1fr);
+
+    gap:20px;
+
+    align-items:stretch;
+
+    margin-bottom:24px;
+
+}
+
+/* ========================= */
+/* CARDS */
+/* ========================= */
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+
+    gap:20px;
+
+}
+
+.card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:28px 32px;
+
+    min-height:190px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+
+    border:2px solid transparent;
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#e7a9bb;
+
+    box-shadow:0 15px 32px rgba(217,140,163,.16);
+
+}
+
+.cards .card:nth-child(3){
+
+    grid-column:1 / -1;
+
+    min-height:150px;
+
+}
+
+.card .icone{
+
+    color:#D98CA3;
+
+    font-size:32px;
+
+    margin-bottom:18px;
+
+}
+
+.card h3{
+
+    color:#444;
+
+    font-size:21px;
+
+    margin-bottom:10px;
+
+}
+
+.card h2{
+
+    color:#D98CA3;
+
+    font-size:38px;
+
+    margin-bottom:8px;
+
+}
+
+.card p{
+
+    color:#777;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+}
+
+/* ========================= */
+/* PRODUTOS RECENTES */
+/* ========================= */
+
+.produtosRecentes{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:22px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+
+    min-height:100%;
+
+    box-sizing:border-box;
+
+}
+
+.topoRecentes{
+
+    margin-bottom:14px;
+
+}
+
+.topoRecentes h2{
+
+    color:#333;
+
+    font-size:20px;
+
+}
+
+.produtoRecente{
+
+    display:grid;
+
+    grid-template-columns:52px 1fr 36px;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:10px 0;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.produtoRecente:last-child{
+
+    border-bottom:none;
+
+}
+
+.produtoRecente img{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:10px;
+
+    object-fit:cover;
+
+}
+
+.infoProdutoRecente{
+
+    min-width:0;
+
+}
+
+.infoProdutoRecente h4{
+
+    color:#333;
+
+    font-size:14px;
+
+    margin-bottom:5px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+.infoProdutoRecente span{
+
+    color:#D98CA3;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+.btnEditarRecente{
+
+    width:34px;
+
+    height:34px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#FFF3F7;
+
+    color:#D98CA3;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:.3s;
+
+}
+
+.btnEditarRecente:hover{
+
+    background:#D98CA3;
+
+    color:white;
+
+}
+
+.semProdutos{
+
+    color:#888;
+
+    text-align:center;
+
+    padding:35px 10px;
+
+}
+
+/* ========================= */
+/* AÇÕES RÁPIDAS */
+/* ========================= */
+
+.acoes{
+
+    background:white;
+
+    padding:22px;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+
+}
+
+.acoes h2{
+
+    color:#333;
+
+    font-size:20px;
+
+    margin-bottom:18px;
+
+}
+
+.botoes{
+
+    display:grid;
+
+    grid-template-columns:repeat(3, 1fr);
+
+    gap:14px;
+
+}
+
+.botoes button{
+
+    border:none;
+
+    background:#FFF3F7;
+
+    color:#D98CA3;
+
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:9px;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.botoes button:hover{
+
+    background:#D98CA3;
+
+    color:white;
+
+    transform:translateY(-2px);
+
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media(max-width:1100px){
+
+    .dashboardGrid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:850px){
+
+    .cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .cards .card:nth-child(3){
+
+        grid-column:auto;
+
+    }
+
+    .botoes{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .dashboard{
+
+        padding:18px;
+
+    }
+
+    .boasVindas{
+
+        padding:22px;
+
+    }
+
+    .boasVindas h1{
+
+        font-size:27px;
+
+    }
+
+    .card{
+
+        min-height:170px;
+
+        padding:22px;
+
+    }
+
+    .produtoRecente{
+
+        grid-template-columns:48px 1fr 34px;
+
+    }
+
+    .produtoRecente img{
+
+        width:48px;
+
+        height:48px;
+
+    }
+
+}

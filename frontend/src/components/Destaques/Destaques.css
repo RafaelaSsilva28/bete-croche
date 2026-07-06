@@ -1,29 +1,364 @@
-.destaques{
+.destaques {
 
-    padding:80px;
+    width: 100%;
+
+    padding: 85px 30px;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(217, 140, 163, .12),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #fff8fb
+        );
 
 }
 
-.destaques h2{
+.conteudoDestaques {
 
-    text-align:center;
+    width: 100%;
+    max-width: 1250px;
 
-    margin-bottom:50px;
-
-    font-size:38px;
-
-    color:#444;
+    margin: 0 auto;
 
 }
 
-.listaProdutos{
+/* ========================= */
+/* CABEÇALHO */
+/* ========================= */
 
-    display:flex;
+.cabecalhoDestaques {
 
-    justify-content:center;
+    max-width: 720px;
 
-    gap:30px;
+    margin: 0 auto 50px;
 
-    flex-wrap:wrap;
+    text-align: center;
+
+}
+
+.seloDestaques {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    margin-bottom: 16px;
+
+    padding: 8px 14px;
+
+    border-radius: 999px;
+
+    color: #a8496d;
+
+    background: #fff0f5;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+
+    text-transform: uppercase;
+
+}
+
+.seloDestaques svg {
+
+    color: #d9a43b;
+
+    font-size: 14px;
+
+}
+
+.cabecalhoDestaques h2 {
+
+    margin-bottom: 15px;
+
+    color: #40383b;
+
+    font-size: 42px;
+
+    line-height: 1.25;
+
+}
+
+.cabecalhoDestaques p {
+
+    color: #756a6e;
+
+    font-size: 16px;
+
+    line-height: 1.75;
+
+}
+
+/* ========================= */
+/* LISTA DE PRODUTOS */
+/* ========================= */
+
+.listaProdutosDestaques {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(260px, 1fr)
+        );
+
+    gap: 28px;
+
+    align-items: stretch;
+
+}
+
+/* ========================= */
+/* RODAPÉ */
+/* ========================= */
+
+.rodapeDestaques {
+
+    width: fit-content;
+
+    margin: 35px auto 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 10px 16px;
+
+    border: 1px solid #f0dce3;
+
+    border-radius: 999px;
+
+    color: #8a6c78;
+
+    background: white;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    box-shadow:
+        0 7px 18px rgba(85, 48, 62, .07);
+
+}
+
+.rodapeDestaques svg {
+
+    color: #b85c7e;
+
+    font-size: 15px;
+
+}
+
+/* ========================= */
+/* CARREGAMENTO */
+/* ========================= */
+
+.carregandoDestaques {
+
+    min-height: 250px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 16px;
+
+    color: #83767b;
+
+    font-size: 14px;
+    font-weight: 600;
+
+}
+
+.spinnerDestaques {
+
+    width: 42px;
+    height: 42px;
+
+    border: 4px solid #f3dce5;
+    border-top-color: #b85c7e;
+
+    border-radius: 50%;
+
+    animation: girarDestaques .8s linear infinite;
+
+}
+
+@keyframes girarDestaques {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+/* ========================= */
+/* SEM PRODUTOS */
+/* ========================= */
+
+.semDestaques {
+
+    width: 100%;
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    padding: 55px 30px;
+
+    border: 1px solid #f0dce3;
+
+    border-radius: 24px;
+
+    text-align: center;
+
+    background: white;
+
+    box-shadow:
+        0 12px 30px rgba(70, 41, 52, .08);
+
+}
+
+.iconeSemDestaques {
+
+    width: 62px;
+    height: 62px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 19px;
+
+    color: white;
+
+    font-size: 23px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d98ca3,
+            #a8496d
+        );
+
+    box-shadow:
+        0 10px 24px rgba(168, 73, 109, .23);
+
+}
+
+.semDestaques h3 {
+
+    margin-bottom: 9px;
+
+    color: #4b4145;
+
+    font-size: 21px;
+
+}
+
+.semDestaques p {
+
+    color: #817579;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+}
+
+/* ========================= */
+/* RESPONSIVIDADE */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+    .destaques {
+
+        padding: 70px 20px;
+
+    }
+
+    .cabecalhoDestaques {
+
+        margin-bottom: 40px;
+
+    }
+
+    .cabecalhoDestaques h2 {
+
+        font-size: 34px;
+
+    }
+
+    .listaProdutosDestaques {
+
+        grid-template-columns:
+            repeat(
+                auto-fit,
+                minmax(240px, 1fr)
+            );
+
+        gap: 24px;
+
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .destaques {
+
+        padding: 55px 16px;
+
+    }
+
+    .seloDestaques {
+
+        font-size: 10px;
+
+        letter-spacing: .8px;
+
+    }
+
+    .cabecalhoDestaques h2 {
+
+        font-size: 29px;
+
+    }
+
+    .cabecalhoDestaques p {
+
+        font-size: 14px;
+
+    }
+
+    .listaProdutosDestaques {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .semDestaques {
+
+        padding: 42px 22px;
+
+    }
 
 }

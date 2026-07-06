@@ -1,71 +1,95 @@
 import "./Diferenciais.css";
+
 import {
     FaHeart,
     FaLeaf,
     FaGift,
-    FaStar
+    FaStar,
+    FaCheckCircle
 } from "react-icons/fa";
 
 function Diferenciais() {
+
+    const diferenciais = [
+        {
+            icone: <FaHeart />,
+            titulo: "Feito com amor",
+            descricao:
+                "Cada detalhe é produzido manualmente com cuidado, carinho e dedicação."
+        },
+        {
+            icone: <FaLeaf />,
+            titulo: "Materiais premium",
+            descricao:
+                "Selecionamos fios de excelente qualidade para garantir beleza e durabilidade."
+        },
+        {
+            icone: <FaGift />,
+            titulo: "Personalização",
+            descricao:
+                "Criamos peças exclusivas de acordo com suas ideias, cores e preferências."
+        },
+        {
+            icone: <FaStar />,
+            titulo: "Atendimento humanizado",
+            descricao:
+                "Você recebe atenção próxima, orientação e suporte durante todo o pedido."
+        }
+    ];
 
     return (
 
         <section className="diferenciais">
 
-            <h2>Por que escolher a Elizabeth Crochê?</h2>
+            <div className="conteudoDiferenciais">
 
-            <p>
-                Cada peça é criada pensando em oferecer qualidade,
-                beleza e exclusividade para nossos clientes.
-            </p>
+                <div className="cabecalhoDiferenciais">
 
-            <div className="cardsDiferenciais">
+                    <div className="seloDiferenciais">
 
-                <div className="cardDiferencial">
+                        <FaCheckCircle />
 
-                    <FaHeart className="icone"/>
+                        <span>Nossos diferenciais</span>
 
-                    <h3>Feito com Amor</h3>
+                    </div>
+
+                    <h2>
+                        Por que escolher a Elizabeth Crochê?
+                    </h2>
 
                     <p>
-                        Cada detalhe é produzido manualmente com muito carinho.
+                        Cada peça é criada pensando em oferecer qualidade,
+                        beleza, cuidado e exclusividade para nossos clientes.
                     </p>
 
                 </div>
 
-                <div className="cardDiferencial">
+                <div className="cardsDiferenciais">
 
-                    <FaLeaf className="icone"/>
+                    {diferenciais.map((item, indice) => (
 
-                    <h3>Materiais Premium</h3>
+                        <article
+                            className="cardDiferencial"
+                            key={indice}
+                        >
 
-                    <p>
-                        Trabalhamos apenas com fios de excelente qualidade.
-                    </p>
+                            <div className="numeroDiferencial">
+                                {String(indice + 1).padStart(2, "0")}
+                            </div>
 
-                </div>
+                            <div className="iconeDiferencial">
+                                {item.icone}
+                            </div>
 
-                <div className="cardDiferencial">
+                            <h3>{item.titulo}</h3>
 
-                    <FaGift className="icone"/>
+                            <p>{item.descricao}</p>
 
-                    <h3>Personalização</h3>
+                            <div className="linhaDiferencial"></div>
 
-                    <p>
-                        Produzimos peças exclusivas do jeitinho que você deseja.
-                    </p>
+                        </article>
 
-                </div>
-
-                <div className="cardDiferencial">
-
-                    <FaStar className="icone"/>
-
-                    <h3>Atendimento Humanizado</h3>
-
-                    <p>
-                        Atendimento próximo, rápido e com muito carinho.
-                    </p>
+                    ))}
 
                 </div>
 

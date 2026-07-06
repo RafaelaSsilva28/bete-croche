@@ -1,5 +1,23 @@
 import Navbar from "../../components/NavBar/Navbar";
 import Footer from "../../components/Footer/Footer";
+
+import {
+    FaHeart,
+    FaLeaf,
+    FaLightbulb,
+    FaPalette,
+    FaCheckCircle,
+    FaBoxOpen,
+    FaWhatsapp,
+    FaMagic,
+    FaClipboardList,
+    FaHandsHelping,
+    FaSearch,
+    FaTruck
+} from "react-icons/fa";
+
+import { GiYarn, GiSewingNeedle } from "react-icons/gi";
+
 import "./Sobre.css";
 
 function Sobre() {
@@ -10,13 +28,27 @@ function Sobre() {
 
             <Navbar />
 
-            {/* Banner */}
+            {/* =========================
+                BANNER
+            ========================= */}
 
             <section className="bannerSobre">
 
-                <span>Bem-vindo ao nosso universo 🧶</span>
+                <div className="iconeBannerSobre">
+                    <GiYarn />
+                </div>
 
-                <h1>Mais do que crochê, criamos histórias.</h1>
+                <span className="subtituloBannerSobre">
+
+                    <FaHeart />
+
+                    Bem-vindo ao nosso universo
+
+                </span>
+
+                <h1>
+                    Mais do que crochê, criamos histórias.
+                </h1>
 
                 <p>
                     Conheça o lugar onde cada fio ganha vida
@@ -25,136 +57,228 @@ function Sobre() {
 
             </section>
 
-            {/* Nossa essência */}
+            {/* =========================
+                NOSSA ESSÊNCIA
+            ========================= */}
 
             <section className="secaoSobre">
 
                 <div className="imagemSobre">
 
                     <img
-                        src="public/atelie.jpg"
-                        alt="Ateliê"
+                        src="/atelie.jpg"
+                        alt="Ateliê de crochê"
                     />
 
                 </div>
 
                 <div className="textoSobre">
 
-                    <span>NOSSA ESSÊNCIA</span>
+                    <div className="tituloPequenoSobre">
 
-                    <h2>Um cantinho onde criatividade encontra dedicação.</h2>
+                        <FaHeart />
+
+                        <span>Nossa essência</span>
+
+                    </div>
+
+                    <h2>
+                        Um cantinho onde criatividade encontra dedicação.
+                    </h2>
 
                     <p>
-
                         Cada peça começa muito antes da agulha tocar o fio.
-                        Tudo nasce da vontade de criar algo especial, útil e cheio
-                        de personalidade.
-
+                        Tudo nasce da vontade de criar algo especial, útil e
+                        cheio de personalidade.
                     </p>
 
                     <p>
-
                         O ateliê é um espaço onde cada detalhe importa.
                         Aqui o tempo é respeitado, a criatividade é livre
                         e cada criação recebe atenção do início ao fim.
-
                     </p>
+
+                    <div className="destaqueSobre">
+
+                        <GiSewingNeedle />
+
+                        <span>
+                            Cada ponto é feito manualmente e com cuidado.
+                        </span>
+
+                    </div>
 
                 </div>
 
             </section>
 
-            {/* Inspiração */}
+            {/* =========================
+                INSPIRAÇÃO
+            ========================= */}
 
             <section className="secaoSobre reverso">
 
                 <div className="textoSobre">
 
-                    <span>INSPIRAÇÃO</span>
+                    <div className="tituloPequenoSobre">
 
-                    <h2>As melhores ideias aparecem nos pequenos detalhes.</h2>
+                        <FaLightbulb />
+
+                        <span>Inspiração</span>
+
+                    </div>
+
+                    <h2>
+                        As melhores ideias aparecem nos pequenos detalhes.
+                    </h2>
 
                     <p>
-
                         As coleções surgem através das cores da natureza,
                         da decoração, das estações do ano e principalmente
                         das histórias compartilhadas pelos clientes.
-
                     </p>
 
                     <p>
-
                         Cada encomenda inspira novas combinações de cores,
                         novos pontos e novas possibilidades.
-
                     </p>
+
+                    <div className="destaqueSobre">
+
+                        <FaPalette />
+
+                        <span>
+                            Cores, formas e histórias inspiram cada criação.
+                        </span>
+
+                    </div>
 
                 </div>
 
                 <div className="imagemSobre">
 
                     <img
-                        src="public/inspiracao.jpg"
-                        alt="Inspiração"
+                        src="/inspiracao.jpg"
+                        alt="Inspiração para peças de crochê"
                     />
 
                 </div>
 
             </section>
 
-            {/* Bastidores */}
+            {/* =========================
+                BASTIDORES
+            ========================= */}
 
             <section className="bastidores">
 
-                <h2>Conheça um pouco dos bastidores</h2>
+                <div className="cabecalhoSecaoSobre">
 
-                <p>
-                    Muito acontece antes de uma peça chegar até você.
-                </p>
+                    <div className="iconeSecaoSobre">
+                        <FaMagic />
+                    </div>
+
+                    <h2>
+                        Conheça um pouco dos bastidores
+                    </h2>
+
+                    <p>
+                        Muito acontece antes de uma peça chegar até você.
+                    </p>
+
+                </div>
 
                 <div className="galeria">
 
                     <div className="itemGaleria">
 
-                        <img
-                            src="public/FIOS.jpeg"
-                            alt=""
-                        />
+                        <div className="imagemGaleria">
+
+                            <img
+                                src="/FIOS.jpeg"
+                                alt="Escolha dos fios"
+                            />
+
+                            <div className="iconeGaleria">
+                                <GiYarn />
+                            </div>
+
+                        </div>
 
                         <h3>Escolha dos fios</h3>
 
+                        <p>
+                            Seleção cuidadosa de cores e materiais.
+                        </p>
+
                     </div>
 
                     <div className="itemGaleria">
 
-                        <img
-                            src="public/MANUAL.jpg"
-                            alt=""
-                        />
+                        <div className="imagemGaleria">
+
+                            <img
+                                src="/MANUAL.jpg"
+                                alt="Produção manual"
+                            />
+
+                            <div className="iconeGaleria">
+                                <GiSewingNeedle />
+                            </div>
+
+                        </div>
 
                         <h3>Produção manual</h3>
 
+                        <p>
+                            Cada ponto é produzido com atenção.
+                        </p>
+
                     </div>
 
                     <div className="itemGaleria">
 
-                        <img
-                            src="public/ACABAMENTO.jpg"
-                            alt=""
-                        />
+                        <div className="imagemGaleria">
+
+                            <img
+                                src="/ACABAMENTO.jpg"
+                                alt="Acabamento da peça"
+                            />
+
+                            <div className="iconeGaleria">
+                                <FaCheckCircle />
+                            </div>
+
+                        </div>
 
                         <h3>Acabamento</h3>
 
+                        <p>
+                            Todos os detalhes são revisados.
+                        </p>
+
                     </div>
 
                     <div className="itemGaleria">
 
-                        <img
-                            src="public/EMBALAGEM.jpeg"
-                            alt=""
-                        />
+                        <div className="imagemGaleria">
+
+                            <img
+                                src="/EMBALAGEM.jpeg"
+                                alt="Embalagem do produto"
+                            />
+
+                            <div className="iconeGaleria">
+                                <FaBoxOpen />
+                            </div>
+
+                        </div>
 
                         <h3>Embalagem</h3>
+
+                        <p>
+                            Tudo é preparado com cuidado para a entrega.
+                        </p>
 
                     </div>
 
@@ -162,15 +286,33 @@ function Sobre() {
 
             </section>
 
-            {/* Processo */}
+            {/* =========================
+                PROCESSO
+            ========================= */}
 
             <section className="processo">
 
-                <h2>Da ideia até sua casa</h2>
+                <div className="cabecalhoSecaoSobre">
+
+                    <div className="iconeSecaoSobre">
+                        <FaClipboardList />
+                    </div>
+
+                    <h2>Da ideia até sua casa</h2>
+
+                    <p>
+                        Conheça cada etapa da criação da sua peça.
+                    </p>
+
+                </div>
 
                 <div className="linhaTempo">
 
-                    <div>
+                    <div className="etapaProcesso">
+
+                        <div className="iconeEtapaProcesso">
+                            <FaLightbulb />
+                        </div>
 
                         <span>1</span>
 
@@ -182,7 +324,11 @@ function Sobre() {
 
                     </div>
 
-                    <div>
+                    <div className="etapaProcesso">
+
+                        <div className="iconeEtapaProcesso">
+                            <FaPalette />
+                        </div>
 
                         <span>2</span>
 
@@ -194,7 +340,11 @@ function Sobre() {
 
                     </div>
 
-                    <div>
+                    <div className="etapaProcesso">
+
+                        <div className="iconeEtapaProcesso">
+                            <GiSewingNeedle />
+                        </div>
 
                         <span>3</span>
 
@@ -206,19 +356,27 @@ function Sobre() {
 
                     </div>
 
-                    <div>
+                    <div className="etapaProcesso">
+
+                        <div className="iconeEtapaProcesso">
+                            <FaSearch />
+                        </div>
 
                         <span>4</span>
 
                         <h3>Conferência</h3>
 
                         <p>
-                            Revisamos cada detalhe.
+                            Revisamos cada detalhe da peça.
                         </p>
 
                     </div>
 
-                    <div>
+                    <div className="etapaProcesso">
+
+                        <div className="iconeEtapaProcesso">
+                            <FaTruck />
+                        </div>
 
                         <span>5</span>
 
@@ -234,29 +392,42 @@ function Sobre() {
 
             </section>
 
-            {/* Compromisso */}
+            {/* =========================
+                COMPROMISSO
+            ========================= */}
 
             <section className="compromisso">
 
                 <div className="textoCompromisso">
 
+                    <div className="iconeCompromisso">
+                        <FaHandsHelping />
+                    </div>
+
                     <span>NOSSO COMPROMISSO</span>
 
-                    <h2>Mais do que entregar produtos.</h2>
+                    <h2>
+                        Mais do que entregar produtos.
+                    </h2>
 
                     <p>
-
                         Queremos entregar experiências, carinho e exclusividade.
                         Cada peça é produzida pensando em fazer parte de momentos
                         importantes da vida de alguém.
-
                     </p>
 
-                    <button>
+                    <a
+                        href="https://wa.me/5518997269333"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="botaoWhatsappSobre"
+                    >
 
-                        💬 Conversar pelo WhatsApp
+                        <FaWhatsapp />
 
-                    </button>
+                        Conversar pelo WhatsApp
+
+                    </a>
 
                 </div>
 

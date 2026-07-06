@@ -1,89 +1,666 @@
-.hero{
+.hero {
 
-    min-height:85vh;
+    width: 100%;
 
-    display:flex;
+    min-height: calc(100vh - 82px);
 
-    align-items:center;
+    display: flex;
+    align-items: center;
 
-    justify-content:space-between;
+    padding: 70px 30px;
 
-    padding:80px;
+    overflow: hidden;
 
-    background:#FFF8F3;
-
-}
-
-.hero-texto{
-
-    width:50%;
-
-}
-
-.hero-texto h1{
-
-    font-size:56px;
-
-    color:#444;
-
-    margin-bottom:25px;
-
-    line-height:1.2;
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(217, 140, 163, .18),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(168, 73, 109, .12),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #fff8fb,
+            #fffdfd
+        );
 
 }
 
-.hero-texto p{
+.heroConteudo {
 
-    font-size:20px;
+    width: 100%;
+    max-width: 1250px;
 
-    color:#666;
+    margin: 0 auto;
 
-    line-height:1.8;
+    display: grid;
 
-    margin-bottom:40px;
+    grid-template-columns: 1fr 1fr;
 
-}
+    align-items: center;
 
-.btnHero{
-
-    display:inline-block;
-
-    background:#D98CA3;
-
-    color:white;
-
-    padding:15px 35px;
-
-    border-radius:40px;
-
-    text-decoration:none;
-
-    font-size:18px;
-
-    transition:.3s;
+    gap: 85px;
 
 }
 
-.btnHero:hover{
+/* ========================= */
+/* TEXTO */
+/* ========================= */
 
-    background:#c96f90;
+.heroTexto {
 
-    transform:translateY(-4px);
-
-    box-shadow:0 10px 20px rgba(0,0,0,.15);
-
-}
-
-.hero-imagem{
-
-    width:45%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
 }
 
-.hero-imagem img{
+.seloHero {
 
-    width:100%;
+    display: inline-flex;
+    align-items: center;
 
-    border-radius:25px;
+    gap: 9px;
+
+    margin-bottom: 20px;
+
+    padding: 9px 15px;
+
+    border: 1px solid #f0d4de;
+
+    border-radius: 999px;
+
+    color: #a8496d;
+
+    background: #fff0f5;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    letter-spacing: .6px;
+
+}
+
+.seloHero svg {
+
+    font-size: 15px;
+
+}
+
+.heroTexto h1 {
+
+    max-width: 610px;
+
+    margin-bottom: 24px;
+
+    color: #40383b;
+
+    font-size: 58px;
+
+    line-height: 1.12;
+
+    font-weight: 800;
+
+}
+
+.heroTexto h1 strong {
+
+    display: block;
+
+    color: #b85c7e;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-style: italic;
+    font-weight: 700;
+
+}
+
+.heroTexto > p {
+
+    max-width: 580px;
+
+    margin-bottom: 26px;
+
+    color: #6f6468;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+}
+
+/* ========================= */
+/* BENEFÍCIOS */
+/* ========================= */
+
+.beneficiosHero {
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 16px;
+
+    margin-bottom: 34px;
+
+}
+
+.beneficioHero {
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: #5d5156;
+
+    font-size: 13px;
+    font-weight: 700;
+
+}
+
+.beneficioHero svg {
+
+    color: #b85c7e;
+
+    font-size: 15px;
+
+}
+
+/* ========================= */
+/* BOTÕES */
+/* ========================= */
+
+.botoesHero {
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+
+}
+
+.btnHero {
+
+    min-height: 56px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 11px;
+
+    padding: 14px 28px;
+
+    border-radius: 16px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b85c7e,
+            #8f3456
+        );
+
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    box-shadow:
+        0 10px 25px rgba(143, 52, 86, .25);
+
+    transition: .3s;
+
+}
+
+.btnHero svg {
+
+    font-size: 15px;
+
+    transition: .3s;
+
+}
+
+.btnHero:hover {
+
+    transform: translateY(-4px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #a8496d,
+            #772844
+        );
+
+    box-shadow:
+        0 15px 32px rgba(119, 40, 68, .33);
+
+}
+
+.btnHero:hover svg {
+
+    transform: translateX(5px);
+
+}
+
+.btnHeroSecundario {
+
+    min-height: 56px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 25px;
+
+    border: 2px solid #eccbd7;
+
+    border-radius: 16px;
+
+    color: #a8496d;
+
+    background: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    transition: .3s;
+
+}
+
+.btnHeroSecundario:hover {
+
+    color: white;
+
+    border-color: #b85c7e;
+
+    background: #b85c7e;
+
+    transform: translateY(-4px);
+
+}
+
+/* ========================= */
+/* IMAGEM */
+/* ========================= */
+
+.heroImagem {
+
+    min-height: 570px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.decoracaoHeroImagem {
+
+    width: 90%;
+    height: 88%;
+
+    position: absolute;
+
+    top: 42px;
+    right: -22px;
+
+    border-radius: 38px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8dfe8,
+            #f3cbd9
+        );
+
+    transform: rotate(4deg);
+
+}
+
+.heroImagem img {
+
+    width: 100%;
+    height: 540px;
+
+    position: relative;
+
+    z-index: 2;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 32px;
+
+    box-shadow:
+        0 28px 60px rgba(75, 43, 55, .2);
+
+    transition: .4s;
+
+}
+
+.heroImagem:hover img {
+
+    transform: translateY(-8px);
+
+}
+
+/* ========================= */
+/* CARD FLUTUANTE */
+/* ========================= */
+
+.cardFlutuanteHero {
+
+    min-width: 285px;
+
+    position: absolute;
+
+    left: -35px;
+    bottom: 35px;
+
+    z-index: 3;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 16px 18px;
+
+    border: 1px solid #f1dce4;
+
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, .96);
+
+    box-shadow:
+        0 16px 38px rgba(70, 41, 52, .18);
+
+    backdrop-filter: blur(10px);
+
+}
+
+.iconeCardHero {
+
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 15px;
+
+    color: white;
+
+    font-size: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d98ca3,
+            #a8496d
+        );
+
+}
+
+.cardFlutuanteHero > div:last-child {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+}
+
+.cardFlutuanteHero strong {
+
+    color: #493f43;
+
+    font-size: 15px;
+
+}
+
+.cardFlutuanteHero span {
+
+    color: #897c81;
+
+    font-size: 12px;
+
+}
+
+/* ========================= */
+/* DETALHES */
+/* ========================= */
+
+.detalheHero {
+
+    position: absolute;
+
+    z-index: 1;
+
+    border-radius: 50%;
+
+    background: rgba(217, 140, 163, .2);
+
+}
+
+.detalheHeroUm {
+
+    width: 90px;
+    height: 90px;
+
+    top: -25px;
+    left: -20px;
+
+}
+
+.detalheHeroDois {
+
+    width: 55px;
+    height: 55px;
+
+    right: -10px;
+    bottom: 80px;
+
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media (max-width: 1000px) {
+
+    .hero {
+
+        min-height: auto;
+
+        padding: 70px 30px 90px;
+
+    }
+
+    .heroConteudo {
+
+        grid-template-columns: 1fr;
+
+        gap: 60px;
+
+    }
+
+    .heroTexto {
+
+        align-items: center;
+
+        text-align: center;
+
+    }
+
+    .heroTexto h1 {
+
+        max-width: 760px;
+
+    }
+
+    .heroTexto > p {
+
+        max-width: 700px;
+
+    }
+
+    .beneficiosHero {
+
+        justify-content: center;
+
+    }
+
+    .botoesHero {
+
+        justify-content: center;
+
+    }
+
+    .heroImagem {
+
+        width: 100%;
+        max-width: 720px;
+
+        margin: 0 auto;
+
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .hero {
+
+        padding: 55px 18px 75px;
+
+    }
+
+    .heroTexto h1 {
+
+        font-size: 42px;
+
+    }
+
+    .heroTexto > p {
+
+        font-size: 16px;
+
+    }
+
+    .beneficiosHero {
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 10px;
+
+    }
+
+    .botoesHero {
+
+        width: 100%;
+
+        flex-direction: column;
+
+    }
+
+    .btnHero,
+    .btnHeroSecundario {
+
+        width: 100%;
+
+    }
+
+    .heroImagem {
+
+        min-height: auto;
+
+        padding-bottom: 75px;
+
+    }
+
+    .heroImagem img {
+
+        height: 430px;
+
+        border-radius: 25px;
+
+    }
+
+    .decoracaoHeroImagem {
+
+        height: 78%;
+
+        top: 28px;
+        right: -8px;
+
+        border-radius: 28px;
+
+    }
+
+    .cardFlutuanteHero {
+
+        min-width: 0;
+
+        left: 10px;
+        right: 10px;
+        bottom: 8px;
+
+    }
+
+}
+
+@media (max-width: 430px) {
+
+    .heroTexto h1 {
+
+        font-size: 35px;
+
+    }
+
+    .seloHero {
+
+        font-size: 11px;
+
+    }
+
+    .heroImagem img {
+
+        height: 350px;
+
+    }
+
+    .iconeCardHero {
+
+        width: 44px;
+        height: 44px;
+
+        font-size: 21px;
+
+    }
+
+    .cardFlutuanteHero strong {
+
+        font-size: 14px;
+
+    }
 
 }

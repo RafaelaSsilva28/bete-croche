@@ -1,0 +1,594 @@
+.configuracoesAdmin{
+
+    min-height:calc(100vh - 80px);
+
+    padding:40px;
+
+    background:#FFF8FB;
+
+}
+
+/* ========================= */
+/* TOAST */
+/* ========================= */
+
+.toastConfiguracoesAdmin{
+
+    position:fixed;
+
+    top:25px;
+    right:25px;
+
+    z-index:10000;
+
+    padding:16px 22px;
+
+    border-radius:16px;
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    font-weight:700;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.22);
+
+    animation:toastConfiguracaoEntrando .3s ease;
+
+}
+
+.toastConfiguracoesAdmin svg{
+
+    font-size:20px;
+
+    flex-shrink:0;
+
+}
+
+.toastConfiguracoesAdmin.sucesso{
+
+    background:#2ecc71;
+
+}
+
+.toastConfiguracoesAdmin.erro{
+
+    background:#e74c3c;
+
+}
+
+@keyframes toastConfiguracaoEntrando{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+/* ========================= */
+/* TOPO */
+/* ========================= */
+
+.topoConfiguracoesAdmin{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:22px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+    margin-bottom:30px;
+
+}
+
+.topoConfiguracoesAdmin h1{
+
+    color:#444;
+
+    font-size:34px;
+
+    margin-bottom:8px;
+
+}
+
+.topoConfiguracoesAdmin p{
+
+    color:#777;
+
+    line-height:1.6;
+
+}
+
+/* ========================= */
+/* GRADE */
+/* ========================= */
+
+.gradeConfiguracoesAdmin{
+
+    display:grid;
+
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+
+    gap:25px;
+
+    align-items:start;
+
+}
+
+/* ========================= */
+/* CARD */
+/* ========================= */
+
+.cardConfiguracaoAdmin{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+    border:2px solid transparent;
+
+    transition:.3s;
+
+}
+
+.cardConfiguracaoAdmin:hover{
+
+    border-color:#f1c4d1;
+
+    box-shadow:0 15px 35px rgba(217,140,163,.14);
+
+}
+
+/* ========================= */
+/* TÍTULO DO CARD */
+/* ========================= */
+
+.tituloCardConfiguracao{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding-bottom:20px;
+
+    border-bottom:1px solid #f3e1e7;
+
+}
+
+.iconeCardConfiguracao{
+
+    width:56px;
+    height:56px;
+
+    border-radius:18px;
+
+    background:#FFF3F7;
+
+    color:#D98CA3;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:23px;
+
+    flex-shrink:0;
+
+}
+
+.tituloCardConfiguracao h2{
+
+    color:#444;
+
+    font-size:23px;
+
+    margin-bottom:6px;
+
+}
+
+.tituloCardConfiguracao p{
+
+    color:#777;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+}
+
+/* ========================= */
+/* CAMPOS */
+/* ========================= */
+
+.campoConfiguracaoAdmin{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.campoConfiguracaoAdmin label{
+
+    color:#555;
+
+    font-size:15px;
+
+    font-weight:700;
+
+}
+
+.inputConfiguracaoAdmin{
+
+    width:100%;
+
+    min-height:52px;
+
+    border:2px solid #f1d8e1;
+
+    border-radius:14px;
+
+    padding:0 15px;
+
+    background:white;
+
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    transition:.3s;
+
+}
+
+.inputConfiguracaoAdmin:focus-within{
+
+    border-color:#D98CA3;
+
+    box-shadow:0 0 0 4px rgba(217,140,163,.14);
+
+}
+
+.inputConfiguracaoAdmin > svg{
+
+    color:#D98CA3;
+
+    font-size:17px;
+
+    flex-shrink:0;
+
+}
+
+.inputConfiguracaoAdmin input{
+
+    flex:1;
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:#444;
+
+    font-size:15px;
+
+    padding:15px 0;
+
+}
+
+.inputConfiguracaoAdmin input::placeholder{
+
+    color:#aaa;
+
+}
+
+.inputConfiguracaoAdmin input:disabled{
+
+    color:#999;
+
+    cursor:not-allowed;
+
+}
+
+/* ========================= */
+/* BOTÃO MOSTRAR SENHA */
+/* ========================= */
+
+.btnMostrarSenhaConfiguracao{
+
+    width:38px;
+    height:38px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#FFF3F7;
+
+    color:#D98CA3;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:16px;
+
+    transition:.3s;
+
+    flex-shrink:0;
+
+}
+
+.btnMostrarSenhaConfiguracao:hover{
+
+    background:#D98CA3;
+
+    color:white;
+
+}
+
+/* ========================= */
+/* BOTÃO SALVAR */
+/* ========================= */
+
+.btnSalvarConfiguracao{
+
+    border:none;
+
+    background:#D98CA3;
+
+    color:white;
+
+    padding:15px 22px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:10px;
+
+    font-size:15px;
+
+    font-weight:800;
+
+    transition:.3s;
+
+    margin-top:auto;
+
+}
+
+.btnSalvarConfiguracao:hover{
+
+    background:#c87490;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 22px rgba(217,140,163,.25);
+
+}
+
+.btnSalvarConfiguracao:disabled{
+
+    opacity:.65;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+    box-shadow:none;
+
+}
+
+/* ========================= */
+/* CARREGANDO */
+/* ========================= */
+
+.carregandoConfiguracoes{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:70px 20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:16px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+
+}
+
+.carregandoConfiguracoes svg{
+
+    color:#D98CA3;
+
+    font-size:38px;
+
+}
+
+.carregandoConfiguracoes p{
+
+    color:#777;
+
+    font-weight:600;
+
+}
+
+/* ========================= */
+/* SPINNER */
+/* ========================= */
+
+.iconeGirando{
+
+    animation:girarIconeConfiguracao 1s linear infinite;
+
+}
+
+@keyframes girarIconeConfiguracao{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media(max-width:950px){
+
+    .gradeConfiguracoesAdmin{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:700px){
+
+    .configuracoesAdmin{
+
+        padding:24px;
+
+    }
+
+    .topoConfiguracoesAdmin{
+
+        padding:24px;
+
+    }
+
+    .topoConfiguracoesAdmin h1{
+
+        font-size:29px;
+
+    }
+
+    .cardConfiguracaoAdmin{
+
+        padding:24px;
+
+    }
+
+}
+
+@media(max-width:500px){
+
+    .configuracoesAdmin{
+
+        padding:16px;
+
+    }
+
+    .topoConfiguracoesAdmin{
+
+        padding:20px;
+
+        border-radius:18px;
+
+    }
+
+    .topoConfiguracoesAdmin h1{
+
+        font-size:26px;
+
+    }
+
+    .cardConfiguracaoAdmin{
+
+        padding:20px;
+
+        border-radius:18px;
+
+    }
+
+    .tituloCardConfiguracao{
+
+        align-items:flex-start;
+
+    }
+
+    .iconeCardConfiguracao{
+
+        width:48px;
+        height:48px;
+
+        border-radius:15px;
+
+        font-size:20px;
+
+    }
+
+    .tituloCardConfiguracao h2{
+
+        font-size:20px;
+
+    }
+
+    .toastConfiguracoesAdmin{
+
+        left:15px;
+        right:15px;
+        top:15px;
+
+        justify-content:center;
+
+    }
+
+}

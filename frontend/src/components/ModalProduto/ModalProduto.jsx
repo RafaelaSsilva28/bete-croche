@@ -1,11 +1,19 @@
 import "./ModalProduto.css";
-import { useState, useEffect } from "react";
+
+import { useEffect, useState } from "react";
+
 import {
     FaLeaf,
     FaTags,
     FaBoxOpen,
     FaCheckCircle,
-    FaShoppingCart
+    FaShoppingCart,
+    FaWhatsapp,
+    FaTimes,
+    FaChevronLeft,
+    FaChevronRight,
+    FaMinus,
+    FaPlus
 } from "react-icons/fa";
 
 import { useCart } from "../../context/CartContext";
@@ -21,233 +29,440 @@ function ModalProduto({ aberto, produto, fechar }) {
     useEffect(() => {
 
         if (produto) {
+
             setImagemSelecionada(0);
             setQuantidade(1);
+
         }
 
     }, [produto]);
 
-    if (!aberto || !produto) return null;
+    useEffect(() => {
 
-    // =========================
-    // IMAGENS
-    // =========================
+        if (!aberto) {
+            return;
+        }
+
+        document.body.style.overflow = "hidden";
+
+        function fecharComEsc(evento) {
+
+            if (evento.key === "Escape") {
+                fechar();
+            }
+
+        }
+
+        window.addEventListener("keydown", fecharComEsc);
+
+        return () => {
+
+            document.body.style.overflow = "auto";
+
+            window.removeEventListener(
+                "keydown",
+                fecharComEsc
+            );
+
+        };
+
+    }, [aberto, fechar]);
+
+    if (!aberto || !produto) {
+        return null;
+    }
+
     const imagens =
         produto.imagens && produto.imagens.length > 0
             ? produto.imagens
             : produto.imagem_principal
-                ? [{ caminho_imagem: produto.imagem_principal }]
+                ? [
+                    {
+                        caminho_imagem:
+                            produto.imagem_principal
+                    }
+                ]
                 : [];
 
-    // =========================
-    // CONTROLE DE IMAGENS
-    // =========================
-    const proximaImagem = () => {
-        setImagemSelecionada((prev) =>
-            prev === imagens.length - 1 ? 0 : prev + 1
+    function proximaImagem() {
+
+        setImagemSelecionada((anterior) =>
+            anterior === imagens.length - 1
+                ? 0
+                : anterior + 1
         );
-    };
 
-    const imagemAnterior = () => {
-        setImagemSelecionada((prev) =>
-            prev === 0 ? imagens.length - 1 : prev - 1
+    }
+
+    function imagemAnterior() {
+
+        setImagemSelecionada((anterior) =>
+            anterior === 0
+                ? imagens.length - 1
+                : anterior - 1
         );
-    };
 
-    // =========================
-    // PREÇO SEGURO
-    // =========================
-    const preco = Number(String(produto.preco).replace(",", "."));
-    const total = preco * quantidade;
+    }
 
-    // =========================
-    // ADICIONAR AO CARRINHO
-    // =========================
+    const preco = Number(
+        String(produto.preco).replace(",", ".")
+    );
+
+    const precoSeguro = Number.isNaN(preco)
+        ? 0
+        : preco;
+
+    const total = precoSeguro * quantidade;
+
+    function diminuirQuantidade() {
+
+        setQuantidade((anterior) =>
+            anterior > 1
+                ? anterior - 1
+                : 1
+        );
+
+    }
+
+    function aumentarQuantidade() {
+
+        setQuantidade((anterior) =>
+            anterior + 1
+        );
+
+    }
+
     function adicionarAoCarrinho() {
 
-        adicionarProduto(produto, quantidade);
+        adicionarProduto(
+            produto,
+            quantidade
+        );
 
         setToast(true);
 
         setTimeout(() => {
+
             setToast(false);
             fechar();
-        }, 900);
+
+        }, 1000);
+
+    }
+
+    function abrirWhatsapp() {
+
+        const numeroWhatsapp = "5518997269333";
+
+        const mensagem = `Olá, Elizabete! Vim pelo site e gostaria de saber mais sobre esta encomenda.
+
+Produto: ${produto.nome}
+Quantidade: ${quantidade}
+Valor unitário: R$ ${precoSeguro.toFixed(2)}
+Valor total: R$ ${total.toFixed(2)}
+
+Gostaria de mais informações sobre disponibilidade, prazo e personalização.`;
+
+        const linkWhatsapp =
+            `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(
+                mensagem
+            )}`;
+
+        window.open(
+            linkWhatsapp,
+            "_blank",
+            "noopener,noreferrer"
+        );
+
     }
 
     return (
 
-        <div className="overlay" onClick={fechar}>
+        <div
+            className="overlayProduto"
+            onClick={fechar}
+        >
 
-            {/* TOAST */}
             {toast && (
-                <div className="toast">
-                    <FaCheckCircle className="toastIcon" />
-                    <span>Produto adicionado ao carrinho</span>
+
+                <div className="toastProduto">
+
+                    <FaCheckCircle />
+
+                    <span>
+                        Produto adicionado ao carrinho
+                    </span>
+
                 </div>
+
             )}
 
-            <div
+            <article
                 className="modalProduto"
-                onClick={(e) => e.stopPropagation()}
+                onClick={(evento) =>
+                    evento.stopPropagation()
+                }
             >
 
-                <button className="btnFechar" onClick={fechar}>
-                    ✕
+                <button
+                    type="button"
+                    className="btnFecharProduto"
+                    onClick={fechar}
+                    aria-label="Fechar produto"
+                >
+                    <FaTimes />
                 </button>
 
-               {/* =========================
-    IMAGEM
-========================= */}
-<div className="imagemProduto">
+                <div className="ladoImagemProduto">
 
-    {imagens.length > 1 && (
-        <button
-            className="seta esquerda"
-            onClick={imagemAnterior}
-        >
-            ❮
-        </button>
-    )}
+                    <div className="areaImagemProduto">
 
-    <img
-        src={
-            imagens.length > 0
-                ? `http://localhost:3001/uploads/${imagens[imagemSelecionada].caminho_imagem}`
-                : "https://placehold.co/600x600"
-        }
-        alt={produto.nome}
-    />
+                        {imagens.length > 1 && (
 
-    {imagens.length > 1 && (
-        <button
-            className="seta direita"
-            onClick={proximaImagem}
-        >
-            ❯
-        </button>
-    )}
+                            <button
+                                type="button"
+                                className="setaImagemProduto esquerda"
+                                onClick={imagemAnterior}
+                                aria-label="Imagem anterior"
+                            >
+                                <FaChevronLeft />
+                            </button>
 
-    {/* 🔥 AQUI ENTRA OS PONTINHOS (DOTS) */}
-    {imagens.length > 1 && (
-        <div className="bolinhas">
-            {imagens.map((_, index) => (
-                <span
-                    key={index}
-                    className={
-                        imagemSelecionada === index
-                            ? "bolinha ativa"
-                            : "bolinha"
-                    }
-                    onClick={() => setImagemSelecionada(index)}
-                />
-            ))}
-        </div>
-    )}
-    {/* =========================
-                        BOTÃO ZAP OBS:ARRUMARR
-                    ========================= */}
+                        )}
+
+                        <img
+                            src={
+                                imagens.length > 0
+                                    ? `http://localhost:3001/uploads/${imagens[imagemSelecionada].caminho_imagem}`
+                                    : "https://placehold.co/600x600?text=Sem+imagem"
+                            }
+                            alt={produto.nome}
+                        />
+
+                        {imagens.length > 1 && (
+
+                            <button
+                                type="button"
+                                className="setaImagemProduto direita"
+                                onClick={proximaImagem}
+                                aria-label="Próxima imagem"
+                            >
+                                <FaChevronRight />
+                            </button>
+
+                        )}
+
+                    </div>
+
+                    {imagens.length > 1 && (
+
+                        <div className="indicadoresImagemProduto">
+
+                            {imagens.map((imagem, indice) => (
+
+                                <button
+                                    type="button"
+                                    key={
+                                        imagem.id_imagem ||
+                                        imagem.caminho_imagem ||
+                                        indice
+                                    }
+                                    className={
+                                        imagemSelecionada === indice
+                                            ? "indicadorImagem ativo"
+                                            : "indicadorImagem"
+                                    }
+                                    onClick={() =>
+                                        setImagemSelecionada(indice)
+                                    }
+                                    aria-label={`Selecionar imagem ${indice + 1}`}
+                                ></button>
+
+                            ))}
+
+                        </div>
+
+                    )}
+
                     <button
-                        className="btnWhatsapp"
-                        onClick={adicionarAoCarrinho}
+                        type="button"
+                        className="btnWhatsappProdutoModal"
+                        onClick={abrirWhatsapp}
                     >
-                        <FaShoppingCart style={{ marginRight: "8px" }} />
-                        Adicionar ao Carrinho
+
+                        <FaWhatsapp />
+
+                        <span>
+                            Pedir pelo WhatsApp
+                        </span>
+
                     </button>
 
-</div>
+                </div>
 
-                {/* =========================
-                    INFO
-                ========================= */}
                 <div className="infoProduto">
 
-                    <span className="tag">
-                        Produto Artesanal
+                    <span className="tagProdutoModal">
+                        Produto artesanal
                     </span>
 
                     <h1>{produto.nome}</h1>
 
-                    {/* PREÇO UNITÁRIO */}
-                    <p style={{ color: "#777" }}>Preço unitário</p>
-                    <h2>R$ {preco.toFixed(2)}</h2>
+                    <div className="precoUnitarioProduto">
 
-                    {/* QUANTIDADE */}
-                    <p style={{ marginTop: "15px", color: "#777" }}>
-                        Quantidade
+                        <span>Preço unitário</span>
+
+                        <strong>
+                            R$ {precoSeguro.toFixed(2)}
+                        </strong>
+
+                    </div>
+
+                    <p className="descricaoProdutoModal">
+                        {produto.descricao}
                     </p>
 
-                    <div className="controleQuantidade">
+                    <div className="areaQuantidadeProduto">
 
-                        <button
-                            onClick={() =>
-                                quantidade > 1 && setQuantidade(quantidade - 1)
-                            }
-                        >
-                            −
-                        </button>
+                        <div>
 
-                        <span>{quantidade}</span>
+                            <span className="tituloQuantidadeProduto">
+                                Quantidade
+                            </span>
 
-                        <button
-                            onClick={() => setQuantidade(quantidade + 1)}
-                        >
-                            +
-                        </button>
+                            <div className="controleQuantidade">
+
+                                <button
+                                    type="button"
+                                    onClick={diminuirQuantidade}
+                                    disabled={quantidade === 1}
+                                    aria-label="Diminuir quantidade"
+                                >
+                                    <FaMinus />
+                                </button>
+
+                                <span>{quantidade}</span>
+
+                                <button
+                                    type="button"
+                                    onClick={aumentarQuantidade}
+                                    aria-label="Aumentar quantidade"
+                                >
+                                    <FaPlus />
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div className="totalProdutoModal">
+
+                            <span>Total</span>
+
+                            <strong>
+                                R$ {total.toFixed(2)}
+                            </strong>
+
+                        </div>
 
                     </div>
 
-                    {/* TOTAL */}
-                    <p style={{ color: "#777" }}>Total</p>
-                    <h2>R$ {total.toFixed(2)}</h2>
+                    <div className="dadosProdutoModal">
 
-                    <p className="descricao">{produto.descricao}</p>
+                        <div className="cardInfoProduto">
 
-                    {/* =========================
-                        DADOS
-                    ========================= */}
-                    <div className="dados">
+                            <FaLeaf />
 
-                        <div className="cardInfo">                          <FaLeaf className="iconeInfo" />
-                            <h4>Material</h4>                           <p>{produto.material}</p>
+                            <div>
+
+                                <h4>Material</h4>
+
+                                <p>
+                                    {produto.material ||
+                                        "Não informado"}
+                                </p>
+
+                            </div>
+
                         </div>
 
-                        <div className="cardInfo">                          <FaTags className="iconeInfo" />
-                            <h4>Categoria</h4>
-                            <p>{produto.categoria?.nome || produto.categoria}</p>
+                        <div className="cardInfoProduto">
+
+                            <FaTags />
+
+                            <div>
+
+                                <h4>Categoria</h4>
+
+                                <p>
+                                    {produto.categoria?.nome ||
+                                        produto.categoria ||
+                                        "Não informada"}
+                                </p>
+
+                            </div>
+
                         </div>
 
-                        <div className="cardInfo">                          <FaBoxOpen className="iconeInfo" />
-                            <h4>Entrega</h4>
-                            <p>{produto.tempo_producao || "Pronta entrega"}</p>
+                        <div className="cardInfoProduto">
+
+                            <FaBoxOpen />
+
+                            <div>
+
+                                <h4>Produção</h4>
+
+                                <p>
+                                    {produto.tempo_producao ||
+                                        "Pronta entrega"}
+                                </p>
+
+                            </div>
+
                         </div>
 
-                        <div className="cardInfo">
-                            <FaCheckCircle className="iconeInfo" />                          <h4>Disponibilidade</h4>
-                            <p>
-                                {produto.sob_encomenda
-                                    ? "Sob encomenda"
-                                    : "Em estoque"}
-                            </p>                      </div>
+                        <div className="cardInfoProduto">
+
+                            <FaCheckCircle />
+
+                            <div>
+
+                                <h4>Disponibilidade</h4>
+
+                                <p>
+                                    {produto.sob_encomenda
+                                        ? "Sob encomenda"
+                                        : "Em estoque"}
+                                </p>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
-                    {/* =========================
-                        BOTÃO CARRINHO
-                    ========================= */}
                     <button
-                        className="btnComprar"
+                        type="button"
+                        className="btnComprarProduto"
                         onClick={adicionarAoCarrinho}
                     >
-                        <FaShoppingCart style={{ marginRight: "8px" }} />
-                        Adicionar ao Carrinho
+
+                        <FaShoppingCart />
+
+                        <span>
+                            Adicionar ao carrinho
+                        </span>
+
                     </button>
 
                 </div>
 
-            </div>
+            </article>
 
         </div>
-    );}
+
+    );
+
+}
 
 export default ModalProduto;

@@ -167,77 +167,194 @@ router.patch(
         const {
             nome,
             email,
-            senha
+            senha_atual,
+            nova_senha
         } = req.body;
 
         try {
 
-            // Verifica se o usuário existe
             const usuario = await BD.query(
-                `SELECT *
-                 FROM usuarios
-                 WHERE id_usuario = $1
-                 AND ativo = TRUE`,
+                `
+                    SELECT
+                        id_usuario,
+                        nome,
+                        email,
+                        senha,
+                        ativo
+                    FROM usuarios
+                    WHERE id_usuario = $1
+                    AND ativo = TRUE
+                `,
                 [id_usuario]
             );
 
             if (usuario.rows.length === 0) {
+
                 return res.status(404).json({
                     message: "Usuário não encontrado."
                 });
+
             }
 
             const dadosUsuario = usuario.rows[0];
 
-            // Verifica se o novo e-mail já está em uso
-            if (email) {
+            if (
+                nome !== undefined &&
+                (!nome || nome.trim() === "")
+            ) {
+
+                return res.status(400).json({
+                    message: "O nome não pode ficar vazio."
+                });
+
+            }
+
+            if (
+                email !== undefined &&
+                (!email || email.trim() === "")
+            ) {
+
+                return res.status(400).json({
+                    message: "O e-mail não pode ficar vazio."
+                });
+
+            }
+
+            const novoNome =
+                nome !== undefined
+                    ? nome.trim()
+                    : dadosUsuario.nome;
+
+            const novoEmail =
+                email !== undefined
+                    ? email.trim().toLowerCase()
+                    : dadosUsuario.email;
+
+            if (email !== undefined) {
 
                 const emailExiste = await BD.query(
-                    `SELECT *
-                     FROM usuarios
-                     WHERE email = $1
-                     AND id_usuario <> $2`,
-                    [email, id_usuario]
+                    `
+                        SELECT id_usuario
+                        FROM usuarios
+                        WHERE LOWER(email) = LOWER($1)
+                        AND id_usuario <> $2
+                    `,
+                    [novoEmail, id_usuario]
                 );
 
                 if (emailExiste.rows.length > 0) {
+
                     return res.status(400).json({
                         message: "E-mail já cadastrado."
                     });
+
                 }
 
             }
 
-            // Criptografa a nova senha, se enviada
             let senhaAtualizada = dadosUsuario.senha;
 
-            if (senha) {
-                senhaAtualizada = await bcrypt.hash(senha, 10);
+            if (nova_senha !== undefined) {
+
+                if (!senha_atual) {
+
+                    return res.status(400).json({
+                        message: "Informe a senha atual."
+                    });
+
+                }
+
+                if (
+                    !nova_senha ||
+                    nova_senha.trim().length < 6
+                ) {
+
+                    return res.status(400).json({
+                        message: "A nova senha precisa ter pelo menos 6 caracteres."
+                    });
+
+                }
+
+                const senhaCorreta = await bcrypt.compare(
+                    senha_atual,
+                    dadosUsuario.senha
+                );
+
+                if (!senhaCorreta) {
+
+                    return res.status(400).json({
+                        message: "A senha atual está incorreta."
+                    });
+
+                }
+
+                const mesmaSenha = await bcrypt.compare(
+                    nova_senha,
+                    dadosUsuario.senha
+                );
+
+                if (mesmaSenha) {
+
+                    return res.status(400).json({
+                        message: "A nova senha deve ser diferente da senha atual."
+                    });
+
+                }
+
+                senhaAtualizada = await bcrypt.hash(
+                    nova_senha,
+                    10
+                );
+
             }
 
-            // Atualiza os dados
-            await BD.query(
-                `UPDATE usuarios
-                 SET
-                    nome = $1,
-                    email = $2,
-                    senha = $3
-                 WHERE id_usuario = $4`,
+            if (
+                nome === undefined &&
+                email === undefined &&
+                nova_senha === undefined
+            ) {
+
+                return res.status(400).json({
+                    message: "Nenhum dado foi enviado para atualização."
+                });
+
+            }
+
+            const resultado = await BD.query(
+                `
+                    UPDATE usuarios
+                    SET
+                        nome = $1,
+                        email = $2,
+                        senha = $3
+                    WHERE id_usuario = $4
+                    RETURNING
+                        id_usuario,
+                        nome,
+                        email,
+                        ativo
+                `,
                 [
-                    nome ?? dadosUsuario.nome,
-                    email ?? dadosUsuario.email,
+                    novoNome,
+                    novoEmail,
                     senhaAtualizada,
                     id_usuario
                 ]
             );
 
             return res.status(200).json({
-                message: "Usuário atualizado com sucesso."
+                message: nova_senha
+                    ? "Dados e senha atualizados com sucesso."
+                    : "Dados atualizados com sucesso.",
+                usuario: resultado.rows[0]
             });
 
         } catch (error) {
 
-            console.error("Erro ao atualizar usuário:", error.message);
+            console.error(
+                "Erro ao atualizar usuário:",
+                error.message
+            );
 
             return res.status(500).json({
                 message: "Erro ao atualizar usuário."

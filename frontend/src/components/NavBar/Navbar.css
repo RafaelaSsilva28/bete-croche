@@ -1,57 +1,711 @@
-.navbar{
+.navbarPublica{
 
-    display:flex;
+    width:100%;
+    height:82px;
 
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:20px 60px;
-
-    background:white;
-
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-
-    position:sticky;
+    position:fixed;
 
     top:0;
+    left:0;
 
     z-index:1000;
 
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:14px 7%;
+
+    background:rgba(255,255,255,.97);
+
+    border-bottom:1px solid #f0d6df;
+
+    box-shadow:0 5px 22px rgba(90,45,60,.1);
+
+    backdrop-filter:blur(12px);
+
 }
 
-.logo{
+.espacoNavbarPublica{
 
-    font-size:28px;
-
-    font-weight:bold;
-
-    color:#D98CA3;
+    width:100%;
+    height:82px;
 
 }
 
-.menu{
+/* ========================= */
+/* LOGO */
+/* ========================= */
+
+.logoPublica{
 
     display:flex;
+    align-items:center;
 
-    gap:30px;
-
-}
-
-.menu a{
+    gap:13px;
 
     text-decoration:none;
 
-    color:#444;
+}
 
-    font-size:18px;
+.iconeLogoPublica{
+
+    width:50px;
+    height:50px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:17px;
+
+    color:white;
+
+    font-size:26px;
+
+    background:linear-gradient(
+        135deg,
+        #d98ca3,
+        #a8496d
+    );
+
+    box-shadow:0 8px 20px rgba(168,73,109,.28);
+
+}
+
+.textoLogoPublica{
+
+    display:flex;
+    flex-direction:column;
+
+    line-height:1;
+
+}
+
+.nomeElizabeth{
+
+    color:#4e3c43;
+
+    font-family:Georgia, "Times New Roman", serif;
+
+    font-size:24px;
+    font-weight:700;
+    font-style:italic;
+
+    letter-spacing:.3px;
+
+}
+
+.nomeCroche{
+
+    margin-top:4px;
+
+    color:#b85c7e;
+
+    font-size:17px;
+    font-weight:800;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+}
+
+/* ========================= */
+/* MENU DESKTOP */
+/* ========================= */
+
+.menuPublicoDesktop{
+
+    display:flex;
+    align-items:center;
+
+    gap:8px;
+
+}
+
+.linkPublico{
+
+    min-height:44px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+    padding:10px 15px;
+
+    border-radius:12px;
+
+    color:#62575b;
+
+    text-decoration:none;
+
+    font-size:14px;
+    font-weight:700;
 
     transition:.3s;
 
 }
 
-.menu a:hover{
+.linkPublico svg{
 
-    color:#D98CA3;
+    color:#c76f90;
+
+    font-size:16px;
+
+}
+
+.linkPublico:hover{
+
+    color:#a8496d;
+
+    background:#fff2f6;
+
+    transform:translateY(-2px);
+
+}
+
+.linkPublico.ativo{
+
+    color:#a8496d;
+
+    background:#fce7ef;
+
+}
+
+.botaoContatoNavbar{
+
+    min-height:45px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:9px;
+
+    margin-left:8px;
+
+    padding:10px 20px;
+
+    border-radius:13px;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:14px;
+    font-weight:800;
+
+    background:linear-gradient(
+        135deg,
+        #b85c7e,
+        #8f3456
+    );
+
+    box-shadow:0 8px 20px rgba(143,52,86,.27);
+
+    transition:.3s;
+
+}
+
+.botaoContatoNavbar svg{
+
+    font-size:19px;
+
+}
+
+.botaoContatoNavbar:hover{
+
+    color:white;
+
+    transform:translateY(-3px);
+
+    background:linear-gradient(
+        135deg,
+        #a8496d,
+        #772844
+    );
+
+    box-shadow:0 12px 26px rgba(119,40,68,.35);
+
+}
+
+/* ========================= */
+/* BOTÃO MOBILE */
+/* ========================= */
+
+.botaoMenuPublico{
+
+    width:46px;
+    height:46px;
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    border:none;
+
+    border-radius:14px;
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #d98ca3,
+        #a8496d
+    );
+
+    font-size:21px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 8px 20px rgba(168,73,109,.25);
+
+}
+
+.botaoMenuPublico:hover{
+
+    transform:scale(1.05);
+
+}
+
+/* ========================= */
+/* FUNDO ESCURO */
+/* ========================= */
+
+.fundoMenuPublico{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:1998;
+
+    visibility:hidden;
+
+    opacity:0;
+
+    background:rgba(34,24,29,.48);
+
+    backdrop-filter:blur(3px);
+
+    transition:.3s;
+
+}
+
+.fundoMenuPublico.ativo{
+
+    visibility:visible;
+
+    opacity:1;
+
+}
+
+/* ========================= */
+/* MENU LATERAL */
+/* ========================= */
+
+.menuLateralPublico{
+
+    width:320px;
+    max-width:88%;
+
+    height:100vh;
+
+    position:fixed;
+
+    top:0;
+    right:-350px;
+
+    z-index:1999;
+
+    display:flex;
+    flex-direction:column;
+
+    padding:24px;
+
+    background:#fff;
+
+    box-shadow:-15px 0 45px rgba(39,24,31,.2);
+
+    transition:right .35s ease;
+
+}
+
+.menuLateralPublico.aberto{
+
+    right:0;
+
+}
+
+.cabecalhoMenuLateralPublico{
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding-bottom:22px;
+
+    border-bottom:1px solid #f2dce4;
+
+}
+
+.logoMenuLateral{
+
+    display:flex;
+    align-items:center;
+
+    gap:11px;
+
+    text-decoration:none;
+
+}
+
+.iconeLogoLateral{
+
+    width:45px;
+    height:45px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:14px;
+
+    color:white;
+
+    font-size:23px;
+
+    background:linear-gradient(
+        135deg,
+        #d98ca3,
+        #a8496d
+    );
+
+}
+
+.textoLogoLateral{
+
+    display:flex;
+    flex-direction:column;
+
+    line-height:1;
+
+}
+
+.nomeElizabethLateral{
+
+    color:#4e3c43;
+
+    font-family:Georgia, "Times New Roman", serif;
+
+    font-size:20px;
+    font-weight:700;
+    font-style:italic;
+
+}
+
+.nomeCrocheLateral{
+
+    margin-top:4px;
+
+    color:#b85c7e;
+
+    font-size:14px;
+    font-weight:800;
+
+    letter-spacing:1.7px;
+
+    text-transform:uppercase;
+
+}
+
+.fecharMenuPublico{
+
+    width:40px;
+    height:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    flex-shrink:0;
+
+    border:none;
+
+    border-radius:12px;
+
+    color:#a8496d;
+
+    background:#fff0f5;
+
+    font-size:19px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.fecharMenuPublico:hover{
+
+    color:white;
+
+    background:#a8496d;
+
+    transform:rotate(90deg);
+
+}
+
+/* ========================= */
+/* LINKS LATERAIS */
+/* ========================= */
+
+.linksMenuLateralPublico{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:10px;
+
+    margin-top:28px;
+
+}
+
+.linkLateralPublico{
+
+    width:100%;
+    min-height:57px;
+
+    display:flex;
+    align-items:center;
+
+    gap:14px;
+
+    padding:10px 13px;
+
+    border-radius:15px;
+
+    color:#5d5256;
+
+    text-decoration:none;
+
+    font-size:15px;
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.iconeLinkLateral{
+
+    width:39px;
+    height:39px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    flex-shrink:0;
+
+    border-radius:12px;
+
+    color:#a8496d;
+
+    background:#fff0f5;
+
+    font-size:17px;
+
+    transition:.3s;
+
+}
+
+.linkLateralPublico:hover,
+.linkLateralPublico.ativo{
+
+    color:#a8496d;
+
+    background:#fff6f9;
+
+    transform:translateX(5px);
+
+}
+
+.linkLateralPublico:hover .iconeLinkLateral,
+.linkLateralPublico.ativo .iconeLinkLateral{
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #d98ca3,
+        #a8496d
+    );
+
+}
+
+.linkLateralPublico.contatoLateral{
+
+    margin-top:8px;
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #b85c7e,
+        #8f3456
+    );
+
+}
+
+.linkLateralPublico.contatoLateral .iconeLinkLateral{
+
+    color:white;
+
+    background:rgba(255,255,255,.18);
+
+}
+
+.linkLateralPublico.contatoLateral:hover{
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #a8496d,
+        #772844
+    );
+
+}
+
+/* ========================= */
+/* RODAPÉ LATERAL */
+/* ========================= */
+
+.rodapeMenuLateralPublico{
+
+    margin-top:auto;
+
+    display:flex;
+    align-items:center;
+
+    gap:11px;
+
+    padding:16px;
+
+    border-radius:15px;
+
+    color:#776a6f;
+
+    background:#fff5f8;
+
+}
+
+.rodapeMenuLateralPublico svg{
+
+    flex-shrink:0;
+
+    color:#a8496d;
+
+    font-size:24px;
+
+}
+
+.rodapeMenuLateralPublico p{
+
+    font-size:12px;
+    line-height:1.5;
+
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media(max-width:850px){
+
+    .navbarPublica{
+
+        height:74px;
+
+        padding:12px 5%;
+
+    }
+
+    .espacoNavbarPublica{
+
+        height:74px;
+
+    }
+
+    .menuPublicoDesktop{
+
+        display:none;
+
+    }
+
+    .botaoMenuPublico{
+
+        display:flex;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .navbarPublica{
+
+        padding:11px 16px;
+
+    }
+
+    .iconeLogoPublica{
+
+        width:43px;
+        height:43px;
+
+        border-radius:14px;
+
+        font-size:22px;
+
+    }
+
+    .nomeElizabeth{
+
+        font-size:20px;
+
+    }
+
+    .nomeCroche{
+
+        font-size:13px;
+
+        letter-spacing:1.5px;
+
+    }
+
+    .botaoMenuPublico{
+
+        width:43px;
+        height:43px;
+
+        font-size:19px;
+
+    }
+
+    .menuLateralPublico{
+
+        width:290px;
+
+        padding:20px;
+
+    }
 
 }

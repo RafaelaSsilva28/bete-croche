@@ -1,91 +1,189 @@
 import { Router } from "express";
 import { BD } from "../../db.js";
+
 import upload from "../middlewares/upload.js";
 import { autenticarToken } from "../middlewares/autenticacao.js";
+
 import fs from "fs";
 import path from "path";
 
 const router = Router();
 
-//--------------------------------------------------------------------------------------------------------
-// POST - cadastrar imagens do produto
+const LIMITE_IMAGENS = 4;
+
+/*
+|--------------------------------------------------------------------------
+| Função auxiliar
+|--------------------------------------------------------------------------
+| Exclui arquivos que o Multer já colocou na pasta uploads quando
+| alguma validação falhar.
+*/
+
+function excluirArquivosRecebidos(arquivos = []) {
+
+    arquivos.forEach((arquivo) => {
+
+        const caminhoArquivo = path.join(
+            process.cwd(),
+            "uploads",
+            arquivo.filename
+        );
+
+        if (fs.existsSync(caminhoArquivo)) {
+            fs.unlinkSync(caminhoArquivo);
+        }
+
+    });
+
+}
+
+/*
+|--------------------------------------------------------------------------
+| POST - cadastrar imagens do produto
+|--------------------------------------------------------------------------
+*/
 
 router.post(
-    "/produtos/:produto_id/imagens", upload.array("imagens", 10), // permite até 10 imagens
+    "/produtos/:produto_id/imagens",
+    autenticarToken,
+    upload.array("imagens", LIMITE_IMAGENS),
     async (req, res) => {
 
         const { produto_id } = req.params;
 
         try {
 
-            // Verifica se o produto existe
             const verificarProduto = await BD.query(
-                `SELECT *
-                 FROM produtos
-                 WHERE id_produto = $1
-                 AND ativo = TRUE`,
+                `
+                    SELECT id_produto
+                    FROM produtos
+                    WHERE id_produto = $1
+                    AND ativo = TRUE
+                `,
                 [produto_id]
             );
 
             if (verificarProduto.rows.length === 0) {
+
+                excluirArquivosRecebidos(req.files);
+
                 return res.status(404).json({
                     message: "Produto não encontrado."
                 });
+
             }
 
-            // Verifica se enviou alguma imagem
             if (!req.files || req.files.length === 0) {
+
                 return res.status(400).json({
                     message: "Nenhuma imagem foi enviada."
                 });
+
             }
 
-            // Verifica se o produto já possui imagem principal
+            const quantidadeAtual = await BD.query(
+                `
+                    SELECT COUNT(*)::INTEGER AS total
+                    FROM imagens_produto
+                    WHERE produto_id = $1
+                `,
+                [produto_id]
+            );
+
+            const totalAtual = quantidadeAtual.rows[0].total;
+            const totalDepoisUpload = totalAtual + req.files.length;
+
+            if (totalDepoisUpload > LIMITE_IMAGENS) {
+
+                excluirArquivosRecebidos(req.files);
+
+                return res.status(400).json({
+                    message: `Cada produto pode possuir no máximo ${LIMITE_IMAGENS} imagens.`
+                });
+
+            }
+
             const imagemPrincipal = await BD.query(
-                `SELECT *
-                 FROM imagens_produto
-                 WHERE produto_id = $1
-                 AND principal = TRUE`,
+                `
+                    SELECT id_imagem
+                    FROM imagens_produto
+                    WHERE produto_id = $1
+                    AND principal = TRUE
+                    LIMIT 1
+                `,
                 [produto_id]
             );
 
             const possuiPrincipal = imagemPrincipal.rows.length > 0;
 
-            // Salva as imagens
-            for (let i = 0; i < req.files.length; i++) {
+            await BD.query("BEGIN");
 
-                const arquivo = req.files[i];
+            try {
 
-                // Apenas a primeira imagem enviada será principal,
-                // caso o produto ainda não possua uma.
-                const principal =
-                    !possuiPrincipal && i === 0;
+                for (let i = 0; i < req.files.length; i++) {
 
-                await BD.query(
-                    `INSERT INTO imagens_produto
-                    (
-                        produto_id,
-                        caminho_imagem,
-                        principal
-                    )
-                    VALUES
-                    ($1,$2,$3)`,
-                    [
-                        produto_id,
-                        arquivo.filename,
-                        principal
-                    ]
-                );
+                    const arquivo = req.files[i];
+
+                    const principal =
+                        !possuiPrincipal &&
+                        totalAtual === 0 &&
+                        i === 0;
+
+                    await BD.query(
+                        `
+                            INSERT INTO imagens_produto
+                            (
+                                produto_id,
+                                caminho_imagem,
+                                principal
+                            )
+                            VALUES ($1, $2, $3)
+                        `,
+                        [
+                            produto_id,
+                            arquivo.filename,
+                            principal
+                        ]
+                    );
+
+                }
+
+                await BD.query("COMMIT");
+
+            } catch (erroBanco) {
+
+                await BD.query("ROLLBACK");
+
+                excluirArquivosRecebidos(req.files);
+
+                throw erroBanco;
 
             }
 
+            const imagensAtualizadas = await BD.query(
+                `
+                    SELECT
+                        id_imagem,
+                        caminho_imagem,
+                        principal
+                    FROM imagens_produto
+                    WHERE produto_id = $1
+                    ORDER BY principal DESC, id_imagem ASC
+                `,
+                [produto_id]
+            );
+
             return res.status(201).json({
-                message: "Imagem(ns) cadastrada(s) com sucesso."
+                message: "Imagem(ns) cadastrada(s) com sucesso.",
+                imagens: imagensAtualizadas.rows
             });
 
         } catch (error) {
 
-            console.error("Erro ao cadastrar imagens:", error.message);
+            console.error(
+                "Erro ao cadastrar imagens:",
+                error.message
+            );
 
             return res.status(500).json({
                 message: "Erro ao cadastrar imagens."
@@ -95,38 +193,49 @@ router.post(
 
     }
 );
-//--------------------------------------------------------------------------------------------------------
-// GET - listar imagens de um produto
+
+/*
+|--------------------------------------------------------------------------
+| GET - listar imagens de um produto
+|--------------------------------------------------------------------------
+*/
 
 router.get(
-    "/produtos/:produto_id/imagens", async (req, res) => {
+    "/produtos/:produto_id/imagens",
+    async (req, res) => {
 
         const { produto_id } = req.params;
 
         try {
 
             const produto = await BD.query(
-                `SELECT *
-                 FROM produtos
-                 WHERE id_produto = $1
-                 AND ativo = TRUE`,
+                `
+                    SELECT id_produto
+                    FROM produtos
+                    WHERE id_produto = $1
+                    AND ativo = TRUE
+                `,
                 [produto_id]
             );
 
             if (produto.rows.length === 0) {
+
                 return res.status(404).json({
                     message: "Produto não encontrado."
                 });
+
             }
 
             const imagens = await BD.query(
-                `SELECT
-                    id_imagem,
-                    caminho_imagem,
-                    principal
-                 FROM imagens_produto
-                 WHERE produto_id = $1
-                 ORDER BY principal DESC, id_imagem ASC`,
+                `
+                    SELECT
+                        id_imagem,
+                        caminho_imagem,
+                        principal
+                    FROM imagens_produto
+                    WHERE produto_id = $1
+                    ORDER BY principal DESC, id_imagem ASC
+                `,
                 [produto_id]
             );
 
@@ -134,19 +243,25 @@ router.get(
 
         } catch (error) {
 
-            console.error("Erro ao listar imagens:", error.message);
+            console.error(
+                "Erro ao listar imagens:",
+                error.message
+            );
 
             return res.status(500).json({
                 message: "Erro ao listar imagens."
-            }
-        );
+            });
 
         }
 
     }
 );
-//--------------------------------------------------------------------------------------------------------
-// PATCH - definir imagem principal
+
+/*
+|--------------------------------------------------------------------------
+| PATCH - definir imagem principal
+|--------------------------------------------------------------------------
+*/
 
 router.patch(
     "/imagens/:id_imagem/principal",
@@ -157,45 +272,78 @@ router.patch(
 
         try {
 
-            // Verifica se a imagem existe
             const imagem = await BD.query(
-                `SELECT *
-                 FROM imagens_produto
-                 WHERE id_imagem = $1`,
+                `
+                    SELECT
+                        id_imagem,
+                        produto_id,
+                        principal
+                    FROM imagens_produto
+                    WHERE id_imagem = $1
+                `,
                 [id_imagem]
             );
 
             if (imagem.rows.length === 0) {
+
                 return res.status(404).json({
                     message: "Imagem não encontrada."
                 });
+
             }
 
-            const produto_id = imagem.rows[0].produto_id;
+            const dadosImagem = imagem.rows[0];
 
-            // Remove a imagem principal atual
-            await BD.query(
-                `UPDATE imagens_produto
-                 SET principal = FALSE
-                 WHERE produto_id = $1`,
-                [produto_id]
-            );
+            if (dadosImagem.principal) {
 
-            // Define a nova imagem principal
-            await BD.query(
-                `UPDATE imagens_produto
-                 SET principal = TRUE
-                 WHERE id_imagem = $1`,
-                [id_imagem]
-            );
+                return res.status(200).json({
+                    message: "Esta imagem já é a capa do produto."
+                });
+
+            }
+
+            await BD.query("BEGIN");
+
+            try {
+
+                await BD.query(
+                    `
+                        UPDATE imagens_produto
+                        SET principal = FALSE
+                        WHERE produto_id = $1
+                    `,
+                    [dadosImagem.produto_id]
+                );
+
+                await BD.query(
+                    `
+                        UPDATE imagens_produto
+                        SET principal = TRUE
+                        WHERE id_imagem = $1
+                    `,
+                    [id_imagem]
+                );
+
+                await BD.query("COMMIT");
+
+            } catch (erroBanco) {
+
+                await BD.query("ROLLBACK");
+
+                throw erroBanco;
+
+            }
 
             return res.status(200).json({
-                message: "Imagem principal atualizada com sucesso."
+                message: "Imagem de capa atualizada com sucesso."
             });
 
         } catch (error) {
 
-            console.error("Erro ao definir imagem principal:", error.message);
+            console.error(
+                "Erro ao definir imagem principal:",
+                error.message
+            );
 
             return res.status(500).json({
                 message: "Erro ao atualizar imagem principal."
@@ -205,8 +353,12 @@ router.patch(
 
     }
 );
-//--------------------------------------------------------------------------------------------------------
-// DELETE - excluir imagem
+
+/*
+|--------------------------------------------------------------------------
+| DELETE - excluir imagem
+|--------------------------------------------------------------------------
+*/
 
 router.delete(
     "/imagens/:id_imagem",
@@ -217,66 +369,100 @@ router.delete(
 
         try {
 
-            // Verifica se a imagem existe
             const imagem = await BD.query(
-                `SELECT *
-                 FROM imagens_produto
-                 WHERE id_imagem = $1`,
+                `
+                    SELECT
+                        id_imagem,
+                        produto_id,
+                        caminho_imagem,
+                        principal
+                    FROM imagens_produto
+                    WHERE id_imagem = $1
+                `,
                 [id_imagem]
             );
 
             if (imagem.rows.length === 0) {
+
                 return res.status(404).json({
                     message: "Imagem não encontrada."
                 });
+
             }
 
             const dadosImagem = imagem.rows[0];
 
-            // Exclui a imagem do banco
-            await BD.query(
-                `DELETE
-                 FROM imagens_produto
-                 WHERE id_imagem = $1`,
-                [id_imagem]
+            const quantidadeImagens = await BD.query(
+                `
+                    SELECT COUNT(*)::INTEGER AS total
+                    FROM imagens_produto
+                    WHERE produto_id = $1
+                `,
+                [dadosImagem.produto_id]
             );
 
-            // Caminho do arquivo
+            if (quantidadeImagens.rows[0].total === 1) {
+
+                return res.status(400).json({
+                    message: "O produto precisa possuir pelo menos uma imagem."
+                });
+
+            }
+
+            await BD.query("BEGIN");
+
+            try {
+
+                await BD.query(
+                    `
+                        DELETE FROM imagens_produto
+                        WHERE id_imagem = $1
+                    `,
+                    [id_imagem]
+                );
+
+                if (dadosImagem.principal) {
+
+                    const outraImagem = await BD.query(
+                        `
+                            SELECT id_imagem
+                            FROM imagens_produto
+                            WHERE produto_id = $1
+                            ORDER BY id_imagem ASC
+                            LIMIT 1
+                        `,
+                        [dadosImagem.produto_id]
+                    );
+
+                    await BD.query(
+                        `
+                            UPDATE imagens_produto
+                            SET principal = TRUE
+                            WHERE id_imagem = $1
+                        `,
+                        [outraImagem.rows[0].id_imagem]
+                    );
+
+                }
+
+                await BD.query("COMMIT");
+
+            } catch (erroBanco) {
+
+                await BD.query("ROLLBACK");
+
+                throw erroBanco;
+
+            }
+
             const caminhoArquivo = path.join(
                 process.cwd(),
                 "uploads",
                 dadosImagem.caminho_imagem
             );
 
-            // Exclui o arquivo da pasta uploads, caso exista
             if (fs.existsSync(caminhoArquivo)) {
                 fs.unlinkSync(caminhoArquivo);
-            }
-
-            // Se a imagem excluída era a principal,
-            // define outra como principal
-            if (dadosImagem.principal) {
-
-                const outraImagem = await BD.query(
-                    `SELECT id_imagem
-                     FROM imagens_produto
-                     WHERE produto_id = $1
-                     ORDER BY id_imagem
-                     LIMIT 1`,
-                    [dadosImagem.produto_id]
-                );
-
-                if (outraImagem.rows.length > 0) {
-
-                    await BD.query(
-                        `UPDATE imagens_produto
-                         SET principal = TRUE
-                         WHERE id_imagem = $1`,
-                        [outraImagem.rows[0].id_imagem]
-                    );
-
-                }
-
             }
 
             return res.status(200).json({
@@ -285,7 +471,10 @@ router.delete(
 
         } catch (error) {
 
-            console.error("Erro ao excluir imagem:", error.message);
+            console.error(
+                "Erro ao excluir imagem:",
+                error.message
+            );
 
             return res.status(500).json({
                 message: "Erro ao excluir imagem."
@@ -295,4 +484,5 @@ router.delete(
 
     }
 );
+
 export default router;

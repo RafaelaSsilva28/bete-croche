@@ -1,0 +1,1121 @@
+.overlayModalProdutoAdmin{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:9999;
+
+    padding:20px;
+
+}
+
+.modalProdutoAdmin{
+
+    width:100%;
+    max-width:980px;
+    max-height:92vh;
+
+    background:#fff;
+
+    border-radius:26px;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
+
+    overflow:hidden;
+
+    display:flex;
+    flex-direction:column;
+
+    animation:abrirModalProduto .3s ease;
+
+}
+
+.modalProdutoAdmin form{
+
+    flex:1;
+    min-height:0;
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+@keyframes abrirModalProduto{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px) scale(.96);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+
+/* ========================= */
+/* TOAST */
+/* ========================= */
+
+.toastProdutoAdmin{
+
+    position:fixed;
+
+    top:25px;
+    right:25px;
+
+    z-index:10000;
+
+    padding:16px 22px;
+
+    border-radius:16px;
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    font-weight:600;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.22);
+
+    animation:toastEntrando .3s ease;
+
+}
+
+.toastProdutoAdmin svg{
+
+    font-size:20px;
+
+}
+
+.toastProdutoAdmin.sucesso{
+
+    background:#2ecc71;
+
+}
+
+.toastProdutoAdmin.erro{
+
+    background:#e74c3c;
+
+}
+
+@keyframes toastEntrando{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+/* ========================= */
+/* CABEÇALHO */
+/* ========================= */
+
+.cabecalhoModalProdutoAdmin{
+
+    background:linear-gradient(135deg,#D98CA3,#b96b85);
+
+    color:white;
+
+    padding:28px 32px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+
+    gap:20px;
+
+    flex-shrink:0;
+
+}
+
+.cabecalhoModalProdutoAdmin h2{
+
+    font-size:30px;
+
+    margin-bottom:8px;
+
+}
+
+.cabecalhoModalProdutoAdmin p{
+
+    color:#fff5f8;
+
+    line-height:1.5;
+
+}
+
+.fecharModalProdutoAdmin{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.22);
+
+    color:white;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:18px;
+
+    transition:.3s;
+
+    flex-shrink:0;
+
+}
+
+.fecharModalProdutoAdmin:hover{
+
+    background:white;
+
+    color:#D98CA3;
+
+}
+
+.fecharModalProdutoAdmin:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+/* ========================= */
+/* ABAS */
+/* ========================= */
+
+.abasModalProdutoAdmin{
+
+    display:flex;
+
+    gap:12px;
+
+    padding:20px 30px 0;
+
+    background:#fff;
+
+    flex-shrink:0;
+
+}
+
+.abaModalProdutoAdmin{
+
+    border:none;
+
+    background:#FFF3F7;
+
+    color:#9b6072;
+
+    padding:14px 22px;
+
+    border-radius:16px 16px 0 0;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+    transition:.3s;
+
+}
+
+.abaModalProdutoAdmin:hover{
+
+    background:#ffe4ed;
+
+}
+
+.abaModalProdutoAdmin.ativa{
+
+    background:#D98CA3;
+
+    color:white;
+
+}
+
+.contadorImagensProduto{
+
+    background:white;
+
+    color:#D98CA3;
+
+    padding:3px 9px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+}
+
+.abaModalProdutoAdmin.ativa .contadorImagensProduto{
+
+    background:white;
+
+    color:#D98CA3;
+
+}
+
+/* ========================= */
+/* CONTEÚDO */
+/* ========================= */
+
+.conteudoModalProdutoAdmin{
+
+    padding:30px;
+
+    flex:1;
+
+    min-height:0;
+
+    overflow-y:auto;
+
+}
+
+.conteudoModalProdutoAdmin::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.conteudoModalProdutoAdmin::-webkit-scrollbar-thumb{
+
+    background:#D98CA3;
+
+    border-radius:20px;
+
+}
+
+.conteudoModalProdutoAdmin::-webkit-scrollbar-track{
+
+    background:#fff0f5;
+
+}
+
+/* ========================= */
+/* FORMULÁRIO */
+/* ========================= */
+
+.abaInformacoesProduto{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.linhaFormularioProduto{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+}
+
+.campoProdutoAdmin{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.campoProdutoAdmin label{
+
+    color:#555;
+
+    font-size:15px;
+
+    font-weight:700;
+
+}
+
+.campoProdutoAdmin input,
+.campoProdutoAdmin select,
+.campoProdutoAdmin textarea{
+
+    width:100%;
+
+    border:2px solid #f1d8e1;
+
+    border-radius:14px;
+
+    padding:14px 16px;
+
+    font-size:15px;
+
+    outline:none;
+
+    color:#444;
+
+    background:white;
+
+    transition:.3s;
+
+    box-sizing:border-box;
+
+}
+
+.campoProdutoAdmin textarea{
+
+    resize:none;
+
+    min-height:110px;
+
+}
+
+.campoProdutoAdmin input:focus,
+.campoProdutoAdmin select:focus,
+.campoProdutoAdmin textarea:focus{
+
+    border-color:#D98CA3;
+
+    box-shadow:0 0 0 4px rgba(217,140,163,.14);
+
+}
+
+.opcoesProdutoAdmin{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:16px;
+
+}
+
+.opcaoCheckboxProduto{
+
+    background:#FFF3F7;
+
+    border:2px solid #f4d5df;
+
+    border-radius:16px;
+
+    padding:16px;
+
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    color:#555;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.opcaoCheckboxProduto:hover{
+
+    border-color:#D98CA3;
+
+    background:#fff0f6;
+
+}
+
+.opcaoCheckboxProduto input{
+
+    width:18px;
+    height:18px;
+
+    accent-color:#D98CA3;
+
+}
+
+/* ========================= */
+/* ABA IMAGENS */
+/* ========================= */
+
+.abaImagensProduto{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+.topoImagensProduto{
+
+    background:#FFF8FB;
+
+    border:2px dashed #eac2ce;
+
+    border-radius:20px;
+
+    padding:22px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.topoImagensProduto h3{
+
+    color:#444;
+
+    font-size:22px;
+
+    margin-bottom:6px;
+
+}
+
+.topoImagensProduto p{
+
+    color:#777;
+
+    line-height:1.5;
+
+}
+
+.botaoSelecionarImagem{
+
+    background:#D98CA3;
+
+    color:white;
+
+    padding:15px 22px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+    font-weight:700;
+
+    transition:.3s;
+
+    white-space:nowrap;
+
+}
+
+.botaoSelecionarImagem:hover{
+
+    background:#c87490;
+
+    transform:translateY(-2px);
+
+}
+
+.botaoSelecionarImagem input{
+
+    display:none;
+
+}
+
+.botaoSelecionarImagem.desativado{
+
+    opacity:.55;
+
+    cursor:not-allowed;
+
+    pointer-events:none;
+
+}
+
+/* ========================= */
+/* SEM IMAGENS */
+/* ========================= */
+
+.semImagensProduto{
+
+    background:#fff;
+
+    border:2px dashed #ead0d9;
+
+    border-radius:22px;
+
+    padding:55px 20px;
+
+    text-align:center;
+
+}
+
+.semImagensProduto svg{
+
+    font-size:55px;
+
+    color:#D98CA3;
+
+    margin-bottom:16px;
+
+}
+
+.semImagensProduto h4{
+
+    color:#444;
+
+    font-size:22px;
+
+    margin-bottom:8px;
+
+}
+
+.semImagensProduto p{
+
+    color:#777;
+
+}
+
+/* ========================= */
+/* LISTA DE IMAGENS */
+/* ========================= */
+
+.listaImagensProduto{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
+
+}
+
+.cardImagemProduto{
+
+    position:relative;
+
+    height:210px;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    background:#FFF3F7;
+
+    border:3px solid transparent;
+
+    box-shadow:0 8px 22px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.cardImagemProduto:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 14px 30px rgba(217,140,163,.18);
+
+}
+
+.cardImagemProduto.principal{
+
+    border-color:#D98CA3;
+
+}
+
+.cardImagemProduto img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+.cardImagemProduto::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.55),
+        rgba(0,0,0,.08),
+        transparent
+    );
+
+    opacity:.9;
+
+}
+
+/* ========================= */
+/* SELOS */
+/* ========================= */
+
+.seloImagemPrincipal{
+
+    position:absolute;
+
+    top:12px;
+    left:12px;
+
+    z-index:2;
+
+    background:#D98CA3;
+
+    color:white;
+
+    padding:8px 12px;
+
+    border-radius:999px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    display:flex;
+    align-items:center;
+
+    gap:6px;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.22);
+
+}
+
+.seloNovaImagem{
+
+    position:absolute;
+
+    top:12px;
+    right:12px;
+
+    z-index:2;
+
+    background:white;
+
+    color:#D98CA3;
+
+    padding:8px 12px;
+
+    border-radius:999px;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.18);
+
+}
+
+/* ========================= */
+/* AÇÕES IMAGEM */
+/* ========================= */
+
+.acoesImagemProduto{
+
+    position:absolute;
+
+    left:12px;
+    right:12px;
+    bottom:12px;
+
+    z-index:2;
+
+    display:flex;
+    justify-content:space-between;
+
+    gap:10px;
+
+}
+
+.acoesImagemProduto button{
+
+    width:44px;
+    height:44px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:17px;
+
+    transition:.3s;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.18);
+
+}
+
+.botaoCapaImagem{
+
+    background:white;
+
+    color:#D98CA3;
+
+}
+
+.botaoCapaImagem:hover,
+.botaoCapaImagem.selecionado{
+
+    background:#D98CA3;
+
+    color:white;
+
+}
+
+.botaoExcluirImagem{
+
+    background:white;
+
+    color:#e74c3c;
+
+}
+
+.botaoExcluirImagem:hover{
+
+    background:#e74c3c;
+
+    color:white;
+
+}
+
+.botaoExcluirImagem:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+/* ========================= */
+/* AVISO */
+/* ========================= */
+
+.avisoImagemObrigatoria{
+
+    background:#FFF3F7;
+
+    border-left:5px solid #D98CA3;
+
+    border-radius:16px;
+
+    padding:16px 18px;
+
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    color:#6f4b56;
+
+    font-weight:600;
+
+}
+
+.avisoImagemObrigatoria svg{
+
+    color:#D98CA3;
+
+    font-size:20px;
+
+    flex-shrink:0;
+
+}
+
+/* ========================= */
+/* RODAPÉ */
+/* ========================= */
+
+.rodapeModalProdutoAdmin{
+
+    border-top:1px solid #f1d8e1;
+
+    padding:22px 30px;
+
+    display:flex;
+    justify-content:flex-end;
+
+    gap:14px;
+
+    background:#fff;
+
+    flex-shrink:0;
+
+}
+
+.botaoCancelarProduto,
+.botaoSalvarProduto{
+
+    border:none;
+
+    padding:15px 24px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-weight:800;
+
+    font-size:15px;
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+    transition:.3s;
+
+}
+
+.botaoCancelarProduto{
+
+    background:#f4f4f4;
+
+    color:#555;
+
+}
+
+.botaoCancelarProduto:hover{
+
+    background:#e6e6e6;
+
+}
+
+.botaoSalvarProduto{
+
+    background:#D98CA3;
+
+    color:white;
+
+}
+
+.botaoSalvarProduto:hover{
+
+    background:#c87490;
+
+    transform:translateY(-2px);
+
+}
+
+.botaoCancelarProduto:disabled,
+.botaoSalvarProduto:disabled{
+
+    opacity:.65;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+}
+
+/* ========================= */
+/* SPINNER */
+/* ========================= */
+
+.iconeGirando{
+
+    animation:girarIcone 1s linear infinite;
+
+}
+
+@keyframes girarIcone{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media(max-width:900px){
+
+    .modalProdutoAdmin{
+
+        max-width:95vw;
+
+    }
+
+    .linhaFormularioProduto,
+    .opcoesProdutoAdmin{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .listaImagensProduto{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .topoImagensProduto{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .overlayModalProdutoAdmin{
+
+        padding:10px;
+
+        align-items:flex-start;
+
+    }
+
+    .modalProdutoAdmin{
+
+        max-height:96vh;
+
+        border-radius:20px;
+
+    }
+
+    .cabecalhoModalProdutoAdmin{
+
+        padding:22px;
+
+        align-items:flex-start;
+
+    }
+
+    .cabecalhoModalProdutoAdmin h2{
+
+        font-size:25px;
+
+    }
+
+    .abasModalProdutoAdmin{
+
+        padding:16px 16px 0;
+
+        gap:8px;
+
+    }
+
+    .abaModalProdutoAdmin{
+
+        flex:1;
+
+        justify-content:center;
+
+        padding:13px 10px;
+
+        font-size:13px;
+
+    }
+
+    .conteudoModalProdutoAdmin{
+
+        padding:20px;
+
+    }
+
+    .listaImagensProduto{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .cardImagemProduto{
+
+        height:240px;
+
+    }
+
+    .rodapeModalProdutoAdmin{
+
+        padding:18px;
+
+        flex-direction:column-reverse;
+
+    }
+
+    .botaoCancelarProduto,
+    .botaoSalvarProduto{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+    .toastProdutoAdmin{
+
+        left:15px;
+        right:15px;
+        top:15px;
+
+        justify-content:center;
+
+    }
+
+}

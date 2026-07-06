@@ -1,94 +1,332 @@
-.chamadaWhatsapp{
+.chamadaWhatsapp {
 
-    margin:100px auto;
+    width: calc(100% - 60px);
+    max-width: 1100px;
 
-    max-width:1100px;
+    min-height: 390px;
 
-    background:linear-gradient(135deg,#D98CA3,#EFB5C8);
+    position: relative;
 
-    padding:70px 40px;
+    overflow: hidden;
 
-    border-radius:25px;
+    margin: 80px auto;
 
-    text-align:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    color:white;
+    padding: 65px 40px;
 
-}
+    border-radius: 28px;
 
-.chamadaWhatsapp h2{
+    color: white;
 
-    font-size:42px;
+    text-align: center;
 
-    margin-bottom:20px;
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(255, 255, 255, .18),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #d98ca3,
+            #b85c7e,
+            #8f3456
+        );
 
-}
-
-.chamadaWhatsapp p{
-
-    max-width:650px;
-
-    margin:0 auto 35px;
-
-    line-height:1.8;
-
-    font-size:18px;
-
-}
-
-.chamadaWhatsapp a{
-
-    display:inline-block;
-
-    padding:18px 40px;
-
-    background:white;
-
-    color:#D98CA3;
-
-    text-decoration:none;
-
-    font-weight:bold;
-
-    border-radius:50px;
-
-    transition:.3s;
+    box-shadow:
+        0 22px 50px rgba(117, 52, 77, .22);
 
 }
 
-.chamadaWhatsapp a:hover{
+/* ========================= */
+/* CONTEÚDO */
+/* ========================= */
 
-    transform:translateY(-5px);
+.conteudoChamadaInstagram {
 
-    box-shadow:0 15px 30px rgba(0,0,0,.15);
+    width: 100%;
+    max-width: 760px;
 
-}
-.chamadaWhatsapp h2{
+    position: relative;
 
-    display:flex;
+    z-index: 2;
 
-    justify-content:center;
-
-    align-items:center;
-
-    gap:12px;
-
-}
-
-.iconeInstagram{
-
-    font-size:34px;
-
-    color:#E1306C;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 }
 
-.chamadaWhatsapp a{
+.iconePrincipalInstagram {
 
-    display:inline-flex;
+    width: 72px;
+    height: 72px;
 
-    align-items:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    gap:10px;
+    margin-bottom: 18px;
+
+    border: 1px solid rgba(255, 255, 255, .3);
+
+    border-radius: 22px;
+
+    color: #b85c7e;
+
+    background: white;
+
+    font-size: 34px;
+
+    box-shadow:
+        0 12px 28px rgba(73, 28, 46, .2);
+
+}
+
+.subtituloInstagram {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-bottom: 16px;
+
+    padding: 8px 14px;
+
+    border: 1px solid rgba(255, 255, 255, .28);
+
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, .12);
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+
+    text-transform: uppercase;
+
+}
+
+.subtituloInstagram svg {
+
+    font-size: 13px;
+
+}
+
+.chamadaWhatsapp h2 {
+
+    max-width: 760px;
+
+    margin-bottom: 18px;
+
+    color: white;
+
+    font-size: 42px;
+
+    line-height: 1.25;
+
+}
+
+.chamadaWhatsapp p {
+
+    max-width: 680px;
+
+    margin: 0 auto 32px;
+
+    color: rgba(255, 255, 255, .9);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+}
+
+/* ========================= */
+/* BOTÃO */
+/* ========================= */
+
+.botaoInstagram {
+
+    min-height: 56px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 11px;
+
+    padding: 15px 28px;
+
+    border-radius: 16px;
+
+    color: #a8496d;
+
+    background: white;
+
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    box-shadow:
+        0 10px 25px rgba(72, 27, 45, .2);
+
+    transition: .3s;
+
+}
+
+.botaoInstagram svg:first-child {
+
+    font-size: 21px;
+
+}
+
+.botaoInstagram svg:last-child {
+
+    font-size: 14px;
+
+    transition: .3s;
+
+}
+
+.botaoInstagram:hover {
+
+    color: #8f3456;
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 32px rgba(72, 27, 45, .28);
+
+}
+
+.botaoInstagram:hover svg:last-child {
+
+    transform: translateX(5px);
+
+}
+
+/* ========================= */
+/* DECORAÇÕES */
+/* ========================= */
+
+.decoracaoInstagram {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 255, 255, .15);
+
+}
+
+.decoracaoInstagramUm {
+
+    width: 250px;
+    height: 250px;
+
+    top: -100px;
+    left: -70px;
+
+}
+
+.decoracaoInstagramDois {
+
+    width: 190px;
+    height: 190px;
+
+    right: -65px;
+    bottom: -80px;
+
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+    .chamadaWhatsapp {
+
+        width: calc(100% - 36px);
+
+        min-height: 360px;
+
+        margin: 65px auto;
+
+        padding: 55px 28px;
+
+    }
+
+    .chamadaWhatsapp h2 {
+
+        font-size: 34px;
+
+    }
+
+    .chamadaWhatsapp p {
+
+        font-size: 15px;
+
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .chamadaWhatsapp {
+
+        width: calc(100% - 28px);
+
+        margin: 50px auto;
+
+        padding: 45px 20px;
+
+        border-radius: 22px;
+
+    }
+
+    .iconePrincipalInstagram {
+
+        width: 62px;
+        height: 62px;
+
+        font-size: 29px;
+
+    }
+
+    .subtituloInstagram {
+
+        font-size: 10px;
+
+        letter-spacing: .9px;
+
+    }
+
+    .chamadaWhatsapp h2 {
+
+        font-size: 29px;
+
+    }
+
+    .chamadaWhatsapp p {
+
+        font-size: 14px;
+
+        line-height: 1.7;
+
+    }
+
+    .botaoInstagram {
+
+        width: 100%;
+
+    }
 
 }

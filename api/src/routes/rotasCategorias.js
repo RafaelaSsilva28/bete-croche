@@ -6,39 +6,132 @@ const router = Router();
 
 
 //--------------------------------------------------------------------------------------------------------
-// POST - cadastrar categoria
+// POST - cadastrar ou reativar categoria
 
-router.post('/categorias', autenticarToken, async (req, res) => {
+router.post(
+    "/categorias",
+    autenticarToken,
+    async (req, res) => {
 
-    const { nome, descricao } = req.body;
+        const {
+            nome,
+            descricao
+        } = req.body;
 
-    try {
+        if (!nome || nome.trim() === "") {
 
-        const comando = `
-            INSERT INTO categorias
-            (nome, descricao)
-            VALUES ($1, $2)
-        `;
+            return res.status(400).json({
+                message: "O nome da categoria é obrigatório."
+            });
 
-        const valores = [nome, descricao];
+        }
 
-        await BD.query(comando, valores);
+        try {
 
-        return res.status(201).json({
-            message: "Categoria cadastrada com sucesso"
-        });
+            const nomeCategoria = nome.trim();
 
-    } catch (error) {
+            const categoriaExistente = await BD.query(
+                `
+                    SELECT
+                        id_categoria,
+                        nome,
+                        descricao,
+                        ativo
+                    FROM categorias
+                    WHERE LOWER(nome) = LOWER($1)
+                    LIMIT 1
+                `,
+                [nomeCategoria]
+            );
 
-        console.log("Erro ao cadastrar categoria", error.message);
+            if (categoriaExistente.rows.length > 0) {
 
-        return res.status(500).json({
-            error: "Erro ao cadastrar categoria"
-        });
+                const categoria = categoriaExistente.rows[0];
+
+                if (categoria.ativo === true) {
+
+                    return res.status(400).json({
+                        message: "Já existe uma categoria com esse nome."
+                    });
+
+                }
+
+                const categoriaReativada = await BD.query(
+                    `
+                        UPDATE categorias
+                        SET
+                            descricao = $1,
+                            ativo = TRUE
+                        WHERE id_categoria = $2
+                        RETURNING
+                            id_categoria,
+                            nome,
+                            descricao,
+                            ativo
+                    `,
+                    [
+                        descricao?.trim() || null,
+                        categoria.id_categoria
+                    ]
+                );
+
+                return res.status(200).json({
+                    message: "Categoria reativada com sucesso.",
+                    categoria: categoriaReativada.rows[0]
+                });
+
+            }
+
+            const novaCategoria = await BD.query(
+                `
+                    INSERT INTO categorias
+                    (
+                        nome,
+                        descricao,
+                        ativo
+                    )
+                    VALUES
+                    ($1, $2, TRUE)
+                    RETURNING
+                        id_categoria,
+                        nome,
+                        descricao,
+                        ativo
+                `,
+                [
+                    nomeCategoria,
+                    descricao?.trim() || null
+                ]
+            );
+
+            return res.status(201).json({
+                message: "Categoria cadastrada com sucesso.",
+                categoria: novaCategoria.rows[0]
+            });
+
+        } catch (error) {
+
+            console.error(
+                "Erro ao cadastrar categoria:",
+                error.message
+            );
+
+            if (error.code === "23505") {
+
+                return res.status(400).json({
+                    message: "Já existe uma categoria com esse nome."
+                });
+
+            }
+
+            return res.status(500).json({
+                message: "Erro ao cadastrar categoria."
+            });
+
+        }
 
     }
-
-});
+);
 //--------------------------------------------------------------------------------------------------------
 // GET - listar categorias
 
@@ -173,48 +266,82 @@ router.patch('/categorias/:id_categoria', autenticarToken,async (req, res) => {
     }
 
 });
-//--------------------------------------------------------------------------------------------------------
+
+///--------------------------------------------------------------------------------------------------------
 // DELETE - desativar categoria
 
-router.delete('/categorias/:id_categoria', async (req, res) => {
+router.delete(
+    "/categorias/:id_categoria",
+    autenticarToken,
+    async (req, res) => {
 
-    const { id_categoria } = req.params;
+        const { id_categoria } = req.params;
 
-    try {
+        try {
 
-        const verificar = await BD.query(
-            `SELECT * FROM categorias WHERE id_categoria = $1`,
-            [id_categoria]
-        );
+            const categoria = await BD.query(
+                `
+                    SELECT id_categoria
+                    FROM categorias
+                    WHERE id_categoria = $1
+                    AND ativo = TRUE
+                `,
+                [id_categoria]
+            );
 
-        if (verificar.rows.length === 0) {
-            return res.status(404).json({
-                message: "Categoria não encontrada"
+            if (categoria.rows.length === 0) {
+
+                return res.status(404).json({
+                    message: "Categoria não encontrada."
+                });
+
+            }
+
+            const produtosVinculados = await BD.query(
+                `
+                    SELECT COUNT(*)::INTEGER AS total
+                    FROM produtos
+                    WHERE categoria_id = $1
+                    AND ativo = TRUE
+                `,
+                [id_categoria]
+            );
+
+            if (produtosVinculados.rows[0].total > 0) {
+
+                return res.status(400).json({
+                    message:
+                        "Existem produtos vinculados a esta categoria. Troque a categoria desses produtos antes de excluí-la."
+                });
+
+            }
+
+            await BD.query(
+                `
+                    UPDATE categorias
+                    SET ativo = FALSE
+                    WHERE id_categoria = $1
+                `,
+                [id_categoria]
+            );
+
+            return res.status(200).json({
+                message: "Categoria desativada com sucesso."
             });
+
+        } catch (error) {
+
+            console.error(
+                "Erro ao desativar categoria:",
+                error.message
+            );
+
+            return res.status(500).json({
+                message: "Erro ao desativar categoria."
+            });
+
         }
 
-        await BD.query(
-            `UPDATE categorias
-             SET ativo = FALSE
-             WHERE id_categoria = $1`,
-            [id_categoria]
-        );
-
-        return res.status(200).json({
-            message: "Categoria desativada com sucesso"
-        });
-
-    } catch (error) {
-
-        console.error("Erro ao desativar categoria", error.message);
-
-        return res.status(500).json({
-            message: "Erro interno no servidor"
-        });
-
     }
-
-});
-
-
+);
 export default router;
