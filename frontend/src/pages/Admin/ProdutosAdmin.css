@@ -675,3 +675,62 @@
     }
 
 }
+.linhaTituloProdutoAdmin{
+
+    display:flex;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-bottom:8px;
+
+}
+
+.linhaTituloProdutoAdmin h3{
+
+    margin-bottom:0;
+
+}
+
+.etiquetaDestaqueAdmin{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:6px;
+
+    padding:7px 11px;
+
+    border:1px solid #efc7d5;
+
+    border-radius:999px;
+
+    color:#a8496d;
+
+    background:#fff0f5;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:.4px;
+
+    text-transform:uppercase;
+
+    white-space:nowrap;
+
+}
+
+.etiquetaDestaqueAdmin svg{
+
+    color:#d9a43b;
+
+    font-size:12px;
+
+}

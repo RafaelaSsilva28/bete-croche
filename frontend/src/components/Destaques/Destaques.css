@@ -2,12 +2,12 @@
 
     width: 100%;
 
-    padding: 85px 30px;
+    padding: 80px 30px;
 
     background:
         radial-gradient(
             circle at top right,
-            rgba(217, 140, 163, .12),
+            rgba(217, 140, 163, .11),
             transparent 32%
         ),
         linear-gradient(
@@ -21,7 +21,7 @@
 .conteudoDestaques {
 
     width: 100%;
-    max-width: 1250px;
+    max-width: 1200px;
 
     margin: 0 auto;
 
@@ -35,7 +35,7 @@
 
     max-width: 720px;
 
-    margin: 0 auto 50px;
+    margin: 0 auto 45px;
 
     text-align: center;
 
@@ -99,22 +99,131 @@
 }
 
 /* ========================= */
-/* LISTA DE PRODUTOS */
+/* CARROSSEL */
 /* ========================= */
+
+.carrosselDestaques {
+
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
 
 .listaProdutosDestaques {
 
+    width: 100%;
+
     display: grid;
+
+    justify-content: center;
+    align-items: stretch;
+
+    gap: 24px;
+
+    animation:
+        aparecerProdutosDestaques
+        .65s ease;
+
+}
+
+.listaProdutosDestaques.quantidade-3 {
 
     grid-template-columns:
         repeat(
-            auto-fit,
-            minmax(260px, 1fr)
+            3,
+            minmax(0, 250px)
         );
 
-    gap: 28px;
+}
 
-    align-items: stretch;
+.listaProdutosDestaques.quantidade-2 {
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 250px)
+        );
+
+}
+
+.listaProdutosDestaques.quantidade-1 {
+
+    grid-template-columns:
+        minmax(0, 250px);
+
+}
+
+.itemDestaque {
+
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+}
+
+.itemDestaque .cardProduto {
+
+    height: 100%;
+
+}
+
+/* ========================= */
+/* INDICADORES */
+/* ========================= */
+
+.indicadoresDestaques {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    margin-top: 28px;
+
+}
+
+.indicadorDestaque {
+
+    width: 8px;
+    height: 8px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background: #d7c3ca;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+.indicadorDestaque:hover {
+
+    background: #bd7891;
+
+    transform: scale(1.15);
+
+}
+
+.indicadorDestaque.ativo {
+
+    width: 25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d98ca3,
+            #a8496d
+        );
 
 }
 
@@ -126,15 +235,15 @@
 
     width: fit-content;
 
-    margin: 35px auto 0;
+    margin: 25px auto 0;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    gap: 9px;
+    gap: 8px;
 
-    padding: 10px 16px;
+    padding: 9px 15px;
 
     border: 1px solid #f0dce3;
 
@@ -144,7 +253,7 @@
 
     background: white;
 
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
 
     box-shadow:
@@ -156,7 +265,7 @@
 
     color: #b85c7e;
 
-    font-size: 15px;
+    font-size: 14px;
 
 }
 
@@ -188,23 +297,14 @@
     height: 42px;
 
     border: 4px solid #f3dce5;
+
     border-top-color: #b85c7e;
 
     border-radius: 50%;
 
-    animation: girarDestaques .8s linear infinite;
-
-}
-
-@keyframes girarDestaques {
-
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
+    animation:
+        girarDestaques
+        .8s linear infinite;
 
 }
 
@@ -219,7 +319,7 @@
 
     margin: 0 auto;
 
-    padding: 55px 30px;
+    padding: 50px 30px;
 
     border: 1px solid #f0dce3;
 
@@ -258,9 +358,6 @@
             #a8496d
         );
 
-    box-shadow:
-        0 10px 24px rgba(168, 73, 109, .23);
-
 }
 
 .semDestaques h3 {
@@ -284,20 +381,74 @@
 }
 
 /* ========================= */
-/* RESPONSIVIDADE */
+/* ANIMAÇÕES */
 /* ========================= */
 
-@media (max-width: 768px) {
+@keyframes aparecerProdutosDestaques {
 
-    .destaques {
+    from {
 
-        padding: 70px 20px;
+        opacity: 0;
+
+        filter: blur(3px);
 
     }
 
+    to {
+
+        opacity: 1;
+
+        filter: blur(0);
+
+    }
+
+}
+
+@keyframes girarDestaques {
+
+    from {
+
+        transform: rotate(0deg);
+
+    }
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media(max-width:950px) {
+
+    .destaques {
+
+        padding: 70px 24px;
+
+    }
+
+    .listaProdutosDestaques.quantidade-2 {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 250px)
+            );
+
+    }
+
+}
+
+@media(max-width:700px) {
+
     .cabecalhoDestaques {
 
-        margin-bottom: 40px;
+        margin-bottom: 38px;
 
     }
 
@@ -307,21 +458,15 @@
 
     }
 
-    .listaProdutosDestaques {
+    .cabecalhoDestaques p {
 
-        grid-template-columns:
-            repeat(
-                auto-fit,
-                minmax(240px, 1fr)
-            );
-
-        gap: 24px;
+        font-size: 15px;
 
     }
 
 }
 
-@media (max-width: 480px) {
+@media(max-width:600px) {
 
     .destaques {
 
@@ -329,11 +474,10 @@
 
     }
 
-    .seloDestaques {
+    .listaProdutosDestaques {
 
-        font-size: 10px;
-
-        letter-spacing: .8px;
+        grid-template-columns:
+            minmax(0, 250px) !important;
 
     }
 
@@ -349,9 +493,11 @@
 
     }
 
-    .listaProdutosDestaques {
+    .seloDestaques {
 
-        grid-template-columns: 1fr;
+        font-size: 10px;
+
+        letter-spacing: .8px;
 
     }
 

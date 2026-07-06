@@ -1,5 +1,5 @@
 INSERT INTO usuarios (nome, email, senha, ativo) VALUES
-('Elizabete', 'elizabetecroches@email.com', '1234', true)
+('seunome', 'coloqueseuemail@email.com', '1234', true)
 DELETE FROM usuarios
 WHERE id_usuario = 1;
 

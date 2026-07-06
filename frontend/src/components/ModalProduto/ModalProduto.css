@@ -1,3 +1,7 @@
+/* ========================= */
+/* FUNDO DO MODAL */
+/* ========================= */
+
 .overlayProduto {
 
     position: fixed;
@@ -12,6 +16,8 @@
 
     padding: 24px;
 
+    overflow: hidden;
+
     background: rgba(37, 24, 30, .62);
 
     backdrop-filter: blur(7px);
@@ -21,7 +27,7 @@
 }
 
 /* ========================= */
-/* MODAL */
+/* MODAL PRINCIPAL */
 /* ========================= */
 
 .modalProduto {
@@ -29,15 +35,15 @@
     width: 100%;
     max-width: 1080px;
 
-    max-height: 90vh;
+    height: min(720px, 90vh);
 
     position: relative;
-
-    overflow: hidden;
 
     display: grid;
 
     grid-template-columns: 48% 52%;
+
+    overflow: hidden;
 
     border: 1px solid rgba(255, 255, 255, .7);
 
@@ -53,7 +59,7 @@
 }
 
 /* ========================= */
-/* FECHAR */
+/* BOTÃO FECHAR */
 /* ========================= */
 
 .btnFecharProduto {
@@ -66,7 +72,7 @@
     top: 18px;
     right: 18px;
 
-    z-index: 20;
+    z-index: 30;
 
     display: flex;
     align-items: center;
@@ -78,7 +84,7 @@
 
     color: #a8496d;
 
-    background: rgba(255, 255, 255, .95);
+    background: rgba(255, 255, 255, .96);
 
     font-size: 18px;
 
@@ -110,12 +116,20 @@
 .ladoImagemProduto {
 
     min-width: 0;
+    min-height: 0;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
 
-    padding: 32px;
+    grid-template-rows:
+        minmax(0, 1fr)
+        auto
+        auto;
+
+    gap: 14px;
+
+    padding: 26px 30px 28px;
+
+    overflow: hidden;
 
     background:
         radial-gradient(
@@ -131,10 +145,16 @@
 
 }
 
+/* ========================= */
+/* ÁREA DA IMAGEM */
+/* ========================= */
+
 .areaImagemProduto {
 
     width: 100%;
-    height: 455px;
+    height: 100%;
+
+    min-height: 0;
 
     position: relative;
 
@@ -163,7 +183,7 @@
 }
 
 /* ========================= */
-/* SETAS */
+/* SETAS DAS IMAGENS */
 /* ========================= */
 
 .setaImagemProduto {
@@ -208,7 +228,9 @@
 
     background: #a8496d;
 
-    transform: translateY(-50%) scale(1.07);
+    transform:
+        translateY(-50%)
+        scale(1.07);
 
 }
 
@@ -225,18 +247,18 @@
 }
 
 /* ========================= */
-/* INDICADORES */
+/* INDICADORES DAS IMAGENS */
 /* ========================= */
 
 .indicadoresImagemProduto {
+
+    min-height: 22px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     gap: 8px;
-
-    margin-top: 18px;
 
 }
 
@@ -289,7 +311,7 @@
     width: 100%;
     min-height: 52px;
 
-    margin-top: 20px;
+    flex-shrink: 0;
 
     display: flex;
     align-items: center;
@@ -347,25 +369,24 @@
 }
 
 /* ========================= */
-/* INFORMAÇÕES */
+/* LADO DAS INFORMAÇÕES */
 /* ========================= */
 
 .infoProduto {
 
     min-width: 0;
-
-    max-height: 90vh;
-
-    overflow-y: auto;
+    min-height: 0;
 
     display: flex;
     flex-direction: column;
 
     padding: 50px 42px 38px;
 
-    scrollbar-width: thin;
+    overflow-y: auto;
+    overflow-x: hidden;
 
-    scrollbar-color: #d98ca3 #f8edf1;
+    scrollbar-width: thin;
+    scrollbar-color: #d98ca3 #fff3f7;
 
 }
 
@@ -377,7 +398,11 @@
 
 .infoProduto::-webkit-scrollbar-track {
 
-    background: #f8edf1;
+    margin: 10px 0;
+
+    border-radius: 999px;
+
+    background: #fff3f7;
 
 }
 
@@ -385,9 +410,29 @@
 
     border-radius: 999px;
 
-    background: #d98ca3;
+    background:
+        linear-gradient(
+            180deg,
+            #d98ca3,
+            #a8496d
+        );
 
 }
+
+.infoProduto::-webkit-scrollbar-thumb:hover {
+
+    background:
+        linear-gradient(
+            180deg,
+            #c87490,
+            #8f3456
+        );
+
+}
+
+/* ========================= */
+/* TAG */
+/* ========================= */
 
 .tagProdutoModal {
 
@@ -412,6 +457,10 @@
 
 }
 
+/* ========================= */
+/* TÍTULO */
+/* ========================= */
+
 .infoProduto h1 {
 
     margin-bottom: 18px;
@@ -425,6 +474,10 @@
     line-height: 1.2;
 
 }
+
+/* ========================= */
+/* PREÇO */
+/* ========================= */
 
 .precoUnitarioProduto {
 
@@ -459,6 +512,10 @@
     line-height: 1.2;
 
 }
+
+/* ========================= */
+/* DESCRIÇÃO */
+/* ========================= */
 
 .descricaoProdutoModal {
 
@@ -620,7 +677,7 @@
 }
 
 /* ========================= */
-/* DADOS */
+/* CARDS DE INFORMAÇÕES */
 /* ========================= */
 
 .dadosProdutoModal {
@@ -650,7 +707,7 @@
 
     border-radius: 15px;
 
-    background: #fff;
+    background: white;
 
     transition: .3s;
 
@@ -710,7 +767,9 @@
     width: 100%;
     min-height: 53px;
 
-    margin-top: auto;
+    margin-top: 0;
+
+    flex-shrink: 0;
 
     display: flex;
     align-items: center;
@@ -816,11 +875,15 @@
 @keyframes aparecerOverlayProduto {
 
     from {
+
         opacity: 0;
+
     }
 
     to {
+
         opacity: 1;
+
     }
 
 }
@@ -870,7 +933,7 @@
 }
 
 /* ========================= */
-/* RESPONSIVO */
+/* TABLET */
 /* ========================= */
 
 @media(max-width: 900px) {
@@ -879,9 +942,9 @@
 
         align-items: flex-start;
 
-        overflow-y: auto;
-
         padding: 20px;
+
+        overflow-y: auto;
 
     }
 
@@ -889,21 +952,25 @@
 
         max-width: 680px;
 
+        height: auto;
         max-height: none;
 
         grid-template-columns: 1fr;
+
+        overflow: hidden;
 
     }
 
     .ladoImagemProduto {
 
+        min-height: 570px;
+
+        grid-template-rows:
+            450px
+            auto
+            auto;
+
         padding: 25px;
-
-    }
-
-    .areaImagemProduto {
-
-        height: 430px;
 
     }
 
@@ -918,6 +985,10 @@
     }
 
 }
+
+/* ========================= */
+/* CELULAR */
+/* ========================= */
 
 @media(max-width: 600px) {
 
@@ -935,13 +1006,18 @@
 
     .ladoImagemProduto {
 
+        min-height: auto;
+
+        grid-template-rows:
+            330px
+            auto
+            auto;
+
         padding: 15px;
 
     }
 
     .areaImagemProduto {
-
-        height: 340px;
 
         border-radius: 16px;
 
@@ -951,6 +1027,18 @@
 
         width: 38px;
         height: 38px;
+
+    }
+
+    .setaImagemProduto.esquerda {
+
+        left: 10px;
+
+    }
+
+    .setaImagemProduto.direita {
+
+        right: 10px;
 
     }
 
@@ -1018,11 +1106,18 @@
 
 }
 
+/* ========================= */
+/* CELULAR PEQUENO */
+/* ========================= */
+
 @media(max-width: 400px) {
 
-    .areaImagemProduto {
+    .ladoImagemProduto {
 
-        height: 290px;
+        grid-template-rows:
+            280px
+            auto
+            auto;
 
     }
 

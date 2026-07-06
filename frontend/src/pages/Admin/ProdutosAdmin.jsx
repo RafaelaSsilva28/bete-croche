@@ -14,7 +14,8 @@ import {
     FaTrash,
     FaSearch,
     FaFilter,
-    FaSpinner
+    FaSpinner,
+    FaStar
 } from "react-icons/fa";
 
 function ProdutosAdmin() {
@@ -167,8 +168,8 @@ function ProdutosAdmin() {
             .trim()
             .toLowerCase();
 
-        const nomeProduto = produto.nome
-            ?.toLowerCase() || "";
+        const nomeProduto =
+            produto.nome?.toLowerCase() || "";
 
         const correspondePesquisa =
             nomeProduto.includes(termoPesquisa);
@@ -310,16 +311,32 @@ function ProdutosAdmin() {
                                     src={
                                         produto.imagem_principal
                                             ? `http://localhost:3001/uploads/${produto.imagem_principal}`
-                                            : "https://placehold.co/120x120"
+                                            : "https://placehold.co/120x120?text=Sem+imagem"
                                     }
                                     alt={produto.nome}
                                 />
 
                                 <div className="infoProdutoAdmin">
 
-                                    <h3>
-                                        {produto.nome}
-                                    </h3>
+                                    <div className="linhaTituloProdutoAdmin">
+
+                                        <h3>
+                                            {produto.nome}
+                                        </h3>
+
+                                        {produto.destaque === true && (
+
+                                            <span className="etiquetaDestaqueAdmin">
+
+                                                <FaStar />
+
+                                                Destaque
+
+                                            </span>
+
+                                        )}
+
+                                    </div>
 
                                     <p className="categoriaProdutoAdmin">
                                         {produto.categoria}

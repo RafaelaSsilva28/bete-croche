@@ -1,5 +1,7 @@
 # Dependências (Sempre ignorar)
 node_modules/
+src/uploads/*
+!src/uploads/.gitkeep
 
 # Logs do NPM
 npm-debug.log*
