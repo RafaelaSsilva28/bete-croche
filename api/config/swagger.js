@@ -13,15 +13,16 @@ const documentacao = {
         version: "1.0.0"
     },
 
-    servers: [
+   servers: [
     {
-        url: "https://bete-croche-production.up.railway.app",
+        url: "https://bete-croche-artesanal.up.railway.app",
         description: "Servidor online"
     },
     {
         url: "http://localhost:3001",
         description: "Servidor local"
     }
+
 ],
 
     components: {
