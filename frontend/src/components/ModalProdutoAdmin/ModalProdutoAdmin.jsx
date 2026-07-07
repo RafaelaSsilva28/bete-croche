@@ -1,7 +1,10 @@
 import "./ModalProdutoAdmin.css";
 
 import { useEffect, useState } from "react";
-import api from "../../services/api";
+
+import api, {
+    API_URL
+} from "../../services/api";
 
 import {
     FaTimes,
@@ -17,7 +20,6 @@ import {
     FaSpinner
 } from "react-icons/fa";
 
-const URL_IMAGENS = "http://localhost:3001/uploads";
 const LIMITE_IMAGENS = 4;
 
 function ModalProdutoAdmin({
@@ -41,24 +43,36 @@ function ModalProdutoAdmin({
 
     const [abaAtiva, setAbaAtiva] = useState("informacoes");
 
-    const [formulario, setFormulario] = useState(formularioInicial);
+    const [formulario, setFormulario] =
+        useState(formularioInicial);
+
     const [categorias, setCategorias] = useState([]);
 
-    const [idProdutoAtual, setIdProdutoAtual] = useState(null);
+    const [idProdutoAtual, setIdProdutoAtual] =
+        useState(null);
 
-    const [imagensExistentes, setImagensExistentes] = useState([]);
-    const [novasImagens, setNovasImagens] = useState([]);
+    const [imagensExistentes, setImagensExistentes] =
+        useState([]);
 
-    const [imagemPrincipal, setImagemPrincipal] = useState(null);
+    const [novasImagens, setNovasImagens] =
+        useState([]);
 
-    const [salvando, setSalvando] = useState(false);
-    const [excluindoImagem, setExcluindoImagem] = useState(null);
+    const [imagemPrincipal, setImagemPrincipal] =
+        useState(null);
+
+    const [salvando, setSalvando] =
+        useState(false);
+
+    const [excluindoImagem, setExcluindoImagem] =
+        useState(null);
 
     const [toast, setToast] = useState(null);
 
     useEffect(() => {
 
-        if (!aberto) return;
+        if (!aberto) {
+            return;
+        }
 
         carregarCategorias();
 
@@ -67,31 +81,43 @@ function ModalProdutoAdmin({
 
         if (produto) {
 
-            const imagensProduto = produto.imagens || [];
+            const imagensProduto =
+                produto.imagens || [];
 
-            setIdProdutoAtual(produto.id_produto);
+            setIdProdutoAtual(
+                produto.id_produto
+            );
 
             setFormulario({
                 nome: produto.nome || "",
                 descricao: produto.descricao || "",
                 preco: produto.preco || "",
                 estoque: produto.estoque ?? 0,
-                sob_encomenda: produto.sob_encomenda ?? true,
-                tempo_producao: produto.tempo_producao || "",
-                material: produto.material || "",
+                sob_encomenda:
+                    produto.sob_encomenda ?? true,
+                tempo_producao:
+                    produto.tempo_producao || "",
+                material:
+                    produto.material || "",
                 categoria_id:
                     produto.categoria?.id_categoria ||
                     produto.id_categoria ||
                     "",
-                destaque: produto.destaque ?? false
+                destaque:
+                    produto.destaque ?? false
             });
 
-            setImagensExistentes(imagensProduto);
+            setImagensExistentes(
+                imagensProduto
+            );
+
             setNovasImagens([]);
 
-            const principal = imagensProduto.find(
-                (imagem) => imagem.principal
-            );
+            const principal =
+                imagensProduto.find(
+                    (imagem) =>
+                        imagem.principal
+                );
 
             if (principal) {
 
@@ -109,7 +135,11 @@ function ModalProdutoAdmin({
         } else {
 
             setIdProdutoAtual(null);
-            setFormulario(formularioInicial);
+
+            setFormulario(
+                formularioInicial
+            );
+
             setImagensExistentes([]);
             setNovasImagens([]);
             setImagemPrincipal(null);
@@ -122,46 +152,63 @@ function ModalProdutoAdmin({
 
         return () => {
 
-            novasImagens.forEach((imagem) => {
-                URL.revokeObjectURL(imagem.preview);
-            });
+            novasImagens.forEach(
+                (imagem) => {
+
+                    URL.revokeObjectURL(
+                        imagem.preview
+                    );
+
+                }
+            );
 
         };
 
     }, [novasImagens]);
 
-   async function carregarCategorias() {
+    async function carregarCategorias() {
 
-    try {
+        try {
 
-        const token = localStorage.getItem("token");
+            const token =
+                localStorage.getItem("token");
 
-        const resposta = await api.get("/categorias", {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+            const resposta =
+                await api.get(
+                    "/categorias",
+                    {
+                        headers: {
+                            Authorization:
+                                `Bearer ${token}`
+                        }
+                    }
+                );
 
-        setCategorias(resposta.data || []);
+            setCategorias(
+                resposta.data || []
+            );
 
-    } catch (erro) {
+        } catch (erro) {
 
-        console.log(
-            "Erro ao carregar categorias:",
-            erro.response?.data || erro
-        );
+            console.log(
+                "Erro ao carregar categorias:",
+                erro.response?.data || erro
+            );
 
-        mostrarToast(
-            "erro",
-            erro.response?.data?.message ||
-            "Não foi possível carregar as categorias."
-        );
+            mostrarToast(
+                "erro",
+                erro.response?.data?.message ||
+                "Não foi possível carregar as categorias."
+            );
+
+        }
 
     }
 
-}
-
-    function mostrarToast(tipo, mensagem) {
+    function mostrarToast(
+        tipo,
+        mensagem
+    ) {
 
         setToast({
             tipo,
@@ -169,8 +216,38 @@ function ModalProdutoAdmin({
         });
 
         setTimeout(() => {
+
             setToast(null);
+
         }, 3000);
+
+    }
+
+    function montarUrlImagem(
+        caminhoImagem
+    ) {
+
+        if (!caminhoImagem) {
+
+            return "https://placehold.co/400x400?text=Sem+imagem";
+
+        }
+
+        if (
+            caminhoImagem.startsWith("http://") ||
+            caminhoImagem.startsWith("https://")
+        ) {
+
+            return caminhoImagem;
+
+        }
+
+        const caminhoLimpo =
+            caminhoImagem
+                .replace(/^\/+/, "")
+                .replace(/^uploads\//, "");
+
+        return `${API_URL}/uploads/${caminhoLimpo}`;
 
     }
 
@@ -185,40 +262,59 @@ function ModalProdutoAdmin({
 
         if (name === "sob_encomenda") {
 
-            setFormulario((anterior) => ({
-                ...anterior,
-                sob_encomenda: checked,
-                tempo_producao: checked
-                    ? anterior.tempo_producao
-                    : ""
-            }));
+            setFormulario(
+                (anterior) => ({
+                    ...anterior,
+                    sob_encomenda:
+                        checked,
+                    tempo_producao:
+                        checked
+                            ? anterior.tempo_producao
+                            : ""
+                })
+            );
 
             return;
 
         }
 
-        setFormulario((anterior) => ({
-            ...anterior,
-            [name]: type === "checkbox"
-                ? checked
-                : value
-        }));
+        setFormulario(
+            (anterior) => ({
+                ...anterior,
+                [name]:
+                    type === "checkbox"
+                        ? checked
+                        : value
+            })
+        );
 
     }
 
     function selecionarImagens(evento) {
 
-        const arquivos = Array.from(evento.target.files);
+        const arquivos =
+            Array.from(
+                evento.target.files
+            );
 
         evento.target.value = "";
 
-        if (arquivos.length === 0) return;
+        if (arquivos.length === 0) {
+            return;
+        }
 
-        const arquivosValidos = arquivos.filter((arquivo) =>
-            arquivo.type.startsWith("image/")
-        );
+        const arquivosValidos =
+            arquivos.filter(
+                (arquivo) =>
+                    arquivo.type.startsWith(
+                        "image/"
+                    )
+            );
 
-        if (arquivosValidos.length !== arquivos.length) {
+        if (
+            arquivosValidos.length !==
+            arquivos.length
+        ) {
 
             mostrarToast(
                 "erro",
@@ -234,9 +330,12 @@ function ModalProdutoAdmin({
             novasImagens.length;
 
         const quantidadeDisponivel =
-            LIMITE_IMAGENS - quantidadeAtual;
+            LIMITE_IMAGENS -
+            quantidadeAtual;
 
-        if (quantidadeDisponivel <= 0) {
+        if (
+            quantidadeDisponivel <= 0
+        ) {
 
             mostrarToast(
                 "erro",
@@ -247,7 +346,10 @@ function ModalProdutoAdmin({
 
         }
 
-        if (arquivosValidos.length > quantidadeDisponivel) {
+        if (
+            arquivosValidos.length >
+            quantidadeDisponivel
+        ) {
 
             mostrarToast(
                 "erro",
@@ -258,31 +360,42 @@ function ModalProdutoAdmin({
 
         }
 
-        const imagensPreparadas = arquivosValidos.map(
-            (arquivo, indice) => ({
-                id: `${Date.now()}-${indice}`,
-                arquivo,
-                preview: URL.createObjectURL(arquivo)
-            })
-        );
+        const imagensPreparadas =
+            arquivosValidos.map(
+                (arquivo, indice) => ({
+                    id:
+                        `${Date.now()}-${indice}`,
+                    arquivo,
+                    preview:
+                        URL.createObjectURL(
+                            arquivo
+                        )
+                })
+            );
 
-        setNovasImagens((anteriores) => [
-            ...anteriores,
-            ...imagensPreparadas
-        ]);
+        setNovasImagens(
+            (anteriores) => [
+                ...anteriores,
+                ...imagensPreparadas
+            ]
+        );
 
         if (!imagemPrincipal) {
 
             setImagemPrincipal({
                 tipo: "nova",
-                id: imagensPreparadas[0].id
+                id:
+                    imagensPreparadas[0].id
             });
 
         }
 
     }
 
-    function selecionarImagemPrincipal(tipo, id) {
+    function selecionarImagemPrincipal(
+        tipo,
+        id
+    ) {
 
         setImagemPrincipal({
             tipo,
@@ -293,42 +406,63 @@ function ModalProdutoAdmin({
 
     function removerNovaImagem(id) {
 
-        const imagemRemovida = novasImagens.find(
-            (imagem) => imagem.id === id
-        );
+        const imagemRemovida =
+            novasImagens.find(
+                (imagem) =>
+                    imagem.id === id
+            );
 
         if (imagemRemovida) {
-            URL.revokeObjectURL(imagemRemovida.preview);
+
+            URL.revokeObjectURL(
+                imagemRemovida.preview
+            );
+
         }
 
-        const imagensRestantes = novasImagens.filter(
-            (imagem) => imagem.id !== id
+        const imagensRestantes =
+            novasImagens.filter(
+                (imagem) =>
+                    imagem.id !== id
+            );
+
+        setNovasImagens(
+            imagensRestantes
         );
 
-        setNovasImagens(imagensRestantes);
-
         if (
-            imagemPrincipal?.tipo === "nova" &&
+            imagemPrincipal?.tipo ===
+                "nova" &&
             imagemPrincipal?.id === id
         ) {
 
-            if (imagensExistentes.length > 0) {
+            if (
+                imagensExistentes.length > 0
+            ) {
 
                 const principalExistente =
                     imagensExistentes.find(
-                        (imagem) => imagem.principal
-                    ) || imagensExistentes[0];
+                        (imagem) =>
+                            imagem.principal
+                    ) ||
+                    imagensExistentes[0];
 
                 setImagemPrincipal({
                     tipo: "existente",
-                    id: principalExistente.id_imagem
+                    id:
+                        principalExistente
+                            .id_imagem
                 });
 
-            } else if (imagensRestantes.length > 0) {
+            } else if (
+                imagensRestantes.length > 0
+            ) {
 
                 setImagemPrincipal({
                     tipo: "nova",
-                    id: imagensRestantes[0].id
+                    id:
+                        imagensRestantes[0]
+                            .id
                 });
 
             } else {
@@ -341,25 +475,34 @@ function ModalProdutoAdmin({
 
     }
 
-    async function carregarImagensProduto(idProduto) {
+    async function carregarImagensProduto(
+        idProduto
+    ) {
 
-        const resposta = await api.get(
-            `/produtos/${idProduto}/imagens`
+        const resposta =
+            await api.get(
+                `/produtos/${idProduto}/imagens`
+            );
+
+        const imagens =
+            resposta.data || [];
+
+        setImagensExistentes(
+            imagens
         );
 
-        const imagens = resposta.data || [];
-
-        setImagensExistentes(imagens);
-
-        const principal = imagens.find(
-            (imagem) => imagem.principal
-        );
+        const principal =
+            imagens.find(
+                (imagem) =>
+                    imagem.principal
+            );
 
         if (principal) {
 
             setImagemPrincipal({
                 tipo: "existente",
-                id: principal.id_imagem
+                id:
+                    principal.id_imagem
             });
 
         } else {
@@ -372,9 +515,13 @@ function ModalProdutoAdmin({
 
     }
 
-    async function excluirImagemExistente(imagem) {
+    async function excluirImagemExistente(
+        imagem
+    ) {
 
-        if (imagensExistentes.length === 1) {
+        if (
+            imagensExistentes.length === 1
+        ) {
 
             mostrarToast(
                 "erro",
@@ -387,20 +534,28 @@ function ModalProdutoAdmin({
 
         try {
 
-            setExcluindoImagem(imagem.id_imagem);
+            setExcluindoImagem(
+                imagem.id_imagem
+            );
 
-            const token = localStorage.getItem("token");
+            const token =
+                localStorage.getItem(
+                    "token"
+                );
 
             await api.delete(
                 `/imagens/${imagem.id_imagem}`,
                 {
                     headers: {
-                        Authorization: `Bearer ${token}`
+                        Authorization:
+                            `Bearer ${token}`
                     }
                 }
             );
 
-            await carregarImagensProduto(idProdutoAtual);
+            await carregarImagensProduto(
+                idProdutoAtual
+            );
 
             mostrarToast(
                 "sucesso",
@@ -427,14 +582,18 @@ function ModalProdutoAdmin({
 
     function validarFormulario() {
 
-        if (!formulario.nome.trim()) {
+        if (
+            !formulario.nome.trim()
+        ) {
 
             mostrarToast(
                 "erro",
                 "Informe o nome do produto."
             );
 
-            setAbaAtiva("informacoes");
+            setAbaAtiva(
+                "informacoes"
+            );
 
             return false;
 
@@ -450,33 +609,43 @@ function ModalProdutoAdmin({
                 "Informe um preço válido."
             );
 
-            setAbaAtiva("informacoes");
+            setAbaAtiva(
+                "informacoes"
+            );
 
             return false;
 
         }
 
-        if (!formulario.categoria_id) {
+        if (
+            !formulario.categoria_id
+        ) {
 
             mostrarToast(
                 "erro",
                 "Selecione uma categoria."
             );
 
-            setAbaAtiva("informacoes");
+            setAbaAtiva(
+                "informacoes"
+            );
 
             return false;
 
         }
 
-        if (Number(formulario.estoque) < 0) {
+        if (
+            Number(formulario.estoque) < 0
+        ) {
 
             mostrarToast(
                 "erro",
                 "O estoque não pode ser negativo."
             );
 
-            setAbaAtiva("informacoes");
+            setAbaAtiva(
+                "informacoes"
+            );
 
             return false;
 
@@ -484,7 +653,9 @@ function ModalProdutoAdmin({
 
         if (
             formulario.sob_encomenda &&
-            !formulario.tempo_producao.trim()
+            !formulario
+                .tempo_producao
+                .trim()
         ) {
 
             mostrarToast(
@@ -492,7 +663,9 @@ function ModalProdutoAdmin({
                 "Informe o tempo de produção."
             );
 
-            setAbaAtiva("informacoes");
+            setAbaAtiva(
+                "informacoes"
+            );
 
             return false;
 
@@ -515,7 +688,10 @@ function ModalProdutoAdmin({
 
         }
 
-        if (totalImagens > LIMITE_IMAGENS) {
+        if (
+            totalImagens >
+            LIMITE_IMAGENS
+        ) {
 
             mostrarToast(
                 "erro",
@@ -550,89 +726,143 @@ function ModalProdutoAdmin({
         token
     ) {
 
-        if (novasImagens.length === 0) {
+        if (
+            novasImagens.length === 0
+        ) {
+
             return imagensExistentes;
-        }
-
-        let imagensOrdenadas = [...novasImagens];
-
-        if (imagemPrincipal?.tipo === "nova") {
-
-            imagensOrdenadas.sort((imagemA, imagemB) => {
-
-                if (imagemA.id === imagemPrincipal.id) {
-                    return -1;
-                }
-
-                if (imagemB.id === imagemPrincipal.id) {
-                    return 1;
-                }
-
-                return 0;
-
-            });
 
         }
 
-        const formData = new FormData();
+        let imagensOrdenadas = [
+            ...novasImagens
+        ];
 
-        imagensOrdenadas.forEach((imagem) => {
-            formData.append("imagens", imagem.arquivo);
-        });
+        if (
+            imagemPrincipal?.tipo ===
+            "nova"
+        ) {
 
-        const idsExistentes = imagensExistentes.map(
-            (imagem) => imagem.id_imagem
-        );
+            imagensOrdenadas.sort(
+                (
+                    imagemA,
+                    imagemB
+                ) => {
 
-        const resposta = await api.post(
-            `/produtos/${idProduto}/imagens`,
-            formData,
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`
+                    if (
+                        imagemA.id ===
+                        imagemPrincipal.id
+                    ) {
+                        return -1;
+                    }
+
+                    if (
+                        imagemB.id ===
+                        imagemPrincipal.id
+                    ) {
+                        return 1;
+                    }
+
+                    return 0;
+
                 }
+            );
+
+        }
+
+        const formData =
+            new FormData();
+
+        imagensOrdenadas.forEach(
+            (imagem) => {
+
+                formData.append(
+                    "imagens",
+                    imagem.arquivo
+                );
+
             }
         );
+
+        const idsExistentes =
+            imagensExistentes.map(
+                (imagem) =>
+                    imagem.id_imagem
+            );
+
+        const resposta =
+            await api.post(
+                `/produtos/${idProduto}/imagens`,
+                formData,
+                {
+                    headers: {
+                        Authorization:
+                            `Bearer ${token}`
+                    }
+                }
+            );
 
         const todasImagens =
             resposta.data.imagens || [];
 
-        setImagensExistentes(todasImagens);
+        setImagensExistentes(
+            todasImagens
+        );
 
-        novasImagens.forEach((imagem) => {
-            URL.revokeObjectURL(imagem.preview);
-        });
+        novasImagens.forEach(
+            (imagem) => {
+
+                URL.revokeObjectURL(
+                    imagem.preview
+                );
+
+            }
+        );
 
         setNovasImagens([]);
 
-        if (imagemPrincipal?.tipo === "nova") {
+        if (
+            imagemPrincipal?.tipo ===
+            "nova"
+        ) {
 
-            const novasCadastradas = todasImagens
-                .filter(
-                    (imagem) =>
-                        !idsExistentes.includes(
-                            imagem.id_imagem
-                        )
-                )
-                .sort(
-                    (imagemA, imagemB) =>
-                        imagemA.id_imagem -
-                        imagemB.id_imagem
-                );
+            const novasCadastradas =
+                todasImagens
+                    .filter(
+                        (imagem) =>
+                            !idsExistentes.includes(
+                                imagem.id_imagem
+                            )
+                    )
+                    .sort(
+                        (
+                            imagemA,
+                            imagemB
+                        ) =>
+                            imagemA.id_imagem -
+                            imagemB.id_imagem
+                    );
 
             const imagemNovaPrincipal =
                 novasCadastradas[0];
 
-            if (imagemNovaPrincipal) {
+            if (
+                imagemNovaPrincipal
+            ) {
 
                 setImagemPrincipal({
                     tipo: "existente",
-                    id: imagemNovaPrincipal.id_imagem
+                    id:
+                        imagemNovaPrincipal
+                            .id_imagem
                 });
 
                 return {
-                    imagens: todasImagens,
-                    idPrincipal: imagemNovaPrincipal.id_imagem
+                    imagens:
+                        todasImagens,
+                    idPrincipal:
+                        imagemNovaPrincipal
+                            .id_imagem
                 };
 
             }
@@ -640,19 +870,26 @@ function ModalProdutoAdmin({
         }
 
         return {
-            imagens: todasImagens,
-            idPrincipal: imagemPrincipal?.id
+            imagens:
+                todasImagens,
+            idPrincipal:
+                imagemPrincipal?.id
         };
 
     }
 
-    async function salvarProduto(evento) {
+    async function salvarProduto(
+        evento
+    ) {
 
         evento.preventDefault();
 
-        if (!validarFormulario()) return;
+        if (!validarFormulario()) {
+            return;
+        }
 
-        const token = localStorage.getItem("token");
+        const token =
+            localStorage.getItem("token");
 
         if (!token) {
 
@@ -665,28 +902,55 @@ function ModalProdutoAdmin({
 
         }
 
-        let produtoCriadoAgora = false;
-        let idProduto = idProdutoAtual;
+        let produtoCriadoAgora =
+            false;
+
+        let idProduto =
+            idProdutoAtual;
 
         try {
 
             setSalvando(true);
 
             const dadosProduto = {
-                nome: formulario.nome.trim(),
-                descricao: formulario.descricao.trim(),
-                preco: Number(formulario.preco),
-                estoque: Number(formulario.estoque),
-                sob_encomenda: formulario.sob_encomenda,
+
+                nome:
+                    formulario.nome.trim(),
+
+                descricao:
+                    formulario.descricao.trim(),
+
+                preco:
+                    Number(
+                        formulario.preco
+                    ),
+
+                estoque:
+                    Number(
+                        formulario.estoque
+                    ),
+
+                sob_encomenda:
+                    formulario.sob_encomenda,
+
                 tempo_producao:
                     formulario.sob_encomenda
-                        ? formulario.tempo_producao.trim()
+                        ? formulario
+                            .tempo_producao
+                            .trim()
                         : null,
-                material: formulario.material.trim(),
-                categoria_id: Number(
-                    formulario.categoria_id
-                ),
-                destaque: formulario.destaque
+
+                material:
+                    formulario.material.trim(),
+
+                categoria_id:
+                    Number(
+                        formulario.categoria_id
+                    ),
+
+                destaque:
+                    formulario.destaque
+
             };
 
             if (idProduto) {
@@ -696,38 +960,49 @@ function ModalProdutoAdmin({
                     dadosProduto,
                     {
                         headers: {
-                            Authorization: `Bearer ${token}`
+                            Authorization:
+                                `Bearer ${token}`
                         }
                     }
                 );
 
             } else {
 
-                const respostaProduto = await api.post(
-                    "/produtos",
-                    dadosProduto,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`
+                const respostaProduto =
+                    await api.post(
+                        "/produtos",
+                        dadosProduto,
+                        {
+                            headers: {
+                                Authorization:
+                                    `Bearer ${token}`
+                            }
                         }
-                    }
-                );
+                    );
 
                 idProduto =
-                    respostaProduto.data.id_produto;
+                    respostaProduto
+                        .data
+                        .id_produto;
 
-                produtoCriadoAgora = true;
+                produtoCriadoAgora =
+                    true;
 
-                setIdProdutoAtual(idProduto);
+                setIdProdutoAtual(
+                    idProduto
+                );
 
             }
 
             let idPrincipalFinal =
-                imagemPrincipal?.tipo === "existente"
+                imagemPrincipal?.tipo ===
+                "existente"
                     ? imagemPrincipal.id
                     : null;
 
-            if (novasImagens.length > 0) {
+            if (
+                novasImagens.length > 0
+            ) {
 
                 const resultadoImagens =
                     await enviarNovasImagens(
@@ -735,10 +1010,14 @@ function ModalProdutoAdmin({
                         token
                     );
 
-                if (resultadoImagens?.idPrincipal) {
+                if (
+                    resultadoImagens
+                        ?.idPrincipal
+                ) {
 
                     idPrincipalFinal =
-                        resultadoImagens.idPrincipal;
+                        resultadoImagens
+                            .idPrincipal;
 
                 }
 
@@ -753,11 +1032,13 @@ function ModalProdutoAdmin({
 
                 const principalAtual =
                     imagensAtualizadas.find(
-                        (imagem) => imagem.principal
+                        (imagem) =>
+                            imagem.principal
                     );
 
                 idPrincipalFinal =
-                    principalAtual?.id_imagem;
+                    principalAtual
+                        ?.id_imagem;
 
             }
 
@@ -774,12 +1055,15 @@ function ModalProdutoAdmin({
                 {},
                 {
                     headers: {
-                        Authorization: `Bearer ${token}`
+                        Authorization:
+                            `Bearer ${token}`
                     }
                 }
             );
 
-            await carregarImagensProduto(idProduto);
+            await carregarImagensProduto(
+                idProduto
+            );
 
             atualizarLista();
 
@@ -791,7 +1075,9 @@ function ModalProdutoAdmin({
             );
 
             setTimeout(() => {
+
                 fechar();
+
             }, 1000);
 
         } catch (erro) {
@@ -808,14 +1094,17 @@ function ModalProdutoAdmin({
                         `/produtos/${idProduto}`,
                         {
                             headers: {
-                                Authorization: `Bearer ${token}`
+                                Authorization:
+                                    `Bearer ${token}`
                             }
                         }
                     );
 
                     setIdProdutoAtual(null);
 
-                } catch (erroExclusao) {
+                } catch (
+                    erroExclusao
+                ) {
 
                     console.error(
                         "Erro ao desfazer cadastro:",
@@ -841,7 +1130,9 @@ function ModalProdutoAdmin({
 
     }
 
-    if (!aberto) return null;
+    if (!aberto) {
+        return null;
+    }
 
     const totalImagens =
         imagensExistentes.length +
@@ -854,16 +1145,25 @@ function ModalProdutoAdmin({
             {toast && (
 
                 <div
-                    className={`toastProdutoAdmin ${toast.tipo}`}
+                    className={
+                        `toastProdutoAdmin ${toast.tipo}`
+                    }
                 >
 
-                    {toast.tipo === "sucesso" ? (
+                    {toast.tipo ===
+                    "sucesso" ? (
+
                         <FaCheckCircle />
+
                     ) : (
+
                         <FaTimesCircle />
+
                     )}
 
-                    <span>{toast.mensagem}</span>
+                    <span>
+                        {toast.mensagem}
+                    </span>
 
                 </div>
 
@@ -905,44 +1205,58 @@ function ModalProdutoAdmin({
                     <button
                         type="button"
                         className={
-                            abaAtiva === "informacoes"
+                            abaAtiva ===
+                            "informacoes"
                                 ? "abaModalProdutoAdmin ativa"
                                 : "abaModalProdutoAdmin"
                         }
                         onClick={() =>
-                            setAbaAtiva("informacoes")
+                            setAbaAtiva(
+                                "informacoes"
+                            )
                         }
                     >
                         <FaInfoCircle />
+
                         Informações
                     </button>
 
                     <button
                         type="button"
                         className={
-                            abaAtiva === "imagens"
+                            abaAtiva ===
+                            "imagens"
                                 ? "abaModalProdutoAdmin ativa"
                                 : "abaModalProdutoAdmin"
                         }
                         onClick={() =>
-                            setAbaAtiva("imagens")
+                            setAbaAtiva(
+                                "imagens"
+                            )
                         }
                     >
                         <FaImages />
+
                         Imagens
 
                         <span className="contadorImagensProduto">
-                            {totalImagens}/{LIMITE_IMAGENS}
+                            {totalImagens}/
+                            {LIMITE_IMAGENS}
                         </span>
                     </button>
 
                 </div>
 
-                <form onSubmit={salvarProduto}>
+                <form
+                    onSubmit={
+                        salvarProduto
+                    }
+                >
 
                     <div className="conteudoModalProdutoAdmin">
 
-                        {abaAtiva === "informacoes" && (
+                        {abaAtiva ===
+                        "informacoes" && (
 
                             <div className="abaInformacoesProduto">
 
@@ -958,8 +1272,12 @@ function ModalProdutoAdmin({
                                             id="nome"
                                             type="text"
                                             name="nome"
-                                            value={formulario.nome}
-                                            onChange={alterarFormulario}
+                                            value={
+                                                formulario.nome
+                                            }
+                                            onChange={
+                                                alterarFormulario
+                                            }
                                             placeholder="Ex: Urso de Crochê"
                                         />
 
@@ -977,8 +1295,12 @@ function ModalProdutoAdmin({
                                             name="preco"
                                             min="0"
                                             step="0.01"
-                                            value={formulario.preco}
-                                            onChange={alterarFormulario}
+                                            value={
+                                                formulario.preco
+                                            }
+                                            onChange={
+                                                alterarFormulario
+                                            }
                                             placeholder="0,00"
                                         />
 
@@ -998,14 +1320,18 @@ function ModalProdutoAdmin({
                                         value={
                                             formulario.categoria_id
                                         }
-                                        onChange={alterarFormulario}
+                                        onChange={
+                                            alterarFormulario
+                                        }
                                     >
                                         <option value="">
                                             Selecione uma categoria
                                         </option>
 
                                         {categorias.map(
-                                            (categoria) => (
+                                            (
+                                                categoria
+                                            ) => (
 
                                                 <option
                                                     key={
@@ -1015,7 +1341,9 @@ function ModalProdutoAdmin({
                                                         categoria.id_categoria
                                                     }
                                                 >
-                                                    {categoria.nome}
+                                                    {
+                                                        categoria.nome
+                                                    }
                                                 </option>
 
                                             )
@@ -1037,7 +1365,9 @@ function ModalProdutoAdmin({
                                         value={
                                             formulario.descricao
                                         }
-                                        onChange={alterarFormulario}
+                                        onChange={
+                                            alterarFormulario
+                                        }
                                         placeholder="Descreva o produto..."
                                         rows="4"
                                     />
@@ -1060,7 +1390,9 @@ function ModalProdutoAdmin({
                                             value={
                                                 formulario.estoque
                                             }
-                                            onChange={alterarFormulario}
+                                            onChange={
+                                                alterarFormulario
+                                            }
                                         />
 
                                     </div>
@@ -1078,7 +1410,9 @@ function ModalProdutoAdmin({
                                             value={
                                                 formulario.material
                                             }
-                                            onChange={alterarFormulario}
+                                            onChange={
+                                                alterarFormulario
+                                            }
                                             placeholder="Ex: Fio Amigurumi"
                                         />
 
@@ -1128,7 +1462,8 @@ function ModalProdutoAdmin({
 
                                 </div>
 
-                                {formulario.sob_encomenda && (
+                                {formulario
+                                    .sob_encomenda && (
 
                                     <div className="campoProdutoAdmin">
 
@@ -1157,7 +1492,8 @@ function ModalProdutoAdmin({
 
                         )}
 
-                        {abaAtiva === "imagens" && (
+                        {abaAtiva ===
+                        "imagens" && (
 
                             <div className="abaImagensProduto">
 
@@ -1185,6 +1521,7 @@ function ModalProdutoAdmin({
                                         }
                                     >
                                         <FaUpload />
+
                                         Selecionar imagens
 
                                         <input
@@ -1203,7 +1540,8 @@ function ModalProdutoAdmin({
 
                                 </div>
 
-                                {totalImagens === 0 ? (
+                                {totalImagens ===
+                                0 ? (
 
                                     <div className="semImagensProduto">
 
@@ -1225,7 +1563,9 @@ function ModalProdutoAdmin({
                                     <div className="listaImagensProduto">
 
                                         {imagensExistentes.map(
-                                            (imagem) => {
+                                            (
+                                                imagem
+                                            ) => {
 
                                                 const selecionada =
                                                     imagemPrincipal
@@ -1249,8 +1589,22 @@ function ModalProdutoAdmin({
                                                     >
 
                                                         <img
-                                                            src={`${URL_IMAGENS}/${imagem.caminho_imagem}`}
+                                                            src={
+                                                                montarUrlImagem(
+                                                                    imagem.caminho_imagem
+                                                                )
+                                                            }
                                                             alt="Produto"
+                                                            onError={
+                                                                (
+                                                                    evento
+                                                                ) => {
+
+                                                                    evento.currentTarget.src =
+                                                                        "https://placehold.co/400x400?text=Sem+imagem";
+
+                                                                }
+                                                            }
                                                         />
 
                                                         {selecionada && (
@@ -1318,7 +1672,9 @@ function ModalProdutoAdmin({
                                         )}
 
                                         {novasImagens.map(
-                                            (imagem) => {
+                                            (
+                                                imagem
+                                            ) => {
 
                                                 const selecionada =
                                                     imagemPrincipal
@@ -1336,7 +1692,9 @@ function ModalProdutoAdmin({
                                                                 ? "cardImagemProduto principal"
                                                                 : "cardImagemProduto"
                                                         }
-                                                        key={imagem.id}
+                                                        key={
+                                                            imagem.id
+                                                        }
                                                     >
 
                                                         <img
@@ -1432,7 +1790,9 @@ function ModalProdutoAdmin({
                             type="button"
                             className="botaoCancelarProduto"
                             onClick={fechar}
-                            disabled={salvando}
+                            disabled={
+                                salvando
+                            }
                         >
                             Cancelar
                         </button>
@@ -1440,18 +1800,30 @@ function ModalProdutoAdmin({
                         <button
                             type="submit"
                             className="botaoSalvarProduto"
-                            disabled={salvando}
+                            disabled={
+                                salvando
+                            }
                         >
                             {salvando ? (
+
                                 <>
+
                                     <FaSpinner className="iconeGirando" />
+
                                     Salvando...
+
                                 </>
+
                             ) : (
+
                                 <>
+
                                     <FaSave />
+
                                     Salvar Produto
+
                                 </>
+
                             )}
                         </button>
 

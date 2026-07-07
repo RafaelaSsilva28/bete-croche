@@ -5,7 +5,19 @@ import {
     FaTag
 } from "react-icons/fa";
 
+import { API_URL } from "../../services/api";
+
 function CardProduto({ produto, abrirProduto }) {
+
+    const caminhoImagem = produto.imagem_principal
+        ? produto.imagem_principal
+            .replace(/^\/+/, "")
+            .replace(/^uploads\//, "")
+        : null;
+
+    const urlImagem = caminhoImagem
+        ? `${API_URL}/uploads/${caminhoImagem}`
+        : "https://placehold.co/400x400?text=Sem+imagem";
 
     return (
 
@@ -14,12 +26,14 @@ function CardProduto({ produto, abrirProduto }) {
             <div className="imagemCardProduto">
 
                 <img
-                    src={
-                        produto.imagem_principal
-                            ? `http://localhost:3001/uploads/${produto.imagem_principal}`
-                            : "https://placehold.co/400x400?text=Sem+imagem"
-                    }
+                    src={urlImagem}
                     alt={produto.nome}
+                    onError={(evento) => {
+
+                        evento.currentTarget.src =
+                            "https://placehold.co/400x400?text=Sem+imagem";
+
+                    }}
                 />
 
                 {produto.destaque === true && (

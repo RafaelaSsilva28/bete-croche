@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import NavbarAdmin from "../../components/NavbarAdmin/NavbarAdmin";
 import ModalProdutoAdmin from "../../components/ModalProdutoAdmin/ModalProdutoAdmin";
 
-import api from "../../services/api";
+import api, { API_URL } from "../../services/api";
 
 import {
     FaBoxOpen,
@@ -162,6 +162,31 @@ function ProdutosAdmin() {
 
     }
 
+    function montarUrlImagem(caminhoImagem) {
+
+        if (!caminhoImagem) {
+
+            return "https://placehold.co/120x120?text=Sem+imagem";
+
+        }
+
+        if (
+            caminhoImagem.startsWith("http://") ||
+            caminhoImagem.startsWith("https://")
+        ) {
+
+            return caminhoImagem;
+
+        }
+
+        const caminhoLimpo = caminhoImagem
+            .replace(/^\/+/, "")
+            .replace(/^uploads\//, "");
+
+        return `${API_URL}/uploads/${caminhoLimpo}`;
+
+    }
+
     const produtosFiltrados = produtos.filter((produto) => {
 
         const termoPesquisa = pesquisa
@@ -308,12 +333,16 @@ function ProdutosAdmin() {
                             >
 
                                 <img
-                                    src={
+                                    src={montarUrlImagem(
                                         produto.imagem_principal
-                                            ? `http://localhost:3001/uploads/${produto.imagem_principal}`
-                                            : "https://placehold.co/120x120?text=Sem+imagem"
-                                    }
+                                    )}
                                     alt={produto.nome}
+                                    onError={(evento) => {
+
+                                        evento.currentTarget.src =
+                                            "https://placehold.co/120x120?text=Sem+imagem";
+
+                                    }}
                                 />
 
                                 <div className="infoProdutoAdmin">

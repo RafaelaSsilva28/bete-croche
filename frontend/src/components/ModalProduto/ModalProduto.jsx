@@ -17,6 +17,7 @@ import {
 } from "react-icons/fa";
 
 import { useCart } from "../../context/CartContext";
+import { API_URL } from "../../services/api";
 
 function ModalProduto({ aberto, produto, fechar }) {
 
@@ -83,6 +84,31 @@ function ModalProduto({ aberto, produto, fechar }) {
                     }
                 ]
                 : [];
+
+    function montarUrlImagem(caminhoImagem) {
+
+        if (!caminhoImagem) {
+
+            return "https://placehold.co/600x600?text=Sem+imagem";
+
+        }
+
+        if (
+            caminhoImagem.startsWith("http://") ||
+            caminhoImagem.startsWith("https://")
+        ) {
+
+            return caminhoImagem;
+
+        }
+
+        const caminhoLimpo = caminhoImagem
+            .replace(/^\/+/, "")
+            .replace(/^uploads\//, "");
+
+        return `${API_URL}/uploads/${caminhoLimpo}`;
+
+    }
 
     function proximaImagem() {
 
@@ -233,10 +259,19 @@ Gostaria de mais informações sobre disponibilidade, prazo e personalização.`
                         <img
                             src={
                                 imagens.length > 0
-                                    ? `http://localhost:3001/uploads/${imagens[imagemSelecionada].caminho_imagem}`
+                                    ? montarUrlImagem(
+                                        imagens[imagemSelecionada]
+                                            .caminho_imagem
+                                    )
                                     : "https://placehold.co/600x600?text=Sem+imagem"
                             }
                             alt={produto.nome}
+                            onError={(evento) => {
+
+                                evento.currentTarget.src =
+                                    "https://placehold.co/600x600?text=Sem+imagem";
+
+                            }}
                         />
 
                         {imagens.length > 1 && (
