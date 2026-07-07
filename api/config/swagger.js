@@ -14,11 +14,15 @@ const documentacao = {
     },
 
     servers: [
-        {
-            url: "http://localhost:3001",
-            description: "Servidor Local"
-        }
-    ],
+    {
+        url: "https://bete-croche-production.up.railway.app",
+        description: "Servidor online"
+    },
+    {
+        url: "http://localhost:3001",
+        description: "Servidor local"
+    }
+],
 
     components: {
         securitySchemes: {
